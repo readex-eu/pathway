@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_availFilesItem" structureRef="java.util.List" />
+  <itemDefinition id="_resultsURIItem" structureRef="String" />
+  <itemDefinition id="_hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_toolItem" structureRef="String" />
+  <itemDefinition id="_curExperimentItem" structureRef="pathway.data.persistence.Experiment" />
+  <itemDefinition id="_dataFolderItem" structureRef="String" />
+  <itemDefinition id="_searchRecursiveItem" structureRef="Boolean" />
+
+  <itemDefinition id="_3-2-6-fileItem" />
+
+  <itemDefinition id="_5-availFilesItem" structureRef="java.util.List" />
+  <itemDefinition id="_5-resultsURIItem" structureRef="String" />
+  <itemDefinition id="_5-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_5-toolItem" structureRef="String" />
+  <itemDefinition id="_5-curExperimentItem" structureRef="pathway.data.persistence.Experiment" />
+  <itemDefinition id="_5-dataFolderItem" structureRef="String" />
+  <itemDefinition id="_5-searchRecursiveItem" structureRef="Boolean" />
+
+  <itemDefinition id="_3_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="pathway.workflows.periscope.LoadPscPropertyFiles" name="Load Psc Property Files Process" tns:packageName="pathway.workflows.periscope" >
+
+    <extensionElements>
+     <tns:import name="java.io.File" />
+     <tns:import name="org.javatuples.Pair" />
+     <tns:import name="pathway.ui.dialogs.*" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="availFiles" itemSubjectRef="_availFilesItem"/>
+    <property id="resultsURI" itemSubjectRef="_resultsURIItem"/>
+    <property id="hpcSystem" itemSubjectRef="_hpcSystemItem"/>
+    <property id="tool" itemSubjectRef="_toolItem"/>
+    <property id="curExperiment" itemSubjectRef="_curExperimentItem"/>
+    <property id="dataFolder" itemSubjectRef="_dataFolderItem"/>
+    <property id="searchRecursive" itemSubjectRef="_searchRecursiveItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <subProcess id="_3" name="Load All Available Files"  >
+      <ioSpecification>
+        <dataInput id="_3_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>availFiles</sourceRef>
+        <targetRef>_3_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_3_input</loopDataInputRef>
+        <inputDataItem id="file" itemSubjectRef="_3_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <startEvent id="_3-2-2" name="Start" />
+    <endEvent id="_3-2-3" name="End" />
+    <scriptTask id="_3-2-5" name="Script" >
+      <script>System.out.println("Processing file: " + ((File) file).getPath);</script>
+    </scriptTask>
+    <task id="_3-2-6" name="Load Data" tns:taskName="LoadDataPeriscope" >
+      <extensionElements>
+        <tns:onEntry-script>
+          <script>kcontext.setVariable("resultsURI", ((File) file).getPath() );</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_3-2-6_ResultsURIInput" name="ResultsURI" />
+        <dataInput id="_3-2-6_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_3-2-6_ToolInput" name="Tool" />
+        <dataOutput id="_3-2-6_ExperimentOutput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_3-2-6_ResultsURIInput</dataInputRefs>
+          <dataInputRefs>_3-2-6_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_3-2-6_ToolInput</dataInputRefs>
+          <dataInputRefs>_3-2-6_HPCSystemInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3-2-6_ExperimentOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>resultsURI</sourceRef>
+        <targetRef>_3-2-6_ResultsURIInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_3-2-6_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3-2-6_ToolInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Periscope</from>
+          <to xsi:type="tFormalExpression">_3-2-6_ToolInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3-2-6_HPCSystemInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">SuperMIG</from>
+          <to xsi:type="tFormalExpression">_3-2-6_HPCSystemInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3-2-6_ExperimentOutput</sourceRef>
+        <targetRef>curExperiment</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_3-2-7" name="Script" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Experiment loaded: " + curExperiment );</script>
+    </scriptTask>
+    <!-- connections -->
+    <sequenceFlow id="_3-2-7-_3-2-3" sourceRef="_3-2-7" targetRef="_3-2-3" />
+    <sequenceFlow id="_3-2-2-_3-2-5" sourceRef="_3-2-2" targetRef="_3-2-5" />
+    <sequenceFlow id="_3-2-5-_3-2-6" sourceRef="_3-2-5" targetRef="_3-2-6" />
+    <sequenceFlow id="_3-2-6-_3-2-7" sourceRef="_3-2-6" targetRef="_3-2-7" />
+    </subProcess>
+    <endEvent id="_4" name="EndProcess" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <task id="_5" name="Find Files" tns:taskName="FindFiles" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <script>System.out.println("FindFiles dataFolder: " + dataFolder);</script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_5_RecursiveInput" name="Recursive" />
+        <dataInput id="_5_PathInput" name="Path" />
+        <dataInput id="_5_SuffixInput" name="Suffix" />
+        <dataOutput id="_5_FilesOutput" name="Files" />
+        <inputSet>
+          <dataInputRefs>_5_RecursiveInput</dataInputRefs>
+          <dataInputRefs>_5_PathInput</dataInputRefs>
+          <dataInputRefs>_5_SuffixInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_5_FilesOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>searchRecursive</sourceRef>
+        <targetRef>_5_RecursiveInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>dataFolder</sourceRef>
+        <targetRef>_5_PathInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_5_SuffixInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">psc</from>
+          <to xsi:type="tFormalExpression">_5_SuffixInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_5_FilesOutput</sourceRef>
+        <targetRef>availFiles</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_7" name="Ask for Path" scriptFormat="http://www.java.com/java" >
+      <script>Pair&lt;String, Boolean&gt; searchLocation = GetFilePath.getResult();
+kcontext.setVariable("dataFolder", searchLocation.getValue0());
+kcontext.setVariable("searchRecursive", searchLocation.getValue1());
+
+System.out.println("Ask4Path dataFolder: " + dataFolder);</script>
+    </scriptTask>
+    <scriptTask id="_8" name="Browse Experiments" scriptFormat="http://www.java.com/java" >
+      <script>BrowseExperiments.showGUI();</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_5-_3" sourceRef="_5" targetRef="_3" />
+    <sequenceFlow id="_8-_4" sourceRef="_8" targetRef="_4" />
+    <sequenceFlow id="_7-_5" sourceRef="_7" targetRef="_5" />
+    <sequenceFlow id="_1-_7" sourceRef="_1" targetRef="_7" />
+    <sequenceFlow id="_3-_8" sourceRef="_3" targetRef="_8" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pathway.workflows.periscope.LoadPscPropertyFiles" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="47" y="54" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="309" y="57" width="294" height="178" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3-2-2" >
+        <dc:Bounds x="325" y="78" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3-2-3" >
+        <dc:Bounds x="527" y="145" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3-2-5" >
+        <dc:Bounds x="413" y="77" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3-2-6" >
+        <dc:Bounds x="312" y="142" width="84" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3-2-7" >
+        <dc:Bounds x="428" y="143" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="725" y="100" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="144" y="55" width="100" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="72" y="213" width="119" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="695" y="232" width="171" height="72" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_3-2-7-_3-2-3" >
+        <di:waypoint x="159" y="110" />
+        <di:waypoint x="242" y="112" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-2-2-_3-2-5" >
+        <di:waypoint x="40" y="45" />
+        <di:waypoint x="144" y="44" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-2-5-_3-2-6" >
+        <di:waypoint x="144" y="44" />
+        <di:waypoint x="45" y="109" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-2-6-_3-2-7" >
+        <di:waypoint x="45" y="109" />
+        <di:waypoint x="159" y="110" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_3" >
+        <di:waypoint x="194" y="79" />
+        <di:waypoint x="456" y="146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_4" >
+        <di:waypoint x="780" y="268" />
+        <di:waypoint x="749" y="124" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_5" >
+        <di:waypoint x="131" y="237" />
+        <di:waypoint x="194" y="79" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_7" >
+        <di:waypoint x="71" y="78" />
+        <di:waypoint x="131" y="237" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_8" >
+        <di:waypoint x="456" y="146" />
+        <di:waypoint x="780" y="268" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

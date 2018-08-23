@@ -1,0 +1,20 @@
+'''Historical Notes'''
+
+This is a simple overview of all currently available historical notes
+
+'''''Year 2012'''''
+* 31. December 2012: PAThWay:note:20121231
+** Scalability Analysis - PAThWay:Exp:2
+** Scalability Analysis - PAThWay:Exp:ff8081813b675ba8013b675be8a70000
+
+* 11. December 2012: PAThWay:note:20121211
+* 10. December 2012: PAThWay:note:20121210
+* 04. December 2012: PAThWay:note:20121204
+* 03. December 2012: PAThWay:note:20121203
+
+'''''Year 2004'''''
+* 31. December 2004: PAThWay:note:20041231
+
+'''''Invalid Entries'''''
+* Non-existing date (will be created): PAThWay:note:20101231
+* Invalid date: PAThWay:note:21239036

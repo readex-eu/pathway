@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ******************************************************************************* -->
+<!-- * Copyright (c) 2011 IBM Corporation. All rights reserved. This program -->
+<!-- * and the accompanying materials are made available under the terms of the -->
+<!-- * Eclipse Public License v1.0 which accompanies this distribution, and is -->
+<!-- * available at http://www.eclipse.org/legal/epl-v10.html -->
+<!-- * -->
+<!-- ****************************************************************************** -->
+<resource-manager-builder xmlns="http://eclipse.org/ptp/rm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://eclipse.org/ptp/rm http://eclipse.org/ptp/schemas/v1.1/rm.xsd" name="MPICH2">
+    <control-data>
+        <!-- this is a necessary attribute for the functioning of LML; link it to the batch-specific variable name -->
+        <attribute name="control.queue.name" visible="false">
+            <link-value-to>destination</link-value-to>
+        </attribute>
+        <attribute name="mpich2_version" visible="false" type="string">
+            <default>no_version</default>
+        </attribute>
+        <attribute name="mpiCommand" type="choice">
+            <description>Optional MPI command to run job.</description>
+            <choice>mpiexec,mpirun</choice>
+            <default>mpiexec</default>
+        </attribute>
+        <attribute name="useDefaultPath" type="boolean">
+            <default>true</default>
+        </attribute>
+        <attribute name="bindir" visible="false" type="string">
+            <default></default>
+        </attribute>
+        <attribute name="prefixOption" type="boolean" />
+        <attribute name="prefix" type="string" />
+        <attribute name="useHostFile" type="boolean" />
+        <attribute name="host_file" type="string" />
+        <attribute name="useHostList" type="boolean" />
+        <attribute name="host_list" type="string" />
+        <attribute name="useDefaultAguments" type="boolean">
+            <default>true</default>
+        </attribute>
+
+        <!-- needed by RM internals for fetch; name is fixed by convention -->
+        <attribute name="stdout_remote_path" visible="false">
+            <default>${ptp_rm:pathway.working_dir#value}/pathway.${ptp_rm:@jobId#default}.out</default>
+            <link-value-to>output</link-value-to>
+        </attribute>
+        <!-- needed by RM internals for fetch; name is fixed by convention -->
+        <attribute name="stderr_remote_path" visible="false">
+            <default>${ptp_rm:pathway.working_dir#value}/pathway.${ptp_rm:@jobId#default}.err</default>
+            <link-value-to>error</link-value-to>
+        </attribute>
+
+        <attribute name="error" type="string">
+            <default>pathway.$$.err</default>
+        </attribute>
+
+        <attribute name="output" type="string">
+            <default>pathway.$$.out</default>
+        </attribute>
+
+        <!-- Pathway Additions -->
+        <attribute name="pathway.get-env.script" visible="true">
+            <default>resources/get_env.sh</default>
+        </attribute>
+
+        <attribute name="pathway.job.name" visible="true" />
+        <attribute name="pathway.modules" visible="true" />
+        <attribute name="pathway.environment" visible="true" />
+        <attribute name="mpiNumberOfProcesses" visible="true" />
+        <attribute name="ompNumberOfThreads" visible="true" />
+        <attribute name="pathway.toolrun" visible="true" type="boolean">
+            <default>false</default>
+        </attribute>
+        <attribute name="pathway.working_dir" visible="true" />
+
+        <managed-files>
+            <file-staging-location>${ptp_rm:pathway.working_dir#value}</file-staging-location>
+            <file name="get-env-script">
+                <path>${ptp_rm:pathway.get-env.script#value}</path>
+            </file>
+        </managed-files>
+
+        <script insertEnvironmentAfter="0" deleteAfterSubmit="true">
+            <file-staging-location>${ptp_rm:pathway.working_dir#value}</file-staging-location>
+            <line>
+                <arg>#!/bin/bash</arg>
+            </line>
+            <!-- <line><arg>source /etc/profile.d/modules.sh</arg></line> -->
+
+            <line>
+                <arg isUndefinedIfMatches="cd">cd ${ptp_rm:pathway.working_dir#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="module load ">module load ${ptp_rm:pathway.modules#value}</arg>
+            </line>
+            <line>
+                <arg>${ptp_rm:pathway.environment#value}</arg>
+            </line>
+            <line>
+                <arg>export OMP_NUM_THREADS=${ptp_rm:ompNumberOfThreads#value}</arg>
+            </line>
+            <line>
+                <arg resolve="false">cat /proc/cpuinfo > pathway.$$.cpu</arg>
+            </line>
+            <line>
+                <arg resolve="false">uname --nodename --kernel-release --hardware-platform > pathway.$$.uname</arg>
+            </line>
+            <line>
+                <arg resolve="true">chmod +x ${ptp_rm:pathway.working_dir#value}/get_env.sh</arg>
+            </line>
+            <line>
+                <arg resolve="true">${ptp_rm:pathway.working_dir#value}/get_env.sh</arg>
+                <arg resolve="false">--output-file=pathway.$$.env</arg>
+                <arg>--cmd='${ptp_rm:executablePath#value}'</arg>
+                <arg>--args='${ptp_rm:progArgs#value}'</arg>
+            </line>
+            <line>
+                <arg attribute="pathway.toolrun" isUndefinedIfMatches="true">${ptp_rm:mpiCommand#value}</arg>
+                <arg attribute="pathway.toolrun" isUndefinedIfMatches="true">-np ${ptp_rm:mpiNumberOfProcesses#value}</arg>
+                <arg>${ptp_rm:executablePath#value}</arg>
+                <arg isUndefinedIfMatches="">${ptp_rm:progArgs#value}</arg>
+                <arg isUndefinedIfMatches="1> ">1&gt; ${ptp_rm:output#value}</arg>
+                <arg isUndefinedIfMatches="2> ">2> ${ptp_rm:error#value}</arg>
+            </line>
+        </script>
+        <!-- Pathway Additions END -->
+
+        <submit-interactive name="submit-interactive" directory="${ptp_rm:pathway.working_dir#value}" waitForId="true" keepOpen="true">
+            <arg>perl ${ptp_rm:ptpDirectory#value}/rms/MPICH2/start_job.pl</arg>
+            <arg>/bin/sh</arg>
+            <arg>${ptp_rm:managed_file_for_script#value}</arg>
+            <environment name="PTP_LAUNCH_MODE" value="${ptp_rm:launchMode#value}" />
+            <stdout-parser delim="\n">
+                <target ref="@jobId">
+                    <match>
+                        <expression>#PTP job_id=([0-9]+)</expression>
+                        <set field="name">
+                            <entry valueGroup="1" />
+                        </set>
+                        <set field="value">
+                            <entry value="RUNNING" />
+                        </set>
+                    </match>
+                </target>
+            </stdout-parser>
+            <stderr-parser delim="\n">
+                <target>
+                    <match>
+                        <expression>.+</expression>
+                        <throw message="Unable to launch job" />
+                    </match>
+                </target>
+            </stderr-parser>
+        </submit-interactive>
+        <!-- submit-interactive-debug name="submit-interactive-debug" directory="${ptp_rm:executableDirectory#value}" waitForId="true" keepOpen="true"> <arg>perl 
+            ${ptp_rm:ptpDirectory#value}/rms/MPICH2/start_job.pl</arg> <arg attribute="useDefaultPath" isUndefinedIfMatches="true">${ptp_rm:bindir#value}/mpiexec</arg> <arg 
+            attribute="useDefaultPath" isUndefinedIfMatches="false">mpiexec</arg> <arg>-np ${ptp_rm:mpiNumberOfProcesses#value}</arg> <arg>${ptp_rm:debuggerExecutablePath#value}</arg> 
+            <arg>${ptp_rm:debuggerArgs#value}</arg> <environment name="PTP_LAUNCH_MODE" value="${ptp_rm:launchMode#value}" /> <stdout-parser delim="\n"> <target ref="@jobId"> 
+            <match> <expression>#PTP job_id=([0-9]+)</expression> <set field="name"> <entry valueGroup="1" /> </set> <set field="value"> <entry value="RUNNING" /> </set> </match> 
+            </target> </stdout-parser> <stderr-parser delim="\n"> <target> <match> <expression>.+</expression> <throw message="Unable to launch job"/> </match> </target> </stderr-parser> 
+            <pre-launch-cmd name="Cleanup" exec="rm -f routing_file" wait="true"/> <post-launch-cmd name="SDM Master" exec="${ptp_rm:debuggerExecutablePath#value} -master ${ptp_rm:debuggerArgs#value}" 
+            wait="false"/> </submit-interactive-debug -->
+        <launch-tab>
+            <dynamic includeWidgetValuesFrom="Advanced Options">
+                <title>Basic Options</title>
+                <layout>
+                    <grid-layout numColumns="1" />
+                </layout>
+                <composite>
+                    <layout>
+                        <grid-layout numColumns="2" />
+                    </layout>
+                    <widget type="label" style="SWT.LEFT">
+                        <fixed-text>Number of processes:</fixed-text>
+                    </widget>
+                    <widget type="spinner" style="SWT.BORDER" readOnly="false" attribute="mpiNumberOfProcesses">
+                        <layout-data>
+                            <grid-data horizontalAlign="SWT.LEFT" verticalAlign="SWT.CENTER" grabExcessHorizontal="false" grabExcessVertical="false" />
+                        </layout-data>
+                    </widget>
+                </composite>
+                <!-- Options group -->
+                <composite group="true">
+                    <layout>
+                        <grid-layout numColumns="2" />
+                    </layout>
+                    <layout-data>
+                        <grid-data horizontalAlign="SWT.FILL" grabExcessHorizontal="true" />
+                    </layout-data>
+                    <title>Options</title>
+                    <widget type="checkbox" title="No local" attribute="noLocalOption">
+                        <layout-data>
+                            <grid-data horizontalSpan="2" />
+                        </layout-data>
+                    </widget>
+                    <widget type="checkbox" title="Prefix:" buttonId="prefixButton" attribute="prefixOption" />
+                    <widget type="text" style="SWT.BORDER" attribute="prefix">
+                        <layout-data>
+                            <grid-data horizontalAlign="SWT.FILL" grabExcessHorizontal="true" />
+                        </layout-data>
+                        <control-state>
+                            <enable-if button="prefixButton" selected="true" />
+                        </control-state>
+                    </widget>
+                </composite>
+                <composite group="true">
+                    <layout>
+                        <grid-layout numColumns="3" makeColumnsEqualWidth="false" />
+                    </layout>
+                    <layout-data>
+                        <grid-data horizontalAlign="SWT.FILL" verticalAlign="SWT.FILL" grabExcessHorizontal="true" grabExcessVertical="true" />
+                    </layout-data>
+                    <title>Hosts</title>
+                    <widget type="checkbox" title="Host file:" buttonId="hostFileButton" attribute="useHostFile" />
+                    <browse textStyle="SWT.BORDER" title="Browse" attribute="host_file">
+                        <text-layout-data>
+                            <grid-data horizontalAlign="SWT.FILL" verticalAlign="SWT.CENTER" grabExcessHorizontal="true" />
+                        </text-layout-data>
+                        <button-layout-data>
+                            <grid-data horizontalAlign="SWT.RIGHT" verticalAlign="SWT.CENTER" />
+                        </button-layout-data>
+                        <text-control-state>
+                            <enable-if button="hostFileButton" selected="true" />
+                        </text-control-state>
+                        <button-control-state>
+                            <enable-if button="hostFileButton" selected="true" />
+                        </button-control-state>
+                    </browse>
+                    <widget type="checkbox" title="Host list:" buttonId="hostListButton" attribute="useHostList">
+                        <layout-data>
+                            <grid-data horizontalAlign="SWT.LEFT" verticalAlign="SWT.TOP" />
+                        </layout-data>
+                    </widget>
+                    <widget type="text" style="SWT.BORDER" attribute="host_list">
+                        <layout-data>
+                            <grid-data horizontalAlign="SWT.FILL" verticalAlign="SWT.FILL" horizontalSpan="2" grabExcessHorizontal="true"
+                                grabExcessVertical="true" />
+                        </layout-data>
+                        <control-state>
+                            <enable-if button="hostListButton" selected="true" />
+                        </control-state>
+                    </widget>
+                </composite>
+            </dynamic>
+            <dynamic includeWidgetValuesFrom="Basic Options">
+                <title>Advanced Options</title>
+                <layout>
+                    <grid-layout numColumns="1" />
+                </layout>
+                <composite>
+                    <layout>
+                        <grid-layout numColumns="1" />
+                    </layout>
+                    <layout-data>
+                        <grid-data horizontalAlign="SWT.FILL" grabExcessHorizontal="true" />
+                    </layout-data>
+                    <!-- Launch group -->
+                    <composite group="true">
+                        <layout>
+                            <grid-layout numColumns="2" makeColumnsEqualWidth="false" />
+                        </layout>
+                        <layout-data>
+                            <grid-data horizontalAlign="SWT.FILL" grabExcessHorizontal="true" grabExcessVertical="false" />
+                        </layout-data>
+                        <title>Launch Arguments</title>
+                        <widget type="checkbox" title="Use default arguments" buttonId="defaultArgs" attribute="useDefaultAguments">
+                            <layout-data>
+                                <grid-data horizontalSpan="2" />
+                            </layout-data>
+                        </widget>
+                        <widget type="label" style="SWT.LEFT" foreground="SWT.COLOR_DARK_BLUE">
+                            <fixed-text>Arguments:</fixed-text>
+                        </widget>
+                        <widget type="text" style="SWT.LEFT | SWT.BORDER">
+                            <layout-data>
+                                <grid-data horizontalAlign="SWT.FILL" grabExcessHorizontal="true" grabExcessVertical="false" widthHint="400" />
+                            </layout-data>
+                            <dynamic-text>
+                                <arg>${ptp_rm:allAttributes#value}</arg>
+                            </dynamic-text>
+                            <control-state>
+                                <disable-if button="defaultArgs" selected="true" />
+                            </control-state>
+                        </widget>
+                    </composite>
+                    <!-- Installation group -->
+                    <composite group="true">
+                        <layout>
+                            <grid-layout numColumns="3" makeColumnsEqualWidth="false" />
+                        </layout>
+                        <layout-data>
+                            <grid-data horizontalAlign="SWT.FILL" grabExcessHorizontal="true" grabExcessVertical="false" />
+                        </layout-data>
+                        <title>Installation location</title>
+                        <widget type="checkbox" title="Use default path" buttonId="defaultPath" attribute="useDefaultPath">
+                            <layout-data>
+                                <grid-data horizontalSpan="3" />
+                            </layout-data>
+                        </widget>
+                        <widget type="label" style="SWT.LEFT" foreground="SWT.COLOR_DARK_BLUE">
+                            <fixed-text>Executables directory (bindir):</fixed-text>
+                        </widget>
+                        <browse textStyle="SWT.BORDER" title="Browse" attribute="bindir">
+                            <text-layout-data>
+                                <grid-data horizontalAlign="SWT.FILL" verticalAlign="SWT.CENTER" grabExcessHorizontal="true" />
+                            </text-layout-data>
+                            <button-layout-data>
+                                <grid-data horizontalAlign="SWT.RIGHT" verticalAlign="SWT.CENTER" />
+                            </button-layout-data>
+                            <text-control-state>
+                                <disable-if button="defaultPath" selected="true" />
+                            </text-control-state>
+                            <button-control-state>
+                                <disable-if button="defaultPath" selected="true" />
+                            </button-control-state>
+                        </browse>
+                    </composite>
+                </composite>
+            </dynamic>
+            <dynamic>
+                <title>Fine-tune Settings</title>
+                <layout>
+                    <grid-layout />
+                </layout>
+                <!-- VIEWER group -->
+                <composite group="true">
+                    <layout>
+                        <grid-layout />
+                    </layout>
+                    <layout-data>
+                        <grid-data horizontalAlign="SWT.FILL" verticalAlign="SWT.CENTER" grabExcessHorizontal="true" />
+                    </layout-data>
+                    <viewer name="allAttributes" style="SWT.BORDER | SWT.MULTI | SWT.V_SCROLL" sort="true" type="table" initialAllChecked="false">
+                        <layout-data>
+                            <grid-data horizontalAlign="SWT.FILL" verticalAlign="SWT.CENTER" grabExcessHorizontal="true" />
+                        </layout-data>
+                        <column-data name="Name" width="175" resizable="true">
+                            <tooltip>Multi-select and click checkbox to apply change to all rows.</tooltip>
+                        </column-data>
+                        <column-data name="Value" width="200" resizable="true">
+                            <tooltip>Click to activate value widget.</tooltip>
+                        </column-data>
+                        <items allPredefined="true">
+                            <exclude>destination</exclude>
+                        </items>
+                        <value pattern="@name=@value" />
+                    </viewer>
+                </composite>
+            </dynamic>
+
+        </launch-tab>
+    </control-data>
+</resource-manager-builder>

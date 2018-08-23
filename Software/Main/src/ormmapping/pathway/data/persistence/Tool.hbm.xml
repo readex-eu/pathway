@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pathway.data.persistence.Tool" table="Tool" schema="PUBLIC" lazy="false">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="increment">
+				<param name="schema">PUBLIC</param>
+			</generator>
+		</id>
+		<property name="name" column="Name" type="string" length="50" not-null="true" lazy="false"/>
+		<property name="version" column="Version" type="string" length="10" not-null="true" lazy="false"/>
+		<property name="profiling" type="boolean" not-null="true" lazy="false">
+			<column name="Profiling" default="false"/>
+		</property>
+		<property name="tracing" type="boolean" not-null="true" lazy="false">
+			<column name="Tracing" default="false"/>
+		</property>
+		<property name="instrumentCMD" column="InstrumentCMD" type="text" not-null="true" lazy="false"/>
+		<property name="instrSuffix" column="InstrSuffix" type="string" length="50" not-null="true" lazy="false"/>
+		<property name="profileCMD" column="ProfileCMD" type="text" not-null="true" lazy="false"/>
+		<property name="profileArgs" column="ProfileArgs" type="text" not-null="true" lazy="false"/>
+		<property name="traceCMD" column="TraceCMD" type="text" not-null="true" lazy="false"/>
+		<property name="traceArgs" column="TraceArgs" type="text" not-null="true" lazy="false"/>
+		<property name="reqModules" column="ReqModules" type="text" not-null="true" lazy="false"/>
+		<property name="reqEnvVars" column="ReqEnvVars" type="text" not-null="true" lazy="false"/>
+		<property name="website" column="Website" type="string" length="255" not-null="true" lazy="false"/>
+		<property name="unsetEnvVars" column="UnsetEnvVars" type="text" not-null="false" lazy="false"/>
+		<property name="column" column="`Column`" type="integer" not-null="false" lazy="false"/>
+		<set name="experiment" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key column="ToolID" not-null="false"/>
+			<one-to-many class="pathway.data.persistence.Experiment"/>
+		</set>
+	</class>
+</hibernate-mapping>

@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+
+
+<head>
+    <meta http-equiv='Content-Style-Type' content='text/css' />
+    <title>Pathway Quickstart Guide</title>
+    <link rel="icon" href="http://www.lrr.in.tum.de/periscope/files/favicon.ico" type="image/x-icon" />
+    <link rel="shortcut icon" href="http://www.lrr.in.tum.de/periscope/files/favicon.ico" type="image/vnd.microsoft.icon" />
+</head>
+
+
+<body>
+    <h1>Pathway - Performance Analysis and Tuning using Workflows</h1>
+
+
+    <h2>Introduction</h2>
+
+    <p>
+        Pathway is a tool for designing and executing performance engineering workflows for HPC applications. Having a formal model of the workflow helps to organize and guide the whole optimization process.
+    </p>
+
+
+    <h2>Installation</h2>
+
+    <p>
+        On a Debian-based Linux system, use the following instructions to install Pathway:
+    </p>
+    <ul>
+        <li>Install libwebkitgtk: <code>sudo apt-get install libwebkitgtk-1.0-0</code></li>
+        <li>Install git: <code>sudo apt-get install git</code></li>
+        <li>Download the <strong>Luna</strong> release of Eclipse</li>
+        <li>In Eclipse, add the following update site: <code>http://periscope.in.tum.de/pathway/eclipse/</code></li>
+        <li>Install Pathway from the update site</li>
+    </ul>
+    <p>
+        Instructions for Microsoft Windows:
+    </p>
+    <ul>
+        <li>Install a port of git, like msysgit. The command <code>git</code> has to be in your PATH.</li>
+        <li>Download the <strong>Luna</strong> release of Eclipse</li>
+        <li>In Eclipse, add the following update site: <code>http://periscope.in.tum.de/pathway/eclipse/</code></li>
+        <li>Install Pathway from the update site</li>
+    </ul>
+
+
+    <h2>Quick start</h2>
+
+    <h3>Creating a new project and workflow</h3>
+    <p>
+        Start the Eclipse installation in which you have installed Pathway and open the Pathway perspective with the "+" button in the upper right corner. Remember that you can always reset the perspective's layout to its default by right-clicking on the corresponding button and selecting "reset".
+    </p>
+    <p>
+        <img src="perspective.png" alt="" />
+    </p>
+    <p>
+        Before you can start working on any workflow, you need to create a Pathway project from within the Navigator view.
+    </p>
+    <p>
+        <img src="new_project.png" alt="" />
+    </p>
+    <p>
+        Within this project, you can then create a new workflow. The wizard also offers some pre-defined workflows to start from.
+    </p>
+
+    <h3>Editing the workflow</h3>
+    <p>
+        Designing one's own workflow requires knowledge about the jBPM workflow editor and Pathway workflows in general. We strongly recommend to start with an existing workflow from the "New workflow" wizard.
+    </p>
+    <p>
+        In the "Pathway" perspective, you have the workflow editor in the center. Within the editor, you can graphically arrange and connect the individual <em>activities</em> of the workflow. New activities can be added from the toolbox. Most Pathway workflows will at least have an activity for creating the batch system manager and for creating and running experiments. Experiments are jobs to be scheduled on the HPC system. When running experiments, Pathway automatically creates a job script according to the configured type of batch scheduler.
+    </p>
+    <p>
+        When adding new activities, pay attention to the properties view (shown below). Some activities require mapping parameters and results to be set in order to function properly. If you look at the properties of the workflow itself, you will see that there are workflow variables defined, which can be mapped as a parameter or result for the individual activities.
+    </p>
+    <p>
+        <img src="properties.png" alt="" />
+    </p>
+
+    <h3>Configure your application</h3>
+    <p>
+        Before you can run a workflow with your application as the test subject, you need to let Pathway know how to use your application. To open the application configuration dialog, select "Pathway" from the menu and go to "Edit applications". Fill in the following fields:
+    </p>
+    <ul>
+        <li><strong>Executable name:</strong> The name of the executable file to run</li>
+        <li><strong>Arguments:</strong> Arguments to pass to the executable</li>
+        <li><strong>Make directory:</strong> If Pathway is supposed to call make, this indicates the location of the makefile</li>
+        <li><strong>Execution directory:</strong> Where the executable can be found (and is executed)</li>
+        <li><strong>Wall-time limit:</strong> The wall-time limit for the job, in minutes</li>
+    </ul>
+    <p>
+        Note that you can use <strong>placeholders</strong> in many of those fields. Using a placeholder, you can insert the value of a workflow variable during the execution of the workflow. The general syntax is: <strong>{#VARIABLE:varName#}</strong>. So if you want to run executables from test1 to test4 for example, you can specify <strong>"test{#VARIABLE:i#}"</strong> as the executable name, where <strong>i</strong> is a workflow variable you increment within the logic of your workflow.
+    </p>
+
+    <h3>Executing the workflow</h3>
+    <p>
+        <img src="execution_parameters.png" alt="" style="float: right" />
+        Before you can execute the workflow, you need an application on a HPC system that you want to investigate. Therefore, you first need to configure your HPC system and your application in the Pathway menu.
+    </p>
+    <p>
+        When this is done, you can select your system and application in the execution parameters view shown to the right. You may want to specify some of the other parameters also. Not all parameters need to be specified, but Pathway may ask you then during workflow execution for the required information. In general, it is more comfortable to set the values up-front.
+    </p>
+    <p>
+        There are several possible formats in which you can specify the number of MPI processes and OpenMP threads to use. Since Pathway is all about automation, <strong>it is possible to specify a range of numbers</strong> and the experiment will then be performed for each configuration. Below is a list of possible formats:
+    </p>
+    <ul>
+        <li><strong>Single</strong> number, e.g. "5": performs the experiment one time</li>
+        <li><strong>List</strong> of numbers, e.g. "5, 12, 20": performs the experiment three times</li>
+        <li><strong>Range</strong> of numbers, e.g. "4:8": performs the experiment five times (for 4 ... 8 threads)</li>
+        <li><strong>Range with step size</strong>, e.g. "2:8:2": performs the experiment four times (for 2, 4, 6 and 8 threads)</li>
+    </ul>
+    <p style="clear:both">
+        Finally, click on the "Start workflow" button to start the workflow execution.
+    </p>
+    <p>
+        <img src="start_workflow.png" alt="" />
+    </p>
+    <p>
+        Pathway will change to the execution perspective, in which the progress of the workflow execution is shown. In the editor-like view, the workflow is shown, with the current activity highlighted. Another important view is the log window, where you can find specific information about what Pathway is currently doing.
+    </p>
+
+    <h3>Browsing results</h3>
+    <p>
+        In order to see the results of the workflow execution, switch to the "Pathway (Browse)" perspective. There, you will find a list of recently performed experiments. Selecting one experiment allows you to see all its details below. If an experiment does not show up in the list, try refreshing the view (from the Pathway menu).
+    </p>
+
+
+    <h2>Support</h2>
+
+    <p>
+        For problem reports and feedback please contact: <a href="mailto:firbach@in.tum.de">firbach@in.tum.de</a>
+    </p>
+</body>
+
+
+</html>

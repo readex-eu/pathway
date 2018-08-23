@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pathway.data.persistence.PscProperty" table="PscProperty" schema="PUBLIC" lazy="false">
+		<id name="ID" column="ID" type="long" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<many-to-one name="experiment" cascade="lock" column="ExperimentID" class="pathway.data.persistence.Experiment" not-null="true" lazy="false">
+		</many-to-one>
+		<many-to-one name="region" cascade="lock" column="RegionID" class="pathway.data.persistence.PscRegion" not-null="false" lazy="false">
+		</many-to-one>
+		<property name="name" column="Name" type="string" not-null="false" lazy="false"/>
+		<property name="type" column="Type" type="string" length="10" not-null="true" lazy="false"/>
+		<property name="clustered" column="`Clustered`" type="boolean" not-null="false" lazy="false"/>
+		<property name="configuration" column="Configuration" type="string" length="10" not-null="false" lazy="false"/>
+		<property name="process" column="Process" type="integer" not-null="false" lazy="false"/>
+		<property name="thread" column="Thread" type="integer" not-null="false" lazy="false"/>
+		<property name="severity" column="Severity" type="double" not-null="false" lazy="false"/>
+		<property name="confidence" column="Confidence" type="double" not-null="false" lazy="false"/>
+		<property name="fileID" column="FileID" type="integer" not-null="false" lazy="false"/>
+		<property name="fileName" column="FileName" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="RFL" column="RFL" type="integer" not-null="false" lazy="false"/>
+		<property name="regionType" column="RegionType" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="pscPropAddInfo" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key column="PscPropertyID" not-null="true"/>
+			<one-to-many class="pathway.data.persistence.PscPropAddInfo"/>
+		</set>
+	</class>
+</hibernate-mapping>

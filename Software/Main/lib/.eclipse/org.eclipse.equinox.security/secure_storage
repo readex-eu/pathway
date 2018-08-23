@@ -1,0 +1,15 @@
+#Equinox secure storage version 1.0
+#Fri Oct 06 15:43:01 IST 2017
+/connections/Taurus\ login/JSCH_PASSWORD_ATTR=org.eclipse.equinox.security.ui.defaultpasswordprovider\tKgpQNE7MzUI\=,+HYHaqZX7d+53o+2PePOWxl2Zfx1vNMJkoqLGai+pfM\=
+/connections/Taurus\ log/JSCH_PASSWORD_ATTR=org.eclipse.equinox.security.ui.defaultpasswordprovider\tfW1J/+Ysjk8\=,6a6JRg9Z8Mg8Gux1yd0LVrBnWiZ6zmAmteU+f995rrk\=
+org.eclipse.equinox.security.preferences.version=1
+/connections/Taurus/JSCH_PASSPHRASE_ATTR=org.eclipse.equinox.security.ui.defaultpasswordprovider\tgkdfuGCGjLk\=,b8M7B8/zfxk\=
+/org.eclipse.equinox.secure.storage/recovery/org.eclipse.equinox.security.ui.defaultpasswordprovider/org.eclipse.equinox.security.internal.recovery.question2=\t,Y29sb3I\=
+org.eclipse.equinox.security.preferences.keyFactory=PBEWithMD5AndDES
+/org.eclipse.equinox.secure.storage/recovery/org.eclipse.equinox.security.ui.defaultpasswordprovider/org.eclipse.equinox.security.internal.recovery.question1=\t,YW5pbWFsICBwcmVmZXJpZG8\=
+/connections/Dresden_serv/JSCH_PASSPHRASE_ATTR=org.eclipse.equinox.security.ui.defaultpasswordprovider\tQnfOL9CjLN8\=,Nbrp+bLf6g4Hm0KFWeU8SeEnhRtHaLEG5Yh1nqHR0c0\=
+/connections/Taurus_serv/JSCH_PASSPHRASE_ATTR=org.eclipse.equinox.security.ui.defaultpasswordprovider\t+/EPwBF17Jo\=,pBgaYGAu1ykMoxzyhgyBHZNXDqX0jsJCZQV1W4/TzRY\=
+/org.eclipse.equinox.secure.storage/verification/org.eclipse.equinox.security.ui.defaultpasswordprovider=org.eclipse.equinox.security.ui.defaultpasswordprovider\t9lmkv9yLoRU\=,tnVcDQ4DWj7guXFFjXMJ6si9v3w5eJSa
+org.eclipse.equinox.security.preferences.cipher=PBEWithMD5AndDES
+/connections/Taurus/JSCH_PASSWORD_ATTR=org.eclipse.equinox.security.ui.defaultpasswordprovider\tAJuJtMnGEpM\=,mLUvjNb5i7TNPY0anEuGmTqxPJldtS+aLn5vrUGoVDs\=
+/org.eclipse.equinox.secure.storage/recovery/org.eclipse.equinox.security.ui.defaultpasswordprovider/org.eclipse.equinox.security.internal.recovery.password=org.eclipse.equinox.security.recoveryModule\teWxzTmEHRho\=,34HdZbxVBDkgTmqUQnvUlf74TFxVJtQhiPviTvqYEto\=

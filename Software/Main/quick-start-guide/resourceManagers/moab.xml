@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<resource-manager-builder xmlns="http://eclipse.org/ptp/rm" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://eclipse.org/ptp/rm http://eclipse.org/ptp/schemas/v1.1/rm.xsd" name="Moab (Juropa)">
+    <control-data>
+        <!-- Set the default value of this attribute if PBS is installed in a non-standard location -->
+        <attribute name="bindir" visible="false" />
+        <!-- This is a necessary attribute for the functioning of LML; link it to the batch-specific variable name -->
+        <attribute name="control.queue.name" visible="false">
+            <link-value-to>destination</link-value-to>
+        </attribute>
+        <!-- We set this to invisible because the values are not really modifiable -->
+        <attribute name="queues" visible="false" />
+        <!-- Needed by RM internals for fetch; name is fixed by convention -->
+        <attribute name="stdout_remote_path" visible="false">
+            <default>${ptp_rm:pathway.working_dir#value}/${ptp_rm:job_name#value}.o${ptp_rm:@jobId#default}</default>
+            <link-value-to>output</link-value-to>
+        </attribute>
+        <!-- Needed by RM internals for fetch; name is fixed by convention -->
+        <attribute name="stderr_remote_path" visible="false">
+            <default>${ptp_rm:pathway.working_dir#value}/${ptp_rm:job_name#value}.e${ptp_rm:@jobId#default}</default>
+            <link-value-to>error</link-value-to>
+        </attribute>
+        <attribute name="destination" type="string">
+            <description>Designation of the queue to which to submit the job.</description>
+        </attribute>
+
+        <attribute name="mpiCommand" type="choice">
+            <description>Optional MPI command to run job.</description>
+            <choice>mpiexec,poe</choice>
+            <default>mpiexec</default>
+        </attribute>
+
+        <attribute name="error" type="string">
+            <description>The final path name for the file containing the job's standard error stream.</description>
+            <default>pathway.%j.err</default>
+        </attribute>
+        <attribute name="output" type="string">
+            <description>The final path name for the file containing the job's standard output stream.</description>
+            <default>pathway.%j.out</default>
+        </attribute>
+
+        <attribute name="job_name" type="string" visible="false">
+            <default>ptp_job</default>
+            <link-value-to>pathway.job.name</link-value-to>
+        </attribute>
+
+        <attribute name="mail_type" type="choice">
+            <description>Identifies at which state changes the server will send mail about the job.</description>
+            <choice>a,b,e,n</choice>
+            <default>a</default>
+        </attribute>
+        <attribute name="mail_user" type="string">
+            <description>The set of users to whom mail may be sent when the job makes certain state changes.</description>
+        </attribute>
+
+        <attribute name="time" type="string">
+            <description>Maximum amount of real time during which the job can be in the running state.</description>
+            <tooltip>Format: [[hours:]minutes:]seconds[.milliseconds].</tooltip>
+            <default>${ptp_rm:pathway.wallclock_limit#value}</default>
+            <validator>
+                <regex expression="\d\d:\d\d:\d\d" />
+                <error-message>format must be hh:mm:ss</error-message>
+            </validator>
+        </attribute>
+
+        <!-- Pathway Additions -->
+        <attribute name="pathway.get-env.script" visible="true">
+            <default>resources/get_env.sh</default>
+        </attribute>
+        <attribute name="pathway.job.name" visible="true" />
+        <attribute name="pathway.modules" visible="true" />
+        <attribute name="pathway.environment" visible="true" />
+        <attribute name="mpiNumberOfProcesses" visible="true" />
+        <attribute name="ompNumberOfThreads" visible="true" />
+        <attribute name="pathway.toolrun" visible="true" type="boolean">
+            <default>false</default>
+        </attribute>
+        <attribute name="pathway.working_dir" visible="true" />
+        <attribute name="pathway.wallclock_limit" visible="true" type="integer" />
+
+        <managed-files>
+            <file-staging-location>${ptp_rm:pathway.working_dir#value}</file-staging-location>
+            <file name="get-env-script">
+                <path>${ptp_rm:pathway.get-env.script#value}</path>
+            </file>
+        </managed-files>
+        <!-- Pathway Additions END -->
+
+        <script insertEnvironmentAfter="9" deleteAfterSubmit="true">
+            <file-staging-location>${ptp_rm:pathway.working_dir#value}</file-staging-location>
+            <line>
+                <arg>#!/bin/bash -x</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -l procs=">#MSUB -l procs=${ptp_rm:mpiNumberOfProcesses#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -v tpt=">#MSUB -v tpt=${ptp_rm:ompNumberOfThreads#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -l walltime=">#MSUB -l walltime=${ptp_rm:time#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -e">#MSUB -e ${ptp_rm:error#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -o">#MSUB -o ${ptp_rm:output#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -m">#MSUB -m ${ptp_rm:mail_type#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -M">#MSUB -M ${ptp_rm:mail_user#value}</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="#MSUB -N">#MSUB -N ${ptp_rm:job_name#value}</arg>
+            </line>
+            <line>
+                <arg>### start of environment variables</arg>
+            </line>
+            <line>
+                <arg>
+                </arg>
+            </line>
+
+            <line>
+                <arg>### start of jobscript</arg>
+            </line>
+            <line>
+                <arg isUndefinedIfMatches="cd">cd ${ptp_rm:pathway.working_dir#value}</arg>
+            </line>
+
+            <!-- Pathway Additions -->
+            <line>
+                <arg isUndefinedIfMatches="module load ">module load ${ptp_rm:pathway.modules#value}</arg>
+            </line>
+            <line>
+                <arg>${ptp_rm:pathway.environment#value}</arg>
+            </line>
+            <line>
+                <arg>export OMP_NUM_THREADS=${ptp_rm:ompNumberOfThreads#value}</arg>
+            </line>
+            <line>
+                <arg resolve="false">cat /proc/cpuinfo > pathway.${PBS_JOBID}.cpu</arg>
+            </line>
+            <line>
+                <arg resolve="false">uname --nodename --kernel-release --hardware-platform > pathway.${PBS_JOBID}.uname</arg>
+            </line>
+            <line>
+                <arg resolve="true">chmod +x ${ptp_rm:pathway.working_dir#value}/get_env.sh</arg>
+            </line>
+            <line>
+                <arg resolve="true">${ptp_rm:pathway.working_dir#value}/get_env.sh</arg>
+                <arg resolve="false">--output-file=pathway.${PBS_JOBID}.env</arg>
+                <arg>--cmd='${ptp_rm:executablePath#value}'</arg>
+                <arg>--args='${ptp_rm:progArgs#value}'</arg>
+            </line>
+            <line>
+                <arg attribute="pathway.toolrun" isUndefinedIfMatches="true">${ptp_rm:mpiCommand#value}</arg>
+                <arg attribute="pathway.toolrun" isUndefinedIfMatches="true">-np ${ptp_rm:mpiNumberOfProcesses#value}</arg>
+                <arg>${ptp_rm:executablePath#value} </arg>
+                <arg isUndefinedIfMatches="">${ptp_rm:progArgs#value}</arg>
+            </line>
+            <!-- Pathway Additions END -->
+
+        </script>
+
+        <!-- <start-up-command name="get-queues"> <arg>${ptp_rm:bindir#value}qstat</arg> <arg>-Q</arg> <arg>-f</arg> <stdout-parser delim="\n"> <target ref="queues"> 
+            <match> <expression>Queue: ([\w\d]+)</expression> <add field="value"> <entry valueGroup="1"/> </add> </match> </target> </stdout-parser> </start-up-command> -->
+
+        <submit-batch name="submit-batch" directory="${ptp_rm:pathway.working_dir#value}" waitForId="true">
+            <arg>${ptp_rm:bindir#value}msub</arg>
+            <arg>${ptp_rm:managed_file_for_script#value}</arg>
+            <stdout-parser delim="\n" all="true" save="1">
+                <target ref="@jobId">
+                    <match>
+                        <expression>([\d]+)([.])(.+)[\s]+.*</expression>
+                        <append field="name">
+                            <entry valueGroup="1" />
+                            <entry valueGroup="2" />
+                            <entry valueGroup="3" />
+                        </append>
+                        <set field="default">
+                            <entry valueGroup="1" />
+                        </set>
+                        <set field="value">
+                            <entry value="SUBMITTED" />
+                        </set>
+                    </match>
+                    <match>
+                        <expression>([\d]+)[.].+</expression>
+                        <set field="name">
+                            <entry valueGroup="0" />
+                        </set>
+                        <set field="default">
+                            <entry valueGroup="1" />
+                        </set>
+                        <set field="value">
+                            <entry value="SUBMITTED" />
+                        </set>
+                    </match>
+                </target>
+                <target ref="@jobId">
+                    <match>
+                        <expression flags="DOTALL|UNIX_LINES">.*Job not submitted.*</expression>
+                        <set field="value">
+                            <entry value="FAILED" />
+                        </set>
+                    </match>
+                </target>
+            </stdout-parser>
+            <stderr-parser delim="\n">
+                <target ref="@jobId">
+                    <match>
+                        <expression>.*Job not submitted.*</expression>
+                        <throw message="Job Submit Failed" />
+                    </match>
+                </target>
+            </stderr-parser>
+        </submit-batch>
+
+        <get-job-status name="get-job-status" ignoreExitStatus="true">
+            <arg>${ptp_rm:bindir#value}checkjob</arg>
+            <arg>${ptp_rm:@jobId#name}</arg>
+            <stdout-parser delim="\n">
+                <target ref="@jobId">
+                    <match>
+                        <!-- <expression>[\d]+[.].+[\s]+.+[\s]+.+[\s]+.+[\s]+([A-Z])[\s]+.+</expression> -->
+                        <expression>^[\s]*State:([\w]+)[\s]+.*</expression>
+
+                        <set field="value">
+                            <entry valueGroup="1" />
+                        </set>
+                    </match>
+                    <test op="EQ">
+                        <value>#value</value>
+                        <value>Q</value>
+                        <set field="value">
+                            <entry value="QUEUED_ACTIVE" />
+                        </set>
+                    </test>
+                    <test op="EQ">
+                        <value>#value</value>
+                        <value>R</value>
+                        <set field="value">
+                            <entry value="RUNNING" />
+                        </set>
+                    </test>
+                    <test op="EQ">
+                        <value>#value</value>
+                        <value>S</value>
+                        <set field="value">
+                            <entry value="SUSPENDED" />
+                        </set>
+                    </test>
+                    <test op="EQ">
+                        <value>#value</value>
+                        <value>C</value>
+                        <set field="value">
+                            <entry value="COMPLETED" />
+                        </set>
+                    </test>
+                    <test op="EQ">
+                        <value>#value</value>
+                        <value>E</value>
+                        <set field="value">
+                            <entry value="COMPLETED" />
+                        </set>
+                    </test>
+                    <test op="EQ">
+                        <value>#value</value>
+                        <value>H</value>
+                        <set field="value">
+                            <entry value="SYSTEM_ON_HOLD" />
+                        </set>
+                    </test>
+                </target>
+            </stdout-parser>
+            <stderr-parser delim="\n">
+                <target ref="@jobId">
+                    <match>
+                        <expression>.+</expression>
+                        <set field="value">
+                            <entry value="COMPLETED" />
+                        </set>
+                    </match>
+                </target>
+            </stderr-parser>
+        </get-job-status>
+
+        <terminate-job name="cancel" ignoreExitStatus="true">
+            <arg>${ptp_rm:bindir#value}canceljob</arg>
+            <arg>${ptp_rm:@jobId#name}</arg>
+        </terminate-job>
+
+    </control-data>
+    <monitor-data schedulerType="TORQUE">
+    </monitor-data>
+</resource-manager-builder>

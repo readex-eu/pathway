@@ -1,0 +1,5 @@
+MAX_RECENT_WORKSPACES=5
+RECENT_WORKSPACES=/home/ramon/workspace\n/home/ramon/pathway\n/home/ramon/workspace/pathwayV1
+RECENT_WORKSPACES_PROTOCOL=3
+SHOW_WORKSPACE_SELECTION_DIALOG=true
+eclipse.preferences.version=1

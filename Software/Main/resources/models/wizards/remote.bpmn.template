@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_stdoutItem" structureRef="String" />
+  <itemDefinition id="_batchSysManagerItem" />
+
+  <itemDefinition id="_2-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_2-stdoutItem" structureRef="String" />
+  <itemDefinition id="_2-batchSysManagerItem" />
+
+  <itemDefinition id="_6-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_6-stdoutItem" structureRef="String" />
+  <itemDefinition id="_6-batchSysManagerItem" />
+
+  <itemDefinition id="_7-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_7-stdoutItem" structureRef="String" />
+  <itemDefinition id="_7-batchSysManagerItem" />
+
+  <process processType="Private" isExecutable="true" id="pathway.workflows.others.StartRemoteProcess" name="StartRemoteProcess" tns:packageName="pathway.workflows.others" >
+
+    <extensionElements>
+     <tns:import name="pathway.eclipse.ExecutionLog" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="hpcSystem" itemSubjectRef="_hpcSystemItem"/>
+    <property id="stdout" itemSubjectRef="_stdoutItem"/>
+    <property id="batchSysManager" itemSubjectRef="_batchSysManagerItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_2" name="Target HPC System?" tns:taskName="SelectTargetSystem" >
+      <ioSpecification>
+        <dataOutput id="_2_HPCSystemOutput" name="HPCSystem" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_2_HPCSystemOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_2_HPCSystemOutput</sourceRef>
+        <targetRef>hpcSystem</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <scriptTask id="_4" name="Print Results" scriptFormat="http://www.java.com/java" >
+      <script>ExecutionLog.get().writeLog("stdout:\n\n");
+ExecutionLog.get().writeLog(stdout);</script>
+    </scriptTask>
+    <endEvent id="_5" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_6" name="Execute Command" tns:taskName="ExecuteCommand" >
+      <ioSpecification>
+        <dataInput id="_6_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_6_CommandInput" name="Command" />
+        <dataOutput id="_6_StdoutOutput" name="Stdout" />
+        <inputSet>
+          <dataInputRefs>_6_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_6_CommandInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_6_StdoutOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_6_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_6_CommandInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">ls -l</from>
+          <to xsi:type="tFormalExpression">_6_CommandInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_6_StdoutOutput</sourceRef>
+        <targetRef>stdout</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_7" name="Create System Manager" tns:taskName="CreateBatchSystemManager" >
+      <ioSpecification>
+        <dataInput id="_7_HPCSystemInput" name="HPCSystem" />
+        <dataOutput id="_7_BatchSysManagerOutput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_7_HPCSystemInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_7_BatchSysManagerOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_7_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_7_BatchSysManagerOutput</sourceRef>
+        <targetRef>batchSysManager</targetRef>
+      </dataOutputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_6-_4" sourceRef="_6" targetRef="_4" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
+    <sequenceFlow id="_7-_6" sourceRef="_7" targetRef="_6" />
+    <sequenceFlow id="_2-_7" sourceRef="_2" targetRef="_7" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pathway.workflows.others.StartRemoteProcess" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="48" y="48" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="136" y="48" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="376" y="144" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="650" y="48" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="376" y="48" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="136" y="144" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="72" y="72" />
+        <di:waypoint x="236" y="72" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_4" >
+        <di:waypoint x="476" y="72" />
+        <di:waypoint x="476" y="168" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="476" y="168" />
+        <di:waypoint x="674" y="72" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_6" >
+        <di:waypoint x="236" y="168" />
+        <di:waypoint x="476" y="72" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_7" >
+        <di:waypoint x="236" y="72" />
+        <di:waypoint x="236" y="168" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

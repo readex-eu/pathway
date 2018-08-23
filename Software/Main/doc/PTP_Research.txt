@@ -1,0 +1,26 @@
+Get a list of all available Target System Configurations for running on remote systems:
+		String[] configNames = JAXBExtensionUtils.getConfiguationNames();
+		if (JAXBExtensionUtils.getInvalid() != null) {
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.ResourcesTab_InvalidConfig_title,
+					Messages.ResourcesTab_InvalidConfig_message + JAXBExtensionUtils.getInvalid());
+		}
+		
+		
+Widget to select and/or create new remote tools connections;:
+		RemoteConnectionWidget fRemoteConnectionWidget = new RemoteConnectionWidget(comp, SWT.NONE, "MY TEST", getLaunchConfigurationDialog());
+		fRemoteConnectionWidget.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 2, 1));
+		fRemoteConnectionWidget.addSelectionListener(new SelectionListener() {
+			@Override
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				handleConnectionChanged();
+			}
+		});
+		fRemoteConnectionWidget.setEnabled(false);
+
+Get a controller for building the configuration:
+		ILaunchController controller = getNewController(conn.getRemoteServices().getId(), conn.getName(), type);
+		

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config date="1507044397551" transient="false" shared_ur="file:configuration/org.eclipse.update/platform.xml" version="3.0">
+	<site updateable="true" url="file:/home/ramon/.eclipse/org.eclipse.platform_4.4.2_1473617060_linux_gtk_x86_64/" enabled="true" policy="USER-EXCLUDE">
+		<feature id="org.eclipse.jdt" version="3.10.1.v20150204-1700" url="features/org.eclipse.jdt_3.10.1.v20150204-1700/">
+		</feature>
+		<feature id="org.eclipse.pde" version="3.10.1.v20150204-1700" url="features/org.eclipse.pde_3.10.1.v20150204-1700/">
+		</feature>
+	</site>
+</config>

@@ -1,0 +1,21 @@
+# Enable debugging output
+de.tum.in.pathway/debug = true
+
+# Enable tracing for the classpath container
+de.tum.in.pathway/debug/classpathContainer = true
+
+# Command handlers
+de.tum.in.pathway/debug/handlers = true
+de.tum.in.pathway/debug/handlers/verbose = false
+
+
+# Underlying batch system manager
+de.tum.in.pathway/debug/batchSystemManager = true
+
+# historical notes view
+de.tum.in.pathway/debug/histNotesView = true
+
+# instrumentation work item
+de.tum.in.pathway/debug/workItems/instrCode = true
+
+de.tum.in.pathway/debug/prepareExperiments = true

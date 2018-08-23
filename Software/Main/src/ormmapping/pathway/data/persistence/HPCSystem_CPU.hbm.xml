@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pathway.data.persistence.HPCSystem_CPU" table="HPCSystem_CPU" schema="PUBLIC" lazy="false">
+		<id name="nameId" column="Name" type="string">
+			<generator class="foreign">
+				<param name="property">name</param>
+			</generator>
+		</id>
+		<one-to-one name="name" class="pathway.data.persistence.HPCSystem" cascade="all" constrained="true"/>
+		<property name="processorType" column="ProcessorType" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="model" column="Model" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="microarchitecture" column="Microarchitecture" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="coresPerSocket" column="CoresPerSocket" type="integer" not-null="false" lazy="false"/>
+		<property name="peakFrequencyPerCore" column="PeakFrequencyPerCore" type="float" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Peak frequency per core in MHz
+			</meta>
+		</property>
+		<property name="peakPerformancePerCore" column="PeakPerformancePerCore" type="float" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Peak Performance per Core in GFlop/s
+			</meta>
+		</property>
+		<property name="l1Cache" column="L1Cache" type="integer" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Cache size in KBytes
+			</meta>
+		</property>
+		<property name="l2Cache" column="L2Cache" type="integer" not-null="false" lazy="false"/>
+		<property name="l3Cache" column="L3Cache" type="integer" not-null="false" lazy="false"/>
+		<property name="process" column="Process" type="integer" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Min. feature size in nm
+			</meta>
+		</property>
+		<property name="dieSize" column="DieSize" type="integer" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Die size in mm2
+			</meta>
+		</property>
+		<property name="transistors" column="Transistors" type="long" not-null="false" lazy="false"/>
+		<property name="memoryChannels" column="MemoryChannels" type="integer" not-null="false" lazy="false"/>
+		<property name="memoryBandwidth" column="MemoryBandwidth" type="float" not-null="false" lazy="false"/>
+		<property name="moreInfo" column="MoreInfo" type="string" length="255" not-null="false" lazy="false"/>
+	</class>
+</hibernate-mapping>

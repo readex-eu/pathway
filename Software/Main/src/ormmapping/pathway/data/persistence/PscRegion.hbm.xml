@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pathway.data.persistence.PscRegion" table="PscRegion" schema="PUBLIC" lazy="false">
+		<id name="ID" column="ID" type="string">
+			<generator class="assigned">
+			</generator>
+		</id>
+		<many-to-one name="FK_Application" cascade="lock" class="pathway.data.persistence.Application" not-null="false" lazy="false">
+			<column name="Application"/>
+			<column name="ApplicationConfig"/>
+		</many-to-one>
+		<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="type" column="Type" type="string" length="25" not-null="false" lazy="false"/>
+		<property name="sourceFile" column="SourceFile" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="startLine" column="StartLine" type="integer" not-null="false" lazy="false"/>
+		<property name="endLine" column="EndLine" type="integer" not-null="false" lazy="false"/>
+		<property name="dataScope" column="DataScope" type="string" length="20" not-null="false" lazy="false"/>
+		<many-to-one name="pscRegionParent" cascade="lock" column="PscRegionParent" class="pathway.data.persistence.PscRegion" not-null="false" lazy="false">
+		</many-to-one>
+		<set name="pscProperty" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key column="RegionID" not-null="false"/>
+			<one-to-many class="pathway.data.persistence.PscProperty"/>
+		</set>
+		<set name="pscRegion" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key column="PscRegionParent" not-null="false"/>
+			<one-to-many class="pathway.data.persistence.PscRegion"/>
+		</set>
+	</class>
+</hibernate-mapping>

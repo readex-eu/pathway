@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Commons Lang
+Bundle-SymbolicName: org.apache.commons.lang
+Bundle-Version: 3.1
+Bundle-Vendor: Apache
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: commons-lang3.jar,
+ .
+Export-Package: org.apache.commons.lang3;version="3.1.0",
+ org.apache.commons.lang3.builder;version="3.1.0",
+ org.apache.commons.lang3.concurrent;version="3.1.0",
+ org.apache.commons.lang3.event;version="3.1.0",
+ org.apache.commons.lang3.exception;version="3.1.0",
+ org.apache.commons.lang3.math;version="3.1.0",
+ org.apache.commons.lang3.mutable;version="3.1.0",
+ org.apache.commons.lang3.reflect;version="3.1.0",
+ org.apache.commons.lang3.text;version="3.1.0",
+ org.apache.commons.lang3.text.translate;version="3.1.0",
+ org.apache.commons.lang3.time;version="3.1.0",
+ org.apache.commons.lang3.tuple;version="3.1.0"

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pathway.data.persistence.Experiment" table="Experiment" schema="PUBLIC" lazy="false">
+		<id name="ID" column="ID" type="string">
+			<generator class="uuid">
+			</generator>
+		</id>
+		<property name="expDate" column="ExpDate" type="timestamp" not-null="true" lazy="false"/>
+		<many-to-one name="tool" cascade="lock" column="ToolID" class="pathway.data.persistence.Tool" not-null="false" lazy="false">
+		</many-to-one>
+		<many-to-one name="HPCSystem" cascade="lock" column="HPCSystem" class="pathway.data.persistence.HPCSystem" not-null="true" lazy="false">
+		</many-to-one>
+		<property name="userName" column="UserName" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="resultsURI" column="ResultsURI" type="string" length="255" not-null="false" lazy="false"/>
+		<many-to-one name="application" cascade="lock" class="pathway.data.persistence.Application" not-null="false" lazy="false">
+			<column name="Application"/>
+			<column name="ApplicationConfig"/>
+		</many-to-one>
+		<many-to-one name="historicalNotes" cascade="lock" column="HistoricalNotesID" class="pathway.data.persistence.HistoricalNotes" not-null="false" lazy="false">
+		</many-to-one>
+		<property name="jobId" column="JobId" type="string" length="50" not-null="false" lazy="false"/>
+		<property name="jobState" column="JobState" type="string" length="25" not-null="false" lazy="false"/>
+		<property name="inputDataFileName" column="InputDataFileName" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="mpiProcs" column="MpiProcs" type="integer" not-null="true" lazy="false"/>
+		<property name="ompThreads" column="OmpThreads" type="integer" not-null="true" lazy="false"/>
+		<property name="startupFolder" column="StartupFolder" type="string" length="255" not-null="true" lazy="false"/>
+		<property name="codeVersion" column="CodeVersion" type="string" length="255" not-null="true" lazy="false"/>
+		<property name="execCmd" column="ExecCmd" type="string" length="255" not-null="true" lazy="false"/>
+		<property name="stdOut" column="StdOut" type="text" not-null="true" lazy="false"/>
+		<property name="stdErr" column="StdErr" type="text" not-null="true" lazy="false"/>
+		<property name="compileLog" column="CompileLog" type="text" not-null="false" lazy="false"/>
+		<property name="loadedModules" column="LoadedModules" type="text" not-null="false" lazy="false"/>
+		<property name="environment" column="Environment" type="text" not-null="false" lazy="false"/>
+		<property name="comment" column="Comment" type="text" not-null="false" lazy="false"/>
+		<property name="interPhaseDynamism" column="InterPhaseDynamism" type="text" not-null="false" lazy="false"/>
+		<property name="intraPhaseDynamism" column="IntraPhaseDynamism" type="text" not-null="false" lazy="false"/>
+		<property name="tuningModel" column="TuningModel" type="text" not-null="false" lazy="false"/>
+		<set name="pscProperty" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key column="ExperimentID" not-null="true"/>
+			<one-to-many class="pathway.data.persistence.PscProperty"/>
+		</set>
+		<set name="experimentAddInfo" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key column="ExperimentID" not-null="true"/>
+			<one-to-many class="pathway.data.persistence.ExperimentAddInfo"/>
+		</set>
+	</class>
+</hibernate-mapping>

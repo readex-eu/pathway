@@ -1,0 +1,7 @@
+[Default Applications]
+inode/directory=pcmanfm.desktop
+application/x-java=debian-uxterm.desktop
+
+[Added Associations]
+inode/directory=pcmanfm.desktop;
+application/x-java=debian-uxterm.desktop;gedit.desktop;

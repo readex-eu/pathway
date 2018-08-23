@@ -1,0 +1,1317 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_perfToolItem" structureRef="String" />
+  <itemDefinition id="_experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_applicationItem" structureRef="String" />
+  <itemDefinition id="_experimentItem" structureRef="String" />
+
+  <itemDefinition id="_3-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_3-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_3-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_3-perfToolItem" structureRef="String" />
+  <itemDefinition id="_3-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_3-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_3-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_3-applicationItem" structureRef="String" />
+  <itemDefinition id="_3-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_4-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_4-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_4-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_4-perfToolItem" structureRef="String" />
+  <itemDefinition id="_4-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_4-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_4-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_4-applicationItem" structureRef="String" />
+  <itemDefinition id="_4-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_5-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_5-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_5-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_5-perfToolItem" structureRef="String" />
+  <itemDefinition id="_5-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_5-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_5-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_5-applicationItem" structureRef="String" />
+  <itemDefinition id="_5-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_6-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_6-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_6-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_6-perfToolItem" structureRef="String" />
+  <itemDefinition id="_6-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_6-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_6-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_6-applicationItem" structureRef="String" />
+  <itemDefinition id="_6-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_7-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_7-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_7-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_7-perfToolItem" structureRef="String" />
+  <itemDefinition id="_7-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_7-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_7-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_7-applicationItem" structureRef="String" />
+  <itemDefinition id="_7-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_8-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_8-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_8-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_8-perfToolItem" structureRef="String" />
+  <itemDefinition id="_8-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_8-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_8-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_8-applicationItem" structureRef="String" />
+  <itemDefinition id="_8-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_9-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_9-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_9-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_9-perfToolItem" structureRef="String" />
+  <itemDefinition id="_9-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_9-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_9-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_9-applicationItem" structureRef="String" />
+  <itemDefinition id="_9-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_10-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_10-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_10-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_10-perfToolItem" structureRef="String" />
+  <itemDefinition id="_10-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_10-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_10-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_10-applicationItem" structureRef="String" />
+  <itemDefinition id="_10-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_13-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_13-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_13-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_13-perfToolItem" structureRef="String" />
+  <itemDefinition id="_13-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_13-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_13-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_13-applicationItem" structureRef="String" />
+  <itemDefinition id="_13-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_14-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_14-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_14-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_14-perfToolItem" structureRef="String" />
+  <itemDefinition id="_14-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_14-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_14-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_14-applicationItem" structureRef="String" />
+  <itemDefinition id="_14-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_16-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_16-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_16-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_16-perfToolItem" structureRef="String" />
+  <itemDefinition id="_16-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_16-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_16-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_16-applicationItem" structureRef="String" />
+  <itemDefinition id="_16-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_17-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_17-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_17-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_17-perfToolItem" structureRef="String" />
+  <itemDefinition id="_17-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_17-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_17-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_17-applicationItem" structureRef="String" />
+  <itemDefinition id="_17-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_19-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_19-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_19-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_19-perfToolItem" structureRef="String" />
+  <itemDefinition id="_19-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_19-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_19-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_19-applicationItem" structureRef="String" />
+  <itemDefinition id="_19-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_20-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_20-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_20-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_20-perfToolItem" structureRef="String" />
+  <itemDefinition id="_20-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_20-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_20-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_20-applicationItem" structureRef="String" />
+  <itemDefinition id="_20-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_22-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_22-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_22-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_22-perfToolItem" structureRef="String" />
+  <itemDefinition id="_22-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_22-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_22-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_22-applicationItem" structureRef="String" />
+  <itemDefinition id="_22-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_24-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_24-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_24-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_24-perfToolItem" structureRef="String" />
+  <itemDefinition id="_24-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_24-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_24-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_24-applicationItem" structureRef="String" />
+  <itemDefinition id="_24-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_25-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_25-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_25-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_25-perfToolItem" structureRef="String" />
+  <itemDefinition id="_25-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_25-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_25-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_25-applicationItem" structureRef="String" />
+  <itemDefinition id="_25-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_26-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_26-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_26-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_26-perfToolItem" structureRef="String" />
+  <itemDefinition id="_26-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_26-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_26-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_26-applicationItem" structureRef="String" />
+  <itemDefinition id="_26-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_27-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_27-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_27-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_27-perfToolItem" structureRef="String" />
+  <itemDefinition id="_27-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_27-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_27-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_27-applicationItem" structureRef="String" />
+  <itemDefinition id="_27-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_29-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_29-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_29-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_29-perfToolItem" structureRef="String" />
+  <itemDefinition id="_29-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_29-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_29-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_29-applicationItem" structureRef="String" />
+  <itemDefinition id="_29-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_30-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_30-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_30-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_30-perfToolItem" structureRef="String" />
+  <itemDefinition id="_30-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_30-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_30-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_30-applicationItem" structureRef="String" />
+  <itemDefinition id="_30-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_31-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_31-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_31-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_31-perfToolItem" structureRef="String" />
+  <itemDefinition id="_31-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_31-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_31-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_31-applicationItem" structureRef="String" />
+  <itemDefinition id="_31-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_33-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_33-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_33-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_33-perfToolItem" structureRef="String" />
+  <itemDefinition id="_33-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_33-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_33-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_33-applicationItem" structureRef="String" />
+  <itemDefinition id="_33-experimentItem" structureRef="String" />
+
+  <itemDefinition id="_34-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_34-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_34-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_34-perfToolItem" structureRef="String" />
+  <itemDefinition id="_34-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_34-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_34-continueFilteringItem" structureRef="String" />
+  <itemDefinition id="_34-applicationItem" structureRef="String" />
+  <itemDefinition id="_34-experimentItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="com.sample.bpmn" name="Sample Process" tns:packageName="defaultPackage" >
+
+    <extensionElements>
+     <tns:import name="pathway.eclipse.ExecutionLog" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="mpiProcsConfig" itemSubjectRef="_mpiProcsConfigItem"/>
+    <property id="ompThreadsConfig" itemSubjectRef="_ompThreadsConfigItem"/>
+    <property id="hpcSystem" itemSubjectRef="_hpcSystemItem"/>
+    <property id="perfTool" itemSubjectRef="_perfToolItem"/>
+    <property id="experiments" itemSubjectRef="_experimentsItem"/>
+    <property id="batchSysManager" itemSubjectRef="_batchSysManagerItem"/>
+    <property id="continueFiltering" itemSubjectRef="_continueFilteringItem"/>
+    <property id="application" itemSubjectRef="_applicationItem"/>
+    <property id="experiment" itemSubjectRef="_experimentItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="Start" />
+    <endEvent id="_2" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_3" name="Select Application" tns:taskName="AppConfig" >
+      <ioSpecification>
+        <dataOutput id="_3_ApplicationOutput" name="Application" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_ApplicationOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_3_ApplicationOutput</sourceRef>
+        <targetRef>application</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_4" name="Configure MPI/OMP" tns:taskName="ProcThreadsConfig" >
+      <ioSpecification>
+        <dataOutput id="_4_OMPThreadsOutput" name="OMPThreads" />
+        <dataOutput id="_4_MPIProcsOutput" name="MPIProcs" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_4_OMPThreadsOutput</dataOutputRefs>
+          <dataOutputRefs>_4_MPIProcsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_4_OMPThreadsOutput</sourceRef>
+        <targetRef>ompThreadsConfig</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_4_MPIProcsOutput</sourceRef>
+        <targetRef>mpiProcsConfig</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_5" name="Select HPC System" tns:taskName="SelectTargetSystem" >
+      <ioSpecification>
+        <dataOutput id="_5_HPCSystemOutput" name="HPCSystem" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_5_HPCSystemOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_5_HPCSystemOutput</sourceRef>
+        <targetRef>hpcSystem</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_6" name="Select bullxmpi" tns:taskName="SelectPerformanceTool" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>ExecutionLog.get().writeLog("Select bullxmpi");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataOutput id="_6_PerfToolOutput" name="PerfTool" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_6_PerfToolOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_6_PerfToolOutput</sourceRef>
+        <targetRef>perfTool</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_7" name="Prepare Experiments" tns:taskName="CreateExperiments" >
+      <ioSpecification>
+        <dataInput id="_7_PerfToolInput" name="PerfTool" />
+        <dataInput id="_7_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_7_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_7_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_7_ApplicationInput" name="Application" />
+        <dataOutput id="_7_ExperimentsOutput" name="Experiments" />
+        <inputSet>
+          <dataInputRefs>_7_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_7_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_7_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_7_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_7_ApplicationInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_7_ExperimentsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_7_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ompThreadsConfig</sourceRef>
+        <targetRef>_7_OMPThreadsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_7_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>mpiProcsConfig</sourceRef>
+        <targetRef>_7_MPIProcsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_7_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_7_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_8" name="Create System Manager" tns:taskName="CreateBatchSystemManager" >
+      <ioSpecification>
+        <dataInput id="_8_HPCSystemInput" name="HPCSystem" />
+        <dataOutput id="_8_BatchSysManagerOutput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_8_HPCSystemInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_8_BatchSysManagerOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_8_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_8_BatchSysManagerOutput</sourceRef>
+        <targetRef>batchSysManager</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_9" name="Build Application" tns:taskName="Make" >
+      <ioSpecification>
+        <dataInput id="_9_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_9_ExperimentsInput" name="Experiments" />
+        <dataInput id="_9_MakeArgumentsInput" name="MakeArguments" />
+        <inputSet>
+          <dataInputRefs>_9_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_9_ExperimentsInput</dataInputRefs>
+          <dataInputRefs>_9_MakeArgumentsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_9_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_9_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_9_MakeArgumentsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">intel64 PREP="scorep"</from>
+          <to xsi:type="tFormalExpression">_9_MakeArgumentsInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_10" name="Setup for scorep-autofilter" tns:taskName="SetupForScorePAutoFilter" >
+      <ioSpecification>
+        <dataInput id="_10_ExperimentInput" name="Experiment" />
+        <dataInput id="_10_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_10_ScorePFilteringFileNameInput" name="ScorePFilteringFileName" />
+        <dataOutput id="_10_ExperimentOutput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_10_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_10_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_10_ScorePFilteringFileNameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_10_ExperimentOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_10_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_10_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_10_ScorePFilteringFileNameInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">scorep.filt</from>
+          <to xsi:type="tFormalExpression">_10_ScorePFilteringFileNameInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_10_ExperimentOutput</sourceRef>
+        <targetRef>experiment</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_11" name="Gateway" gatewayDirection="Converging" />
+    <task id="_13" name="Select scorep-autofilter" tns:taskName="SelectPerformanceTool" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>ExecutionLog.get().writeLog("Select scorep-autofilter");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataOutput id="_13_PerfToolOutput" name="PerfTool" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_13_PerfToolOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_13_PerfToolOutput</sourceRef>
+        <targetRef>perfTool</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_14" name="Execute scorep-autofilter" tns:taskName="ExecuteScorePAutoFilter" >
+      <ioSpecification>
+        <dataInput id="_14_PerfToolInput" name="PerfTool" />
+        <dataInput id="_14_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_14_ApplicationInput" name="Application" />
+        <dataInput id="_14_Arg_tInput" name="Arg_t" />
+        <dataInput id="_14_PathToCubexFileInput" name="PathToCubexFile" />
+        <dataOutput id="_14_ContinueFilteringOutput" name="ContinueFiltering" />
+        <inputSet>
+          <dataInputRefs>_14_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_14_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_14_ApplicationInput</dataInputRefs>
+          <dataInputRefs>_14_Arg_tInput</dataInputRefs>
+          <dataInputRefs>_14_PathToCubexFileInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_14_ContinueFilteringOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_14_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_14_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_14_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_Arg_tInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">0.1</from>
+          <to xsi:type="tFormalExpression">_14_Arg_tInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_14_PathToCubexFileInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">/home/vekannan/app_dyn/miniMD/miniMD_ref_1.0_readex_dyn_detect/scorep-2016*</from>
+          <to xsi:type="tFormalExpression">_14_PathToCubexFileInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_14_ContinueFilteringOutput</sourceRef>
+        <targetRef>continueFiltering</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_15" name="Gateway" gatewayDirection="Diverging" />
+    <task id="_16" name="Setup for readex-dyn-detect" tns:taskName="SetupForReadexDynDetect" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>ExecutionLog.get().writeLog("Filtering Done");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_16_ExperimentInput" name="Experiment" />
+        <dataInput id="_16_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_16_ScorePProfilingFormatInput" name="ScorePProfilingFormat" />
+        <dataInput id="_16_ScorePMetricPapiInput" name="ScorePMetricPapi" />
+        <dataOutput id="_16_ExperimentOutput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_16_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_16_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_16_ScorePProfilingFormatInput</dataInputRefs>
+          <dataInputRefs>_16_ScorePMetricPapiInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_16_ExperimentOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_16_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_16_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_16_ScorePProfilingFormatInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">cube_tuple</from>
+          <to xsi:type="tFormalExpression">_16_ScorePProfilingFormatInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_16_ScorePMetricPapiInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">PAPI_TOT_INS,PAPI_L3_TCM</from>
+          <to xsi:type="tFormalExpression">_16_ScorePMetricPapiInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_16_ExperimentOutput</sourceRef>
+        <targetRef>experiment</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_17" name="Select readex-dyn-detect" tns:taskName="SelectPerformanceTool" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>ExecutionLog.get().writeLog("Select readex-dyn-detect");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataOutput id="_17_PerfToolOutput" name="PerfTool" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_17_PerfToolOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_17_PerfToolOutput</sourceRef>
+        <targetRef>perfTool</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_19" name="Execute readex-dyn-detect" tns:taskName="ExecuteReadexDynDetect" >
+      <ioSpecification>
+        <dataInput id="_19_PerfToolInput" name="PerfTool" />
+        <dataInput id="_19_ExperimentInput" name="Experiment" />
+        <dataInput id="_19_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_19_ApplicationInput" name="Application" />
+        <dataInput id="_19_Arg_tInput" name="Arg_t" />
+        <dataInput id="_19_Arg_cInput" name="Arg_c" />
+        <dataInput id="_19_Arg_vInput" name="Arg_v" />
+        <dataInput id="_19_Arg_wInput" name="Arg_w" />
+        <dataInput id="_19_PathToCubexFileInput" name="PathToCubexFile" />
+        <dataInput id="_19_Arg_pInput" name="Arg_p" />
+        <inputSet>
+          <dataInputRefs>_19_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_19_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_19_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_19_ApplicationInput</dataInputRefs>
+          <dataInputRefs>_19_Arg_tInput</dataInputRefs>
+          <dataInputRefs>_19_Arg_cInput</dataInputRefs>
+          <dataInputRefs>_19_Arg_vInput</dataInputRefs>
+          <dataInputRefs>_19_Arg_wInput</dataInputRefs>
+          <dataInputRefs>_19_PathToCubexFileInput</dataInputRefs>
+          <dataInputRefs>_19_Arg_pInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_19_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_19_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_19_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_19_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_19_Arg_tInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">0.0001</from>
+          <to xsi:type="tFormalExpression">_19_Arg_tInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_19_Arg_cInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">20</from>
+          <to xsi:type="tFormalExpression">_19_Arg_cInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_19_Arg_vInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">0.01</from>
+          <to xsi:type="tFormalExpression">_19_Arg_vInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_19_Arg_wInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">0.1</from>
+          <to xsi:type="tFormalExpression">_19_Arg_wInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_19_PathToCubexFileInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">/home/vekannan/app_dyn/miniMD/miniMD_ref_1.0_readex_dyn_detect/scorep-2016*</from>
+          <to xsi:type="tFormalExpression">_19_PathToCubexFileInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_19_Arg_pInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">MINIMD_LOOP</from>
+          <to xsi:type="tFormalExpression">_19_Arg_pInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_20" name="Set Inputs for Experiments" tns:taskName="SetExperimentsInputs" >
+      <ioSpecification>
+        <dataInput id="_20_PerfToolInput" name="PerfTool" />
+        <dataInput id="_20_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_20_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_20_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_20_ExperimentsInput" name="Experiments" />
+        <dataInput id="_20_ApplicationInput" name="Application" />
+        <dataOutput id="_20_ExperimentsOutput" name="Experiments" />
+        <inputSet>
+          <dataInputRefs>_20_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_20_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_20_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_20_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_20_ExperimentsInput</dataInputRefs>
+          <dataInputRefs>_20_ApplicationInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_20_ExperimentsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_20_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ompThreadsConfig</sourceRef>
+        <targetRef>_20_OMPThreadsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_20_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>mpiProcsConfig</sourceRef>
+        <targetRef>_20_MPIProcsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_20_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_20_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_20_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_21" name="Gateway" gatewayDirection="Converging" />
+    <task id="_22" name="Pick Experiment" tns:taskName="PickExperiment" >
+      <ioSpecification>
+        <dataInput id="_22_ExperimentsInput" name="Experiments" />
+        <dataOutput id="_22_ExperimentOutput" name="Experiment" />
+        <dataOutput id="_22_ExperimentsOutput" name="Experiments" />
+        <inputSet>
+          <dataInputRefs>_22_ExperimentsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_22_ExperimentOutput</dataOutputRefs>
+          <dataOutputRefs>_22_ExperimentsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_22_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_22_ExperimentOutput</sourceRef>
+        <targetRef>experiment</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_22_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_23" name="Gateway" gatewayDirection="Diverging" />
+    <task id="_24" name="Run Experiment" tns:taskName="RunExperiment" >
+      <ioSpecification>
+        <dataInput id="_24_ExperimentInput" name="Experiment" />
+        <dataInput id="_24_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_24_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_24_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_24_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_24_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_25" name="Run Experiment" tns:taskName="RunExperiment" >
+      <ioSpecification>
+        <dataInput id="_25_ExperimentInput" name="Experiment" />
+        <dataInput id="_25_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_25_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_25_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_25_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_25_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_26" name="Wait for Experiment" tns:taskName="WaitExperiment" >
+      <ioSpecification>
+        <dataInput id="_26_ExperimentInput" name="Experiment" />
+        <dataInput id="_26_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_26_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_26_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_26_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_26_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_27" name="Wait for Experiment" tns:taskName="WaitExperiment" >
+      <ioSpecification>
+        <dataInput id="_27_ExperimentInput" name="Experiment" />
+        <dataInput id="_27_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_27_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_27_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_27_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_27_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_29" name="Prepare Experiments" tns:taskName="CreateExperiments" >
+      <ioSpecification>
+        <dataInput id="_29_PerfToolInput" name="PerfTool" />
+        <dataInput id="_29_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_29_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_29_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_29_ApplicationInput" name="Application" />
+        <dataOutput id="_29_ExperimentsOutput" name="Experiments" />
+        <inputSet>
+          <dataInputRefs>_29_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_29_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_29_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_29_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_29_ApplicationInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_29_ExperimentsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_29_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ompThreadsConfig</sourceRef>
+        <targetRef>_29_OMPThreadsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_29_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>mpiProcsConfig</sourceRef>
+        <targetRef>_29_MPIProcsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_29_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_29_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_30" name="Select PTF" tns:taskName="SelectPerformanceTool" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>ExecutionLog.get().writeLog("Select PTF");</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataOutput id="_30_PerfToolOutput" name="PerfTool" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_30_PerfToolOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_30_PerfToolOutput</sourceRef>
+        <targetRef>perfTool</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_31" name="Set Inputs for Experiments" tns:taskName="SetExperimentsInputs" >
+      <ioSpecification>
+        <dataInput id="_31_PerfToolInput" name="PerfTool" />
+        <dataInput id="_31_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_31_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_31_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_31_ExperimentsInput" name="Experiments" />
+        <dataInput id="_31_ApplicationInput" name="Application" />
+        <dataOutput id="_31_ExperimentsOutput" name="Experiments" />
+        <inputSet>
+          <dataInputRefs>_31_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_31_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_31_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_31_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_31_ExperimentsInput</dataInputRefs>
+          <dataInputRefs>_31_ApplicationInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_31_ExperimentsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_31_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ompThreadsConfig</sourceRef>
+        <targetRef>_31_OMPThreadsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_31_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>mpiProcsConfig</sourceRef>
+        <targetRef>_31_MPIProcsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_31_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_31_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_31_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_32" name="Gateway" gatewayDirection="Converging" />
+    <task id="_33" name="Pick Experiment" tns:taskName="PickExperiment" >
+      <ioSpecification>
+        <dataInput id="_33_ExperimentsInput" name="Experiments" />
+        <dataOutput id="_33_ExperimentOutput" name="Experiment" />
+        <dataOutput id="_33_ExperimentsOutput" name="Experiments" />
+        <inputSet>
+          <dataInputRefs>_33_ExperimentsInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_33_ExperimentOutput</dataOutputRefs>
+          <dataOutputRefs>_33_ExperimentsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_33_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_33_ExperimentOutput</sourceRef>
+        <targetRef>experiment</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_33_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_34" name="Run Experiment" tns:taskName="RunExperiment" >
+      <ioSpecification>
+        <dataInput id="_34_ExperimentInput" name="Experiment" />
+        <dataInput id="_34_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_34_ExperimentInput</dataInputRefs>
+          <dataInputRefs>_34_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_34_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_34_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <exclusiveGateway id="_35" name="Gateway" gatewayDirection="Diverging" />
+
+    <!-- connections -->
+    <sequenceFlow id="_35-_2" sourceRef="_35" targetRef="_2" name="DTA Done" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return experiments.isEmpty() == true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_1-_3" sourceRef="_1" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_4-_5" sourceRef="_4" targetRef="_5" />
+    <sequenceFlow id="_8-_6" sourceRef="_8" targetRef="_6" />
+    <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" />
+    <sequenceFlow id="_5-_8" sourceRef="_5" targetRef="_8" />
+    <sequenceFlow id="_7-_9" sourceRef="_7" targetRef="_9" />
+    <sequenceFlow id="_13-_10" sourceRef="_13" targetRef="_10" />
+    <sequenceFlow id="_10-_11" sourceRef="_10" targetRef="_11" />
+    <sequenceFlow id="_15-_11" sourceRef="_15" targetRef="_11" name="Continue Filtering" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return false;
+//return continueFiltering.equals("ContinueFiltering");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_22-_13" sourceRef="_22" targetRef="_13" />
+    <sequenceFlow id="_26-_14" sourceRef="_26" targetRef="_14" />
+    <sequenceFlow id="_14-_15" sourceRef="_14" targetRef="_15" />
+    <sequenceFlow id="_17-_16" sourceRef="_17" targetRef="_16" />
+    <sequenceFlow id="_15-_17" sourceRef="_15" targetRef="_17" name="Filtering Done" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;
+//return continueFiltering.equals("FilteringDone");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_27-_19" sourceRef="_27" targetRef="_19" />
+    <sequenceFlow id="_9-_20" sourceRef="_9" targetRef="_20" />
+    <sequenceFlow id="_20-_21" sourceRef="_20" targetRef="_21" />
+    <sequenceFlow id="_23-_21" sourceRef="_23" targetRef="_21" name="More Inputs" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return experiments.isEmpty() == false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_21-_22" sourceRef="_21" targetRef="_22" />
+    <sequenceFlow id="_19-_23" sourceRef="_19" targetRef="_23" />
+    <sequenceFlow id="_11-_24" sourceRef="_11" targetRef="_24" />
+    <sequenceFlow id="_16-_25" sourceRef="_16" targetRef="_25" />
+    <sequenceFlow id="_24-_26" sourceRef="_24" targetRef="_26" />
+    <sequenceFlow id="_25-_27" sourceRef="_25" targetRef="_27" />
+    <sequenceFlow id="_30-_29" sourceRef="_30" targetRef="_29" />
+    <sequenceFlow id="_23-_30" sourceRef="_23" targetRef="_30" name="TPA Done" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return experiments.isEmpty() == true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_29-_31" sourceRef="_29" targetRef="_31" />
+    <sequenceFlow id="_31-_32" sourceRef="_31" targetRef="_32" />
+    <sequenceFlow id="_35-_32" sourceRef="_35" targetRef="_32" name="More Inputs" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return experiments.isEmpty() == false;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_32-_33" sourceRef="_32" targetRef="_33" />
+    <sequenceFlow id="_33-_34" sourceRef="_33" targetRef="_34" />
+    <sequenceFlow id="_34-_35" sourceRef="_34" targetRef="_35" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="com.sample.bpmn" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="157" y="39" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="1126" y="38" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="90" y="129" width="182" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="90" y="218" width="184" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="88" y="304" width="188" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="88" y="486" width="189" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="88" y="573" width="188" height="42" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="88" y="396" width="188" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="88" y="661" width="188" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="392" y="304" width="200" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="467" y="216" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="399" y="390" width="191" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="721" y="45" width="196" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="792" y="120" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="710" y="301" width="213" height="42" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="717" y="220" width="200" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_19" >
+        <dc:Bounds x="715" y="572" width="202" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="395" y="661" width="197" height="42" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="469" y="564" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_22" >
+        <dc:Bounds x="393" y="483" width="200" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="790" y="652" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_24" >
+        <dc:Bounds x="397" y="126" width="188" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" >
+        <dc:Bounds x="719" y="394" width="196" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" >
+        <dc:Bounds x="398" y="44" width="185" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_27" >
+        <dc:Bounds x="714" y="478" width="204" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="1053" y="570" width="193" height="44" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_30" >
+        <dc:Bounds x="1052" y="654" width="196" height="44" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="1053" y="477" width="192" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="1127" y="385" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="1058" y="302" width="184" height="41" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="1057" y="222" width="181" height="40" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="1125" y="116" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_35-_2" >
+        <di:waypoint x="1149" y="140" />
+        <di:waypoint x="1150" y="62" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_3" >
+        <di:waypoint x="181" y="63" />
+        <di:waypoint x="181" y="149" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="181" y="149" />
+        <di:waypoint x="182" y="238" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_5" >
+        <di:waypoint x="182" y="238" />
+        <di:waypoint x="182" y="324" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_6" >
+        <di:waypoint x="182" y="416" />
+        <di:waypoint x="182" y="506" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_7" >
+        <di:waypoint x="182" y="506" />
+        <di:waypoint x="182" y="594" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_8" >
+        <di:waypoint x="182" y="324" />
+        <di:waypoint x="182" y="416" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_9" >
+        <di:waypoint x="182" y="594" />
+        <di:waypoint x="182" y="681" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_13-_10" >
+        <di:waypoint x="494" y="410" />
+        <di:waypoint x="492" y="324" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_10-_11" >
+        <di:waypoint x="492" y="324" />
+        <di:waypoint x="491" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_11" >
+        <di:waypoint x="816" y="144" />
+        <di:waypoint x="491" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_22-_13" >
+        <di:waypoint x="493" y="503" />
+        <di:waypoint x="494" y="410" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_14" >
+        <di:waypoint x="490" y="64" />
+        <di:waypoint x="819" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_15" >
+        <di:waypoint x="819" y="65" />
+        <di:waypoint x="816" y="144" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_16" >
+        <di:waypoint x="817" y="240" />
+        <di:waypoint x="816" y="322" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_17" >
+        <di:waypoint x="816" y="144" />
+        <di:waypoint x="817" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_27-_19" >
+        <di:waypoint x="816" y="498" />
+        <di:waypoint x="816" y="592" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_20" >
+        <di:waypoint x="182" y="681" />
+        <di:waypoint x="493" y="682" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_21" >
+        <di:waypoint x="493" y="682" />
+        <di:waypoint x="493" y="588" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_21" >
+        <di:waypoint x="814" y="676" />
+        <di:waypoint x="493" y="588" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_22" >
+        <di:waypoint x="493" y="588" />
+        <di:waypoint x="493" y="503" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_19-_23" >
+        <di:waypoint x="816" y="592" />
+        <di:waypoint x="814" y="676" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_24" >
+        <di:waypoint x="491" y="240" />
+        <di:waypoint x="491" y="146" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_25" >
+        <di:waypoint x="816" y="322" />
+        <di:waypoint x="817" y="414" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_24-_26" >
+        <di:waypoint x="491" y="146" />
+        <di:waypoint x="490" y="64" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_27" >
+        <di:waypoint x="817" y="414" />
+        <di:waypoint x="816" y="498" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_30-_29" >
+        <di:waypoint x="1150" y="676" />
+        <di:waypoint x="1149" y="592" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_30" >
+        <di:waypoint x="814" y="676" />
+        <di:waypoint x="1150" y="676" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_31" >
+        <di:waypoint x="1149" y="592" />
+        <di:waypoint x="1149" y="497" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_31-_32" >
+        <di:waypoint x="1149" y="497" />
+        <di:waypoint x="1151" y="409" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_32" >
+        <di:waypoint x="1149" y="140" />
+        <di:waypoint x="1038" y="141" />
+        <di:waypoint x="1038" y="409" />
+        <di:waypoint x="1151" y="409" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_33" >
+        <di:waypoint x="1151" y="409" />
+        <di:waypoint x="1150" y="322" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_33-_34" >
+        <di:waypoint x="1150" y="322" />
+        <di:waypoint x="1147" y="242" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_35" >
+        <di:waypoint x="1147" y="242" />
+        <di:waypoint x="1149" y="140" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

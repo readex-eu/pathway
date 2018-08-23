@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_applicationItem" structureRef="String" />
+  <itemDefinition id="_mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_perfToolItem" structureRef="String" />
+  <itemDefinition id="_configOKItem" structureRef="Integer" />
+  <itemDefinition id="_experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_workingFolderItem" structureRef="String" />
+  <itemDefinition id="_expCommentItem" structureRef="String" />
+
+  <itemDefinition id="_21-applicationItem" structureRef="String" />
+  <itemDefinition id="_21-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_21-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_21-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_21-perfToolItem" structureRef="String" />
+  <itemDefinition id="_21-configOKItem" structureRef="Integer" />
+  <itemDefinition id="_21-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_21-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_21-expCommentItem" structureRef="String" />
+
+  <itemDefinition id="_20-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_20-connManagerItem" structureRef="pathway.eclipse.remotetools.ConnectionManager" />
+
+  <itemDefinition id="_20-4_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="pathway.workflows.analysis.Scalability" name="Scalability Analysis Process" tns:packageName="defaultPackage" >
+
+    <extensionElements>
+     <tns:import name="javax.swing.JOptionPane" />
+     <tns:import name="pathway.ui.dialogs.*" />
+     <tns:import name="java.util.List" />
+     <tns:import name="pathway.utils.PrepareExperimentsList" />
+     <tns:import name="pathway.data.persistence.Experiment" />
+     <tns:import name="pathway.eclipse.remotetools.BatchSystemManager" />
+     <tns:import name="pathway.eclipse.remotetools.ConnectionManager" />
+     <tns:import name="org.eclipse.ptp.core.jobs.IJobStatus" />
+     <tns:import name="pathway.data.DataUtils" />
+     <tns:import name="pathway.data.JobResults" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="application" itemSubjectRef="_applicationItem"/>
+    <property id="mpiProcsConfig" itemSubjectRef="_mpiProcsConfigItem"/>
+    <property id="ompThreadsConfig" itemSubjectRef="_ompThreadsConfigItem"/>
+    <property id="hpcSystem" itemSubjectRef="_hpcSystemItem"/>
+    <property id="perfTool" itemSubjectRef="_perfToolItem"/>
+    <property id="configOK" itemSubjectRef="_configOKItem"/>
+    <property id="experiments" itemSubjectRef="_experimentsItem"/>
+    <property id="workingFolder" itemSubjectRef="_workingFolderItem"/>
+    <property id="expComment" itemSubjectRef="_expCommentItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <scriptTask id="_2" name="MPI Procs?" scriptFormat="http://www.java.com/java" >
+      <script>String answer = JOptionPane.showInputDialog("Please enter the MPI procs configuration (min:max:incr):", "2:4:2");
+kcontext.setVariable("mpiProcsConfig", answer);</script>
+    </scriptTask>
+    <scriptTask id="_3" name="OpenMP Threads?" scriptFormat="http://www.java.com/java" >
+      <script>String answer = JOptionPane.showInputDialog("Please enter the OpenMP threads configuration (min:max:incr):", "1");
+kcontext.setVariable("ompThreadsConfig", answer);</script>
+    </scriptTask>
+    <scriptTask id="_4" name="HPC System?" scriptFormat="http://www.java.com/java" >
+      <script>String answer = GetAvailHPCSystems.showDialog();
+kcontext.setVariable("hpcSystem", answer);</script>
+    </scriptTask>
+    <scriptTask id="_5" name="Application?" scriptFormat="http://www.java.com/java" >
+      <script>String answer = GetAvailApps.showDialog();
+kcontext.setVariable("application", answer);</script>
+    </scriptTask>
+    <exclusiveGateway id="_6" name="IF_New_Config" gatewayDirection="Diverging" />
+    <subProcess id="_7" name="Create New App Config"  >
+    <!-- nodes -->
+    <startEvent id="_7-1" name="Start" />
+    <scriptTask id="_7-2" name="Add New Application Config" scriptFormat="http://www.java.com/java" >
+      <script>String answer = AddNewApp.showDialog();
+kcontext.setVariable("application", answer);</script>
+    </scriptTask>
+    <endEvent id="_7-3" name="End" />
+    <!-- connections -->
+    <sequenceFlow id="_7-1-_7-2" sourceRef="_7-1" targetRef="_7-2" />
+    <sequenceFlow id="_7-2-_7-3" sourceRef="_7-2" targetRef="_7-3" />
+    </subProcess>
+    <exclusiveGateway id="_8" name="New_Config_End" gatewayDirection="Converging" />
+    <scriptTask id="_9" name="Show Config" scriptFormat="http://www.java.com/java" >
+      <script>StringBuilder strBuilder = new StringBuilder();
+strBuilder.append("Is the following configuration correct:\n")
+			.append("Application: ").append(application).append("\n")
+			.append("HPC System: ").append(hpcSystem).append("\n")
+			.append("Perf Tool: ").append(perfTool).append("\n")
+			.append("MPI Procs: ").append(mpiProcsConfig).append("\n")
+			.append("OMP Threads: ").append(ompThreadsConfig).append("\n")
+			.append("Working Folder: ").append(workingFolder).append("\n")
+			.append("Comment: ").append(expComment);
+			
+int result = JOptionPane.showConfirmDialog(null, strBuilder.toString(), "Confirm configuration", JOptionPane.YES_NO_CANCEL_OPTION);
+kcontext.setVariable("configOK", result);</script>
+    </scriptTask>
+    <endEvent id="_10" name="EndProcess" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <exclusiveGateway id="_11" name="IF_Config_OK" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_12" name="Gateway_StartProc" gatewayDirection="Converging" />
+    <endEvent id="_13" name="StartSimulation" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_14" name="Start Simulation" scriptFormat="http://www.java.com/java" >
+      <script>List&lt;Experiment&gt; experimentsLoc = PrepareExperimentsList.generateExpiments(application, mpiProcsConfig, ompThreadsConfig, hpcSystem, perfTool, expComment);
+JOptionPane.showMessageDialog(null, "Starting simulation for " + experimentsLoc.size() + " experiments");
+
+kcontext.setVariable("experiments", experimentsLoc);</script>
+    </scriptTask>
+    <scriptTask id="_15" name="Analysis Cancelled" >
+      <script>JOptionPane.showMessageDialog(null, "Analysis was cancelled!");</script>
+    </scriptTask>
+    <scriptTask id="_17" name="Working Folder?" scriptFormat="http://www.java.com/java" >
+      <script>String answer = JOptionPane.showInputDialog("Please choose the start-up folder:", System.getProperty("user.dir"));
+kcontext.setVariable("workingFolder", answer);</script>
+    </scriptTask>
+    <scriptTask id="_16" name="Perf Tool?" scriptFormat="http://www.java.com/java" >
+      <script>String answer = GetAvailPerfTools.showDialog();
+kcontext.setVariable("perfTool", answer);</script>
+    </scriptTask>
+    <scriptTask id="_18" name="Exp Comment?" scriptFormat="http://www.java.com/java" >
+      <script>String answer = JOptionPane.showInputDialog("Do you want to store a comment with this experiment?", "");
+kcontext.setVariable("expComment", answer);</script>
+    </scriptTask>
+    <userTask id="_21" name="Results Exploration" >
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </userTask>
+    <subProcess id="_20" name="Scalability-Analysis-Workflow"  >
+    <!-- variables -->
+    <property id="batchSysManager" itemSubjectRef="_20-batchSysManagerItem"/>
+    <property id="connManager" itemSubjectRef="_20-connManagerItem"/>
+    <!-- nodes -->
+    <startEvent id="_20-1" name="Start" />
+    <scriptTask id="_20-2" name="Create Connection Manager" scriptFormat="http://www.java.com/java" >
+      <script>ConnectionManager connMngr = new ConnectionManager(ConnectionManager.REMOTE_TOOLS);
+Experiment experiment = (Experiment) experiments.get(0);
+connMngr.createNewConnection(experiment.getHPCSystem());
+
+kcontext.setVariable("connManager", connMngr);
+</script>
+    </scriptTask>
+    <scriptTask id="_20-3" name="Create Batch System Manager" scriptFormat="http://www.java.com/java" >
+      <script>BatchSystemManager batchSysMgr = new BatchSystemManager(connManager);
+batchSysMgr.createNewScheduler();
+batchSysMgr.startScheduler(null);
+
+kcontext.setVariable("batchSysManager", batchSysMgr);
+</script>
+    </scriptTask>
+    <subProcess id="_20-4" name="Run All Experiments Loop"  >
+      <ioSpecification>
+        <dataInput id="_20-4_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_20-4_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_20-4_input</loopDataInputRef>
+        <inputDataItem id="experiment" itemSubjectRef="_20-4_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <startEvent id="_20-4-2-1" name="Start" />
+    <endEvent id="_20-4-2-2" name="End" />
+    <scriptTask id="_20-4-2-3" name="Print Experiment" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("Running exp: " + experiment);</script>
+    </scriptTask>
+    <scriptTask id="_20-4-2-4" name="Start Remote Experiment" scriptFormat="http://www.java.com/java" >
+      <script>IJobStatus jobStatus = batchSysManager.startJob( (Experiment) experiment, null);
+
+System.out.println("STATUS: Job " + jobStatus.getJobId() + " is " + jobStatus.getState() + " using account "	+ jobStatus.getOwner());
+
+JobResults jobResults = batchSysManager.getJobResultsBlocking(jobStatus.getJobId());
+jobResults.storeResultsToExperiment((Experiment)experiment);
+
+System.out.println("The updated instrument is: " + experiment);
+</script>
+    </scriptTask>
+    <scriptTask id="_20-4-2-5" name="Store Experiment to DB" scriptFormat="http://www.java.com/java" >
+      <script>DataUtils.StoreExperiment((Experiment) experiment);</script>
+    </scriptTask>
+    <!-- connections -->
+    <sequenceFlow id="_20-4-2-5-_20-4-2-2" sourceRef="_20-4-2-5" targetRef="_20-4-2-2" />
+    </subProcess>
+    <endEvent id="_20-5" name="End" />
+    <scriptTask id="_20-6" name="Close the Batch System Manager" scriptFormat="http://www.java.com/java" >
+      <script>batchSysManager.stopScheduler();</script>
+    </scriptTask>
+    <!-- connections -->
+    <sequenceFlow id="_20-1-_20-2" sourceRef="_20-1" targetRef="_20-2" />
+    <sequenceFlow id="_20-2-_20-3" sourceRef="_20-2" targetRef="_20-3" />
+    <sequenceFlow id="_20-3-_20-4" sourceRef="_20-3" targetRef="_20-4" />
+    <sequenceFlow id="_20-6-_20-5" sourceRef="_20-6" targetRef="_20-5" />
+    <sequenceFlow id="_20-4-_20-6" sourceRef="_20-4" targetRef="_20-6" />
+    </subProcess>
+
+    <!-- connections -->
+    <sequenceFlow id="_8-_2" sourceRef="_8" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_3-_4" sourceRef="_3" targetRef="_4" />
+    <sequenceFlow id="_12-_5" sourceRef="_12" targetRef="_5" />
+    <sequenceFlow id="_5-_6" sourceRef="_5" targetRef="_6" />
+    <sequenceFlow id="_6-_7" sourceRef="_6" targetRef="_7" name="New Config" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return application.equalsIgnoreCase("New...");</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_6-_8" sourceRef="_6" targetRef="_8" name="Config Exists" tns:priority="10" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.jboss.org/drools/rule" >eval(true)</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_7-_8" sourceRef="_7" targetRef="_8" />
+    <sequenceFlow id="_18-_9" sourceRef="_18" targetRef="_9" />
+    <sequenceFlow id="_15-_10" sourceRef="_15" targetRef="_10" />
+    <sequenceFlow id="_9-_11" sourceRef="_9" targetRef="_11" />
+    <sequenceFlow id="_1-_12" sourceRef="_1" targetRef="_12" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" name="Repeat Config" tns:priority="2" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return configOK == JOptionPane.NO_OPTION;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_21-_13" sourceRef="_21" targetRef="_13" />
+    <sequenceFlow id="_11-_14" sourceRef="_11" targetRef="_14" name="Start Simulation" tns:priority="3" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return configOK == JOptionPane.YES_OPTION;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_11-_15" sourceRef="_11" targetRef="_15" name="Cancelled" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return configOK == JOptionPane.CANCEL_OPTION;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_16-_17" sourceRef="_16" targetRef="_17" />
+    <sequenceFlow id="_4-_16" sourceRef="_4" targetRef="_16" />
+    <sequenceFlow id="_17-_18" sourceRef="_17" targetRef="_18" />
+    <sequenceFlow id="_20-_21" sourceRef="_20" targetRef="_21" />
+    <sequenceFlow id="_14-_20" sourceRef="_14" targetRef="_20" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pathway.workflows.analysis.Scalability" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="2" y="44" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="146" y="125" width="89" height="55" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="141" y="206" width="102" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="136" y="276" width="121" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="138" y="45" width="121" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="271" y="46" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="522" y="26" width="505" height="134" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7-1" >
+        <dc:Bounds x="519" y="62" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7-2" >
+        <dc:Bounds x="597" y="67" width="164" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7-3" >
+        <dc:Bounds x="889" y="69" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="271" y="128" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="119" y="419" width="142" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="38" y="578" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="166" y="494" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="68" y="45" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="39" y="674" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_14" >
+        <dc:Bounds x="337" y="495" width="137" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_15" >
+        <dc:Bounds x="129" y="578" width="124" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_17" >
+        <dc:Bounds x="313" y="245" width="131" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_16" >
+        <dc:Bounds x="123" y="346" width="144" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_18" >
+        <dc:Bounds x="305" y="363" width="146" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_21" >
+        <dc:Bounds x="133" y="672" width="279" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20" >
+        <dc:Bounds x="522" y="196" width="636" height="543" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-1" >
+        <dc:Bounds x="563" y="240" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-2" >
+        <dc:Bounds x="693" y="243" width="288" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-3" >
+        <dc:Bounds x="685" y="316" width="304" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-4" >
+        <dc:Bounds x="554" y="403" width="567" height="204" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-4-2-1" >
+        <dc:Bounds x="78" y="248" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-4-2-2" >
+        <dc:Bounds x="522" y="335" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-4-2-3" >
+        <dc:Bounds x="169" y="250" width="176" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-4-2-4" >
+        <dc:Bounds x="404" y="252" width="177" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-4-2-5" >
+        <dc:Bounds x="144" y="335" width="199" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-5" >
+        <dc:Bounds x="576" y="649" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_20-6" >
+        <dc:Bounds x="699" y="649" width="269" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_7-1-_7-2" >
+        <di:waypoint x="21" y="60" />
+        <di:waypoint x="157" y="65" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-2-_7-3" >
+        <di:waypoint x="157" y="65" />
+        <di:waypoint x="391" y="67" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-4-2-5-_20-4-2-2" >
+        <di:waypoint x="-311" y="-44" />
+        <di:waypoint x="-8" y="-44" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-1-_20-2" >
+        <di:waypoint x="65" y="68" />
+        <di:waypoint x="315" y="71" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-2-_20-3" >
+        <di:waypoint x="315" y="71" />
+        <di:waypoint x="315" y="144" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-3-_20-4" >
+        <di:waypoint x="315" y="144" />
+        <di:waypoint x="315" y="309" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-6-_20-5" >
+        <di:waypoint x="311" y="477" />
+        <di:waypoint x="78" y="477" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-4-_20-6" >
+        <di:waypoint x="315" y="309" />
+        <di:waypoint x="311" y="477" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_8-_2" >
+        <di:waypoint x="295" y="152" />
+        <di:waypoint x="190" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="190" y="152" />
+        <di:waypoint x="192" y="230" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_4" >
+        <di:waypoint x="192" y="230" />
+        <di:waypoint x="196" y="300" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_5" >
+        <di:waypoint x="92" y="69" />
+        <di:waypoint x="198" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_6" >
+        <di:waypoint x="198" y="69" />
+        <di:waypoint x="295" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_7" >
+        <di:waypoint x="295" y="70" />
+        <di:waypoint x="774" y="93" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_6-_8" >
+        <di:waypoint x="295" y="70" />
+        <di:waypoint x="295" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_7-_8" >
+        <di:waypoint x="774" y="93" />
+        <di:waypoint x="295" y="152" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_18-_9" >
+        <di:waypoint x="378" y="387" />
+        <di:waypoint x="190" y="443" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_15-_10" >
+        <di:waypoint x="191" y="602" />
+        <di:waypoint x="62" y="602" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_9-_11" >
+        <di:waypoint x="190" y="443" />
+        <di:waypoint x="190" y="518" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_12" >
+        <di:waypoint x="26" y="68" />
+        <di:waypoint x="92" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="190" y="518" />
+        <di:waypoint x="93" y="518" />
+        <di:waypoint x="92" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_21-_13" >
+        <di:waypoint x="272" y="696" />
+        <di:waypoint x="63" y="698" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_14" >
+        <di:waypoint x="190" y="518" />
+        <di:waypoint x="405" y="519" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_15" >
+        <di:waypoint x="190" y="518" />
+        <di:waypoint x="191" y="602" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_16-_17" >
+        <di:waypoint x="195" y="370" />
+        <di:waypoint x="378" y="269" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_4-_16" >
+        <di:waypoint x="196" y="300" />
+        <di:waypoint x="195" y="370" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_17-_18" >
+        <di:waypoint x="378" y="269" />
+        <di:waypoint x="378" y="387" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_20-_21" >
+        <di:waypoint x="840" y="467" />
+        <di:waypoint x="272" y="696" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_14-_20" >
+        <di:waypoint x="405" y="519" />
+        <di:waypoint x="840" y="467" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

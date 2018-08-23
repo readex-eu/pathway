@@ -1,0 +1,4 @@
+#Wed Oct 18 12:06:46 IST 2017
+-Xms=512m,40m,40m,40m
+-XX\:MaxPermSize\==256m
+-Xmx=2048m,512m,384m,512m

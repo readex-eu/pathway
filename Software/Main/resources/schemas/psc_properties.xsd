@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+		targetNamespace="http://www.lrr.in.tum.de/Periscope" 
+		xmlns:psc="http://www.lrr.in.tum.de/Periscope" 
+		attributeFormDefault="unqualified" elementFormDefault="qualified">
+		
+	<xs:include schemaLocation="psc_addinfo.xsd" />
+	
+    <xs:annotation>
+    	<xs:documentation>
+    		Periscope performance properties output file format.
+    		Periscope is a performance analysis toolkit developed at 
+    		<a href="http://www.lrr.in.tum.de/">LRR/TUM</a>.
+    	</xs:documentation>
+    </xs:annotation>
+    
+    <xs:element name="Experiment">
+      <xs:complexType>
+    	<xs:sequence>
+    		<xs:element name="date" type="xs:date" maxOccurs="1"
+    			minOccurs="0" />
+    		<xs:element name="time" type="xs:time" maxOccurs="1"
+    			minOccurs="0" />
+    		<xs:element name="numProcs" type="xs:int" maxOccurs="1"
+    			minOccurs="0" />
+    		<xs:element name="numThreads" type="xs:int" maxOccurs="1" minOccurs="0" />
+    		<xs:element name="dir" type="xs:string" maxOccurs="1"
+    			minOccurs="0" />
+                <xs:element name="sir" type="xs:string" maxOccurs="1"
+    			minOccurs="0" />
+    		<xs:element name="rev" type="xs:string" maxOccurs="1"
+    			minOccurs="0" />
+    		<xs:element name="NumOfProperties" type="xs:integer"
+    			maxOccurs="1" minOccurs="0" />
+    		<xs:element name="property" type="psc:PropertyType"
+    			maxOccurs="unbounded" minOccurs="0" />
+    	</xs:sequence>
+      </xs:complexType>
+	</xs:element>
+	
+    <xs:complexType name="PropertyType">
+    	<xs:sequence>
+    		<xs:element name="name" type="xs:string" maxOccurs="1" minOccurs="1" />
+    		<xs:element name="context" type="psc:ContextType" maxOccurs="1" minOccurs="1" />
+    		<xs:element name="severity" type="xs:double" maxOccurs="1" minOccurs="1" />
+    		<xs:element name="confidence" type="xs:double" maxOccurs="1" minOccurs="0" />
+    		<xs:element name="addInfo" minOccurs="0" maxOccurs="1">
+    		  <xs:complexType>
+    		    <xs:sequence>
+    		      <xs:any maxOccurs="unbounded" minOccurs="0" processContents="lax"/>
+    		    </xs:sequence>
+    		  </xs:complexType>
+    		</xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="cluster" type="xs:boolean" use="optional" default="false" />
+    	<xs:attribute name="ID" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="ContextType">
+    	<xs:sequence>
+    		<xs:element name="execObj" maxOccurs="unbounded" minOccurs="1">
+    		  <xs:complexType>
+        	    <xs:attribute name="process" type="xs:int" use="required"/>
+        	    <xs:attribute name="thread" type="xs:int" use="required"/>
+    		  </xs:complexType>
+    		</xs:element>
+    	</xs:sequence>
+    	<xs:attribute name="FileName" type="xs:string" use="required" />
+    	<xs:attribute name="FileID" type="xs:int" use="required" />
+    	<xs:attribute name="RFL" type="xs:int" use="required" />
+    	<xs:attribute name="Config" type="xs:string" use="optional" />
+    	<xs:attribute name="Region" type="psc:RegionType" use="optional" />
+    	<xs:attribute name="RegionId" type="xs:string" use="optional" />
+    	
+    </xs:complexType>
+    
+	<xs:simpleType name="RegionType">
+		<xs:restriction base="xs:token">
+			<xs:enumeration value="REGION_NONE"/>
+			<xs:enumeration value="MAIN_REGION"/>
+			<xs:enumeration value="SUB_REGION"/>
+			<xs:enumeration value="LOOP_REGION"/>
+			<xs:enumeration value="NESTEDLOOP_REGION"/>
+			<xs:enumeration value="VECTOR_REGION"/>
+			<xs:enumeration value="FORALL_REGION"/>
+			<xs:enumeration value="CALL_REGION"/>
+			<xs:enumeration value="IO_REGION"/>
+			<xs:enumeration value="BARRIER_REGION"/>
+			<xs:enumeration value="PARALLEL_REGION"/>
+			<xs:enumeration value="PARALLEL_REGION_BODY"/>
+			<xs:enumeration value="DO_REGION"/>
+			<xs:enumeration value="TASK_REGION"/>
+			<xs:enumeration value="SECTIONS_REGION"/>
+			<xs:enumeration value="SECTION_REGION"/>
+			<xs:enumeration value="SECTION_REGION_BODY"/>
+			<xs:enumeration value="SINGLE_REGION"/>
+			<xs:enumeration value="SINGLE_REGION_BODY"/>
+			<xs:enumeration value="CRITICAL_REGION"/>
+			<xs:enumeration value="CRITICAL_REGION_BODY"/>
+			<xs:enumeration value="WORKSHARE_REGION"/>
+			<xs:enumeration value="WORKSHARE_REGION_BODY"/>
+			<xs:enumeration value="ATOMIC_REGION"/>
+			<xs:enumeration value="ORDERED_REGION"/>
+			<xs:enumeration value="ORDERED_REGION_BODY"/>
+			<xs:enumeration value="MASTER_REGION_BODY"/>
+			<xs:enumeration value="IMPLICIT_BARRIER_REGION"/>
+			<xs:enumeration value="USER_REGION"/>
+			<xs:enumeration value="WORKSHARE"/>
+			<xs:enumeration value="WORKSHARE_SECTIONS"/>
+			<xs:enumeration value="WORKSHARE_DO"/>
+			<xs:enumeration value="MPI_CALL"/>
+			<xs:enumeration value="UNSPECIFIED"/>
+			<xs:enumeration value="UNKNOWN"/>
+			<xs:enumeration value="DATA_STRUCTURE"/>
+			<xs:enumeration value="OMP_FLUSH_REGION"/>
+			<xs:enumeration value=""/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

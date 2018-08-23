@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.jboss.org/drools" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd" id="Definitions_1" targetNamespace="http://www.jboss.org/drools">
+  <itemDefinition id="ItemDefinition_1" itemKind="Physical" structureRef="Periscope"/>
+  <itemDefinition id="_listItem" structureRef="java.util.List"/>
+  <itemDefinition id="_experimentItem" structureRef="pathway.data.persistence.Experiment"/>
+  <process id="pathway.workflows.periscope.LoadPscPropertyFiles" tns:version="1" tns:packageName="pathway.workflows.periscope" name="Load Psc Property Files Process">
+    <property id="_tool" itemSubjectRef="ItemDefinition_1" name="Performance Tool"/>
+    <property id="_hpcSystem" name="HPCSystem"/>
+    <property id="_resultsURI" name="Results URI"/>
+    <property id="_experiment" itemSubjectRef="_experimentItem" name="CurrentExperiment"/>
+    <property id="_availFiles" itemSubjectRef="_listItem" name="AvailFiles"/>
+    <startEvent id="StartEvent_1" name="START">
+      <outgoing>SequenceFlow_2</outgoing>
+    </startEvent>
+    <subProcess id="SubProcess_1" name="Import All Files">
+      <incoming>SequenceFlow_11</incoming>
+      <outgoing>SequenceFlow_9</outgoing>
+      <ioSpecification id="InputOutputSpecification_3">
+        <dataInput id="_2_input" name="MultiInstanceInput"/>
+        <inputSet id="LoopInputSet_1"/>
+        <outputSet id="LoopOutputSet_1"/>
+      </ioSpecification>
+      <dataInputAssociation id="DataInputAssociation_6">
+        <sourceRef>_availFiles</sourceRef>
+        <targetRef>_2_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics id="MultiInstanceLoopCharacteristics_1">
+        <loopDataInputRef>_2_input</loopDataInputRef>
+        <inputDataItem xsi:type="tDataInput" id="item" itemSubjectRef="_2_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+      <startEvent id="StartEvent_2">
+        <outgoing>SequenceFlow_8</outgoing>
+      </startEvent>
+      <sequenceFlow id="SequenceFlow_8" tns:priority="1" name="" sourceRef="StartEvent_2" targetRef="Task_1"/>
+      <task id="Task_1" tns:taskName="Load Data" tns:displayName="Load Data" tns:icon="icons/arrowright.GIF" name="Load Property File">
+        <incoming>SequenceFlow_8</incoming>
+        <outgoing>SequenceFlow_10</outgoing>
+        <ioSpecification id="InputOutputSpecification_1">
+          <dataInput id="DataInput_1" itemSubjectRef="ItemDefinition_1" name="Tool"/>
+          <dataInput id="DataInput_2" name="Results URI"/>
+          <dataInput id="DataInput_3" name="HPC System"/>
+          <dataOutput id="DataOutput_1" name="Experiment"/>
+          <inputSet id="InputSet_1" name="Input Set 1">
+            <dataInputRefs>DataInput_1</dataInputRefs>
+            <dataInputRefs>DataInput_2</dataInputRefs>
+            <dataInputRefs>DataInput_3</dataInputRefs>
+            <optionalInputRefs>DataInput_1</optionalInputRefs>
+          </inputSet>
+          <outputSet id="OutputSet_1" name="Output Set 1">
+            <dataOutputRefs>DataOutput_1</dataOutputRefs>
+          </outputSet>
+        </ioSpecification>
+        <dataInputAssociation id="DataInputAssociation_1">
+          <sourceRef>_tool</sourceRef>
+          <targetRef>DataInput_1</targetRef>
+        </dataInputAssociation>
+        <dataInputAssociation id="DataInputAssociation_2">
+          <sourceRef>_resultsURI</sourceRef>
+          <targetRef>DataInput_2</targetRef>
+        </dataInputAssociation>
+        <dataInputAssociation id="DataInputAssociation_3">
+          <sourceRef>_hpcSystem</sourceRef>
+          <targetRef>DataInput_3</targetRef>
+        </dataInputAssociation>
+      </task>
+      <sequenceFlow id="SequenceFlow_10" tns:priority="1" name="" sourceRef="Task_1" targetRef="EndEvent_2"/>
+      <endEvent id="EndEvent_2">
+        <incoming>SequenceFlow_10</incoming>
+      </endEvent>
+    </subProcess>
+    <sequenceFlow id="SequenceFlow_9" tns:priority="1" name="" sourceRef="SubProcess_1" targetRef="EndEvent_1"/>
+    <task id="Task_2" tns:taskName="Find Files" tns:displayName="Find Files" tns:icon="icons/finder.gif" name="Get Avail Files">
+      <incoming>SequenceFlow_2</incoming>
+      <outgoing>SequenceFlow_11</outgoing>
+      <ioSpecification id="InputOutputSpecification_2">
+        <dataInput id="DataInput_4" name="Path"/>
+        <dataInput id="DataInput_5" name="Regex"/>
+        <dataOutput id="DataOutput_2" name="Files"/>
+        <inputSet id="InputSet_2" name="Input Set 2">
+          <dataInputRefs>DataInput_4</dataInputRefs>
+          <dataInputRefs>DataInput_5</dataInputRefs>
+        </inputSet>
+        <outputSet id="OutputSet_2" name="Output Set 2">
+          <dataOutputRefs>DataOutput_2</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation id="DataInputAssociation_4">
+        <targetRef>DataInput_4</targetRef>
+        <assignment id="Assignment_1">
+          <from xsi:type="tFormalExpression" id="FormalExpression_1" language="http://www.java.com/java">new File(System.getProperty(&quot;user.dir&quot;), &quot;resources&quot; + File.separatorChar + &quot;periscope&quot; ).getPath();</from>
+          <to xsi:type="tFormalExpression" id="FormalExpression_2">DataInput_4</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation id="DataInputAssociation_5">
+        <targetRef>DataInput_5</targetRef>
+        <assignment id="Assignment_2">
+          <from xsi:type="tFormalExpression" id="FormalExpression_3">&quot;*.xml&quot;</from>
+          <to xsi:type="tFormalExpression" id="FormalExpression_4">DataInput_5</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <sequenceFlow id="SequenceFlow_2" tns:priority="1" name="" sourceRef="StartEvent_1" targetRef="Task_2"/>
+    <endEvent id="EndEvent_1" name="STOP">
+      <incoming>SequenceFlow_9</incoming>
+    </endEvent>
+    <sequenceFlow id="SequenceFlow_11" tns:priority="1" name="" sourceRef="Task_2" targetRef="SubProcess_1"/>
+  </process>
+  <bpmndi:BPMNDiagram documentation="cghgvgv" id="BPMNDiagram_1" name="Load Psc Property Files Process Diagram">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="pathway.workflows.periscope.LoadPscPropertyFiles">
+      <bpmndi:BPMNShape id="BPMNShape_SubProcess_1" bpmnElement="SubProcess_1" isExpanded="true">
+        <dc:Bounds height="95.0" width="273.0" x="300.0" y="56.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_1" bpmnElement="StartEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="40.0" y="83.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_2" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="670.0" y="83.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Task_1" bpmnElement="Task_1">
+        <dc:Bounds height="50.0" width="110.0" x="382.0" y="76.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Task_2" bpmnElement="Task_2">
+        <dc:Bounds height="50.0" width="110.0" x="120.0" y="76.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BoundaryEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="283.0" y="81.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_2">
+        <dc:Bounds height="36.0" width="36.0" x="520.0" y="83.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_2">
+        <dc:Bounds height="36.0" width="36.0" x="316.0" y="83.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_9" bpmnElement="SequenceFlow_9" sourceElement="BPMNShape_SubProcess_1" targetElement="BPMNShape_2">
+        <di:waypoint xsi:type="dc:Point" x="573.0" y="103.0"/>
+        <di:waypoint xsi:type="dc:Point" x="670.0" y="101.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="BPMNShape_1" targetElement="BPMNShape_Task_2">
+        <di:waypoint xsi:type="dc:Point" x="76.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="120.0" y="101.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="SequenceFlow_8" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_Task_1">
+        <di:waypoint xsi:type="dc:Point" x="352.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="382.0" y="101.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_10" bpmnElement="SequenceFlow_10" sourceElement="BPMNShape_Task_1" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="492.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="520.0" y="101.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_11" bpmnElement="SequenceFlow_11" sourceElement="BPMNShape_Task_2" targetElement="BPMNShape_SubProcess_1">
+        <di:waypoint xsi:type="dc:Point" x="230.0" y="101.0"/>
+        <di:waypoint xsi:type="dc:Point" x="300.0" y="103.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</definitions>

@@ -1,0 +1,752 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_applicationItem" structureRef="String" />
+  <itemDefinition id="_mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_perfToolItem" structureRef="String" />
+  <itemDefinition id="_configOKItem" structureRef="String" />
+  <itemDefinition id="_experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_workingFolderItem" structureRef="String" />
+  <itemDefinition id="_expCommentItem" structureRef="String" />
+  <itemDefinition id="_hpcSystemsItem" structureRef="java.util.List" />
+  <itemDefinition id="_addSystemItem" structureRef="Boolean" />
+
+  <itemDefinition id="_34-applicationItem" structureRef="String" />
+  <itemDefinition id="_34-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_34-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_34-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_34-perfToolItem" structureRef="String" />
+  <itemDefinition id="_34-configOKItem" structureRef="String" />
+  <itemDefinition id="_34-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_34-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_34-expCommentItem" structureRef="String" />
+  <itemDefinition id="_34-hpcSystemsItem" structureRef="java.util.List" />
+  <itemDefinition id="_34-addSystemItem" structureRef="Boolean" />
+
+  <itemDefinition id="_35-applicationItem" structureRef="String" />
+  <itemDefinition id="_35-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_35-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_35-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_35-perfToolItem" structureRef="String" />
+  <itemDefinition id="_35-configOKItem" structureRef="String" />
+  <itemDefinition id="_35-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_35-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_35-expCommentItem" structureRef="String" />
+  <itemDefinition id="_35-hpcSystemsItem" structureRef="java.util.List" />
+  <itemDefinition id="_35-addSystemItem" structureRef="Boolean" />
+
+  <itemDefinition id="_32-2-1-hpcSystemItem" />
+
+  <itemDefinition id="_32-2-3-hpcSystemItem" />
+
+  <itemDefinition id="_32-2-11-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_32-2-11-connManagerItem" structureRef="pathway.eclipse.remotetools.ConnectionManager" />
+  <itemDefinition id="_32-2-11-experimentItem" structureRef="pathway.data.persistence.Experiment" />
+
+  <itemDefinition id="_32-2-11-2-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_32-2-11-2-connManagerItem" structureRef="pathway.eclipse.remotetools.ConnectionManager" />
+  <itemDefinition id="_32-2-11-2-experimentItem" structureRef="pathway.data.persistence.Experiment" />
+
+  <itemDefinition id="_32-2-11-3-2-2-experimentItem" />
+
+  <itemDefinition id="_32-2-11-3-2-5-experimentItem" />
+
+  <itemDefinition id="_32-2-11-8-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+  <itemDefinition id="_32-2-11-8-connManagerItem" structureRef="pathway.eclipse.remotetools.ConnectionManager" />
+  <itemDefinition id="_32-2-11-8-experimentItem" structureRef="pathway.data.persistence.Experiment" />
+
+  <itemDefinition id="_38-applicationItem" structureRef="String" />
+  <itemDefinition id="_38-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_38-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_38-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_38-perfToolItem" structureRef="String" />
+  <itemDefinition id="_38-configOKItem" structureRef="String" />
+  <itemDefinition id="_38-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_38-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_38-expCommentItem" structureRef="String" />
+  <itemDefinition id="_38-hpcSystemsItem" structureRef="java.util.List" />
+  <itemDefinition id="_38-addSystemItem" structureRef="Boolean" />
+
+  <itemDefinition id="_23-applicationItem" structureRef="String" />
+  <itemDefinition id="_23-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_23-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_23-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_23-perfToolItem" structureRef="String" />
+  <itemDefinition id="_23-configOKItem" structureRef="String" />
+  <itemDefinition id="_23-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_23-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_23-expCommentItem" structureRef="String" />
+  <itemDefinition id="_23-hpcSystemsItem" structureRef="java.util.List" />
+  <itemDefinition id="_23-addSystemItem" structureRef="Boolean" />
+
+  <itemDefinition id="_37-applicationItem" structureRef="String" />
+  <itemDefinition id="_37-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_37-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_37-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_37-perfToolItem" structureRef="String" />
+  <itemDefinition id="_37-configOKItem" structureRef="String" />
+  <itemDefinition id="_37-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_37-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_37-expCommentItem" structureRef="String" />
+  <itemDefinition id="_37-hpcSystemsItem" structureRef="java.util.List" />
+  <itemDefinition id="_37-addSystemItem" structureRef="Boolean" />
+
+  <itemDefinition id="_32_multiInstanceItemType" />
+
+  <itemDefinition id="_32-2-11-3_multiInstanceItemType" />
+
+  <process processType="Private" isExecutable="true" id="pathway.workflows.analysis.CrossPlatform" name="Cross-Platform Analysis Process" tns:packageName="defaultPackage" >
+
+    <extensionElements>
+     <tns:import name="javax.swing.JOptionPane" />
+     <tns:import name="pathway.ui.dialogs.*" />
+     <tns:import name="java.util.List" />
+     <tns:import name="java.util.ArrayList" />
+     <tns:import name="pathway.utils.PrepareExperimentsList" />
+     <tns:import name="pathway.data.persistence.Experiment" />
+     <tns:import name="pathway.eclipse.remotetools.BatchSystemManager" />
+     <tns:import name="pathway.eclipse.remotetools.ConnectionManager" />
+     <tns:import name="org.eclipse.ptp.core.jobs.IJobStatus" />
+     <tns:import name="pathway.data.DataUtils" />
+     <tns:import name="pathway.data.JobResults" />
+     <tns:import name="org.jbpm.workflow.instance.node.WorkItemNodeInstance" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="application" itemSubjectRef="_applicationItem"/>
+    <property id="mpiProcsConfig" itemSubjectRef="_mpiProcsConfigItem"/>
+    <property id="ompThreadsConfig" itemSubjectRef="_ompThreadsConfigItem"/>
+    <property id="hpcSystem" itemSubjectRef="_hpcSystemItem"/>
+    <property id="perfTool" itemSubjectRef="_perfToolItem"/>
+    <property id="configOK" itemSubjectRef="_configOKItem"/>
+    <property id="experiments" itemSubjectRef="_experimentsItem"/>
+    <property id="workingFolder" itemSubjectRef="_workingFolderItem"/>
+    <property id="expComment" itemSubjectRef="_expCommentItem"/>
+    <property id="hpcSystems" itemSubjectRef="_hpcSystemsItem"/>
+    <property id="addSystem" itemSubjectRef="_addSystemItem"/>
+
+    <!-- nodes -->
+    <task id="_34" name="Perf Tool?" tns:taskName="SelectPerformanceTool" >
+      <ioSpecification>
+        <dataOutput id="_34_PerfToolOutput" name="PerfTool" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_34_PerfToolOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_34_PerfToolOutput</sourceRef>
+        <targetRef>perfTool</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_35" name="MPI/OMP Config" tns:taskName="ProcThreadsConfig" >
+      <ioSpecification>
+        <dataOutput id="_35_OMPThreadsOutput" name="OMPThreads" />
+        <dataOutput id="_35_MPIProcsOutput" name="MPIProcs" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_35_OMPThreadsOutput</dataOutputRefs>
+          <dataOutputRefs>_35_MPIProcsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_35_OMPThreadsOutput</sourceRef>
+        <targetRef>ompThreadsConfig</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_35_MPIProcsOutput</sourceRef>
+        <targetRef>mpiProcsConfig</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <subProcess id="_32" name="for each HPC system..."  >
+      <ioSpecification>
+        <dataInput id="_32_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>hpcSystems</sourceRef>
+        <targetRef>_32_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_32_input</loopDataInputRef>
+        <inputDataItem id="hpcSystem" itemSubjectRef="_32_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <task id="_32-2-1" name="Application Config" tns:taskName="AppConfig" >
+      <ioSpecification>
+        <dataOutput id="_32-2-1_ApplicationOutput" name="Application" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_32-2-1_ApplicationOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_32-2-1_ApplicationOutput</sourceRef>
+        <targetRef>application</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <startEvent id="_32-2-2" name="Start" />
+    <task id="_32-2-3" name="Create Experiments" tns:taskName="CreateExperiments" >
+      <ioSpecification>
+        <dataInput id="_32-2-3_PerfToolInput" name="PerfTool" />
+        <dataInput id="_32-2-3_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_32-2-3_ApplicationInput" name="Application" />
+        <dataInput id="_32-2-3_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_32-2-3_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_32-2-3_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_32-2-3_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_32-2-3_ExpTypeInput" name="ExpType" />
+        <dataOutput id="_32-2-3_ExperimentsOutput" name="Experiments" />
+        <dataOutput id="_32-2-3_ConfigOKOutput" name="ConfigOK" />
+        <inputSet>
+          <dataInputRefs>_32-2-3_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_32-2-3_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_32-2-3_ApplicationInput</dataInputRefs>
+          <dataInputRefs>_32-2-3_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_32-2-3_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_32-2-3_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_32-2-3_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_32-2-3_ExpTypeInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_32-2-3_ExperimentsOutput</dataOutputRefs>
+          <dataOutputRefs>_32-2-3_ConfigOKOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_32-2-3_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ompThreadsConfig</sourceRef>
+        <targetRef>_32-2-3_OMPThreadsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_32-2-3_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>mpiProcsConfig</sourceRef>
+        <targetRef>_32-2-3_MPIProcsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_32-2-3_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_32-2-3_OMPThreadsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">1</from>
+          <to xsi:type="tFormalExpression">_32-2-3_OMPThreadsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_32-2-3_MPIProcsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">1</from>
+          <to xsi:type="tFormalExpression">_32-2-3_MPIProcsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_32-2-3_ExpTypeInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Cross-Platform Memory Analysis</from>
+          <to xsi:type="tFormalExpression">_32-2-3_ExpTypeInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_32-2-3_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_32-2-3_ConfigOKOutput</sourceRef>
+        <targetRef>configOK</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_32-2-4" name="ConfigOK?" gatewayDirection="Diverging" />
+    <endEvent id="_32-2-5" name="EndIter" />
+    <endEvent id="_32-2-6" name="EndAll" >
+        <terminateEventDefinition />
+    </endEvent>
+    <scriptTask id="_32-2-7" name="Study cancelled" scriptFormat="http://www.java.com/java" >
+      <script>JOptionPane.showMessageDialog(null, "Analysis was cancelled!");</script>
+    </scriptTask>
+    <scriptTask id="_32-2-8" name="Start" scriptFormat="http://www.java.com/java" >
+      <script>JOptionPane.showMessageDialog(null, "Starting simulation for " + (experiments != null ? experiments.size() : 0) + " experiments");</script>
+    </scriptTask>
+    <scriptTask id="_32-2-10" name="Start Config" >
+      <script>JOptionPane.showMessageDialog(null, "Starting configuration for sytem: " + hpcSystem);</script>
+    </scriptTask>
+    <subProcess id="_32-2-11" name="Submit and Monitor Experiments"  >
+    <!-- variables -->
+    <property id="batchSysManager" itemSubjectRef="_32-2-11-batchSysManagerItem"/>
+    <property id="connManager" itemSubjectRef="_32-2-11-connManagerItem"/>
+    <property id="experiment" itemSubjectRef="_32-2-11-experimentItem"/>
+    <!-- nodes -->
+    <startEvent id="_32-2-11-1" name="Start" />
+    <task id="_32-2-11-2" name="Create System Manager" tns:taskName="CreateBatchSystemManager" >
+      <extensionElements>
+        <tns:onEntry-script scriptFormat="http://www.java.com/java">
+          <tns:script>kcontext.setVariable("experiment", experiments.get(0) );</tns:script>
+        </tns:onEntry-script>
+      </extensionElements>
+      <ioSpecification>
+        <dataInput id="_32-2-11-2_HPCSystemInput" name="HPCSystem" />
+        <dataOutput id="_32-2-11-2_BatchSysManagerOutput" name="BatchSysManager" />
+        <dataOutput id="_32-2-11-2_ConnectionOutput" name="Connection" />
+        <inputSet>
+          <dataInputRefs>_32-2-11-2_HPCSystemInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_32-2-11-2_BatchSysManagerOutput</dataOutputRefs>
+          <dataOutputRefs>_32-2-11-2_ConnectionOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_32-2-11-2_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_32-2-11-2_BatchSysManagerOutput</sourceRef>
+        <targetRef>batchSysManager</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_32-2-11-2_ConnectionOutput</sourceRef>
+        <targetRef>connManager</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <subProcess id="_32-2-11-3" name="Prepare and Run Experiments"  >
+      <ioSpecification>
+        <dataInput id="_32-2-11-3_input" name="MultiInstanceInput" />
+        <inputSet/>
+        <outputSet/>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_32-2-11-3_input</targetRef>
+      </dataInputAssociation>
+      <multiInstanceLoopCharacteristics>
+        <loopDataInputRef>_32-2-11-3_input</loopDataInputRef>
+        <inputDataItem id="experiment" itemSubjectRef="_32-2-11-3_multiInstanceItemType"/>
+      </multiInstanceLoopCharacteristics>
+    <!-- nodes -->
+    <task id="_32-2-11-3-2-2" name="Run Experiment" tns:taskName="RunExperiment" >
+      <ioSpecification>
+        <dataInput id="_32-2-11-3-2-2_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_32-2-11-3-2-2_ExperimentInput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_32-2-11-3-2-2_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_32-2-11-3-2-2_ExperimentInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_32-2-11-3-2-2_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_32-2-11-3-2-2_ExperimentInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <startEvent id="_32-2-11-3-2-3" name="Start" />
+    <endEvent id="_32-2-11-3-2-4" name="End" />
+    <task id="_32-2-11-3-2-5" name="Make" tns:taskName="Make" >
+      <ioSpecification>
+        <dataInput id="_32-2-11-3-2-5_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_32-2-11-3-2-5_ExperimentInput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_32-2-11-3-2-5_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_32-2-11-3-2-5_ExperimentInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_32-2-11-3-2-5_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experiment</sourceRef>
+        <targetRef>_32-2-11-3-2-5_ExperimentInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <!-- connections -->
+    <sequenceFlow id="_32-2-11-3-2-5-_32-2-11-3-2-2" sourceRef="_32-2-11-3-2-5" targetRef="_32-2-11-3-2-2" />
+    <sequenceFlow id="_32-2-11-3-2-2-_32-2-11-3-2-4" sourceRef="_32-2-11-3-2-2" targetRef="_32-2-11-3-2-4" />
+    <sequenceFlow id="_32-2-11-3-2-3-_32-2-11-3-2-5" sourceRef="_32-2-11-3-2-3" targetRef="_32-2-11-3-2-5" />
+    </subProcess>
+    <endEvent id="_32-2-11-6" name="End" />
+    <task id="_32-2-11-8" name="Wait for all Experiments" tns:taskName="WaitForAllExperiments" >
+      <ioSpecification>
+        <dataInput id="_32-2-11-8_ExperimentsInput" name="Experiments" />
+        <dataInput id="_32-2-11-8_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_32-2-11-8_ExperimentsInput</dataInputRefs>
+          <dataInputRefs>_32-2-11-8_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_32-2-11-8_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_32-2-11-8_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <!-- connections -->
+    <sequenceFlow id="_32-2-11-1-_32-2-11-2" sourceRef="_32-2-11-1" targetRef="_32-2-11-2" />
+    <sequenceFlow id="_32-2-11-2-_32-2-11-3" sourceRef="_32-2-11-2" targetRef="_32-2-11-3" />
+    <sequenceFlow id="_32-2-11-8-_32-2-11-6" sourceRef="_32-2-11-8" targetRef="_32-2-11-6" />
+    <sequenceFlow id="_32-2-11-3-_32-2-11-8" sourceRef="_32-2-11-3" targetRef="_32-2-11-8" />
+    </subProcess>
+    <endEvent id="_32-2-12" name="End" />
+    <!-- connections -->
+    <sequenceFlow id="_32-2-10-_32-2-1" sourceRef="_32-2-10" targetRef="_32-2-1" />
+    <sequenceFlow id="_32-2-1-_32-2-3" sourceRef="_32-2-1" targetRef="_32-2-3" />
+    <sequenceFlow id="_32-2-3-_32-2-4" sourceRef="_32-2-3" targetRef="_32-2-4" />
+    <sequenceFlow id="_32-2-4-_32-2-5" sourceRef="_32-2-4" targetRef="_32-2-5" name="EndIter" tns:priority="10" >
+      <conditionExpression xsi:type="tFormalExpression" >return true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_32-2-7-_32-2-6" sourceRef="_32-2-7" targetRef="_32-2-6" />
+    <sequenceFlow id="_32-2-4-_32-2-7" sourceRef="_32-2-4" targetRef="_32-2-7" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return configOK == "QUIT";</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_32-2-4-_32-2-8" sourceRef="_32-2-4" targetRef="_32-2-8" tns:priority="3" >
+      <conditionExpression xsi:type="tFormalExpression" >return configOK == "YES";</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_32-2-2-_32-2-10" sourceRef="_32-2-2" targetRef="_32-2-10" />
+    <sequenceFlow id="_32-2-8-_32-2-11" sourceRef="_32-2-8" targetRef="_32-2-11" />
+    <sequenceFlow id="_32-2-11-_32-2-12" sourceRef="_32-2-11" targetRef="_32-2-12" />
+    </subProcess>
+    <endEvent id="_33" name="End" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_38" name="Report" tns:taskName="Report" >
+      <ioSpecification>
+        <dataInput id="_38_ContentsInput" name="Contents" />
+        <dataInput id="_38_TitleInput" name="Title" />
+        <inputSet>
+          <dataInputRefs>_38_ContentsInput</dataInputRefs>
+          <dataInputRefs>_38_TitleInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_38_ContentsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Workflow completed; you can now examine the data gathered by performance tools.</from>
+          <to xsi:type="tFormalExpression">_38_ContentsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_38_TitleInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Results Exploration</from>
+          <to xsi:type="tFormalExpression">_38_TitleInput</to>
+        </assignment>
+      </dataInputAssociation>
+    </task>
+    <task id="_23" name="Target HPC System?" tns:taskName="SelectTargetSystem" >
+      <extensionElements>
+        <tns:onExit-script scriptFormat="http://www.java.com/java">
+          <tns:script>String selSystem = (String)((WorkItemNodeInstance)kcontext.getNodeInstance()).getWorkItem().getResult("HPCSystem");
+System.out.println("The chosen system is " + selSystem);
+
+//List hpcSystems =  (List) kcontext.getVariable("hpcSystems");
+if (hpcSystems == null) {
+	hpcSystems = new ArrayList&lt;String&gt;();
+	System.out.println("Initialized the hpcSystems: " + hpcSystems);
+}
+	
+hpcSystems.add(selSystem);
+System.out.println("Add the hpc system to the list: " + hpcSystems);
+kcontext.setVariable("hpcSystems", hpcSystems);</tns:script>
+        </tns:onExit-script>
+      </extensionElements>
+      <ioSpecification>
+        <inputSet>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+    </task>
+    <task id="_37" name="Add more HPC Systems?" tns:taskName="AskYesNoQuestion" >
+      <ioSpecification>
+        <dataInput id="_37_QuestionInput" name="Question" />
+        <dataInput id="_37_TitleInput" name="Title" />
+        <dataOutput id="_37_AnswerOutput" name="Answer" />
+        <inputSet>
+          <dataInputRefs>_37_QuestionInput</dataInputRefs>
+          <dataInputRefs>_37_TitleInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_37_AnswerOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <targetRef>_37_QuestionInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Do you want to add an additional HPC system?</from>
+          <to xsi:type="tFormalExpression">_37_QuestionInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_37_TitleInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Add an additional HPC system?</from>
+          <to xsi:type="tFormalExpression">_37_TitleInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_37_AnswerOutput</sourceRef>
+        <targetRef>addSystem</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_29" name="More HPC Systems - Split Gateway" gatewayDirection="Diverging" />
+    <exclusiveGateway id="_28" name="More HPC Systems - Join Gateway" gatewayDirection="Converging" />
+
+    <!-- connections -->
+    <sequenceFlow id="_35-_34" sourceRef="_35" targetRef="_34" />
+    <sequenceFlow id="_1-_35" sourceRef="_1" targetRef="_35" />
+    <sequenceFlow id="_29-_32" sourceRef="_29" targetRef="_32" name="No" tns:priority="2" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return true;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_38-_33" sourceRef="_38" targetRef="_33" />
+    <sequenceFlow id="_32-_38" sourceRef="_32" targetRef="_38" />
+    <sequenceFlow id="_28-_23" sourceRef="_28" targetRef="_23" />
+    <sequenceFlow id="_23-_37" sourceRef="_23" targetRef="_37" />
+    <sequenceFlow id="_37-_29" sourceRef="_37" targetRef="_29" />
+    <sequenceFlow id="_29-_28" sourceRef="_29" targetRef="_28" name="Yes" tns:priority="1" >
+      <conditionExpression xsi:type="tFormalExpression" >return addSystem;</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_34-_28" sourceRef="_34" targetRef="_28" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pathway.workflows.analysis.CrossPlatform" >
+      <bpmndi:BPMNShape bpmnElement="_34" >
+        <dc:Bounds x="336" y="46" width="112" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="44" y="49" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_35" >
+        <dc:Bounds x="143" y="47" width="147" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="43" y="190" width="963" height="526" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-1" >
+        <dc:Bounds x="162" y="299" width="172" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-2" >
+        <dc:Bounds x="68" y="229" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-3" >
+        <dc:Bounds x="161" y="368" width="176" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-4" >
+        <dc:Bounds x="223" y="450" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-5" >
+        <dc:Bounds x="73" y="451" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-6" >
+        <dc:Bounds x="72" y="529" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-7" >
+        <dc:Bounds x="165" y="528" width="165" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-8" >
+        <dc:Bounds x="326" y="450" width="80" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-10" >
+        <dc:Bounds x="176" y="228" width="145" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11" >
+        <dc:Bounds x="457" y="240" width="529" height="463" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-1" >
+        <dc:Bounds x="-422" y="-3713" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-2" >
+        <dc:Bounds x="-279" y="-3713" width="199" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-3" >
+        <dc:Bounds x="-421" y="-3643" width="476" height="121" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-3-2-2" >
+        <dc:Bounds x="-10655" y="-12620" width="132" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-3-2-3" >
+        <dc:Bounds x="-10917" y="-12620" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-3-2-4" >
+        <dc:Bounds x="-10501" y="-12620" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-3-2-5" >
+        <dc:Bounds x="-10830" y="-12621" width="144" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-6" >
+        <dc:Bounds x="-420" y="-3350" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-11-8" >
+        <dc:Bounds x="-282" y="-3457" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32-2-12" >
+        <dc:Bounds x="354" y="630" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="74" y="741" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_38" >
+        <dc:Bounds x="400" y="741" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="630" y="46" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_37" >
+        <dc:Bounds x="630" y="117" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="502" y="117" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_28" >
+        <dc:Bounds x="502" y="46" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-3-2-5-_32-2-11-3-2-2" >
+        <di:waypoint x="-10337" y="-8954" />
+        <di:waypoint x="-10168" y="-8953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-3-2-2-_32-2-11-3-2-4" >
+        <di:waypoint x="-10168" y="-8953" />
+        <di:waypoint x="-10056" y="-8953" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-3-2-3-_32-2-11-3-2-5" >
+        <di:waypoint x="-10472" y="-8953" />
+        <di:waypoint x="-10337" y="-8954" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-1-_32-2-11-2" >
+        <di:waypoint x="-855" y="-3929" />
+        <di:waypoint x="-637" y="-3929" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-2-_32-2-11-3" >
+        <di:waypoint x="-637" y="-3929" />
+        <di:waypoint x="-640" y="-3823" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-8-_32-2-11-6" >
+        <di:waypoint x="-639" y="-3673" />
+        <di:waypoint x="-853" y="-3566" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-3-_32-2-11-8" >
+        <di:waypoint x="-640" y="-3823" />
+        <di:waypoint x="-639" y="-3673" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-10-_32-2-1" >
+        <di:waypoint x="205" y="62" />
+        <di:waypoint x="205" y="133" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-1-_32-2-3" >
+        <di:waypoint x="205" y="133" />
+        <di:waypoint x="206" y="202" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-3-_32-2-4" >
+        <di:waypoint x="206" y="202" />
+        <di:waypoint x="204" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-4-_32-2-5" >
+        <di:waypoint x="204" y="284" />
+        <di:waypoint x="54" y="285" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-7-_32-2-6" >
+        <di:waypoint x="204" y="362" />
+        <di:waypoint x="53" y="363" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-4-_32-2-7" >
+        <di:waypoint x="204" y="284" />
+        <di:waypoint x="204" y="362" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-4-_32-2-8" >
+        <di:waypoint x="204" y="284" />
+        <di:waypoint x="323" y="284" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-2-_32-2-10" >
+        <di:waypoint x="49" y="63" />
+        <di:waypoint x="205" y="62" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-8-_32-2-11" >
+        <di:waypoint x="323" y="284" />
+        <di:waypoint x="678" y="281" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-2-11-_32-2-12" >
+        <di:waypoint x="678" y="281" />
+        <di:waypoint x="335" y="464" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_35-_34" >
+        <di:waypoint x="216" y="71" />
+        <di:waypoint x="392" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_35" >
+        <di:waypoint x="68" y="73" />
+        <di:waypoint x="216" y="71" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_32" >
+        <di:waypoint x="526" y="141" />
+        <di:waypoint x="524" y="453" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_38-_33" >
+        <di:waypoint x="500" y="765" />
+        <di:waypoint x="98" y="765" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_38" >
+        <di:waypoint x="524" y="453" />
+        <di:waypoint x="500" y="765" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_28-_23" >
+        <di:waypoint x="526" y="70" />
+        <di:waypoint x="730" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_37" >
+        <di:waypoint x="730" y="70" />
+        <di:waypoint x="730" y="141" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_37-_29" >
+        <di:waypoint x="730" y="141" />
+        <di:waypoint x="526" y="141" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_28" >
+        <di:waypoint x="526" y="141" />
+        <di:waypoint x="526" y="70" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_34-_28" >
+        <di:waypoint x="392" y="70" />
+        <di:waypoint x="526" y="70" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

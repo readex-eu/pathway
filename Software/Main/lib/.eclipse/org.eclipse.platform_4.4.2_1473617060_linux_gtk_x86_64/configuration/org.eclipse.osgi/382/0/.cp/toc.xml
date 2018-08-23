@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Parallel Development User Guide">
+      <topic label="Contents" href="html/toc.html"/>
+      <topic label="Overview"  href="html/00overview.html"/> 
+      <topic label="Prerequisites" href="html/00prereqs.html"/>
+      <topic label="New and Noteworthy"  href="html/00newNoteworthy.html"/> 
+      <topic href="html/localVsRemote.html" label="Introduction to PTP Project Types">
+         <topic href="html/localVsRemote.html#local" label="Local">
+         </topic>
+         <topic href="html/localVsRemote.html#remote" label="Remote">
+         </topic>
+         <topic href="html/localVsRemote.html#sync" label="Synchronized">
+         </topic>
+      </topic>
+
+      <topic href="html/01buildMPIprog.html" label="Introduction to Creating MPI Projects">
+         <topic href="html/01buildMPIprog.html#sync" label="Synchronized project with a Makefile">
+         </topic>
+         <topic href="html/01buildMPIprog.html#local-helloMPI" label="Local project without a supplied Makefile - Managed Build project">
+         </topic>
+      </topic> 
+      <topic href="html/sync.html" label="Synchronized Projects">
+         <topic href="html/includes.html" label="Include Files">
+         </topic>
+      </topic>
+      <topic label="Building Synchronized Projects" href="html/build.html"/>
+      <topic label="Configuring Environment Modules" href="html/modules.html"/>
+      <topic label="Recognizing Compiler Errors: Cray, PGI, and Open64" href="html/errorParsers.html"/>
+      <topic label="Running Parallel Programs"  href="html/03pRunConfig.html">
+         <topic label="Supported Target System Configurations" href="html/03pRunConfig.html#ptp-tscs" >
+         </topic>
+          <topic label="Running IBM LoadLeveler Jobs" href="html/rms/ibm-ll.html"/>
+          <topic label="Running IBM PE Jobs" href="html/rms/ibm-pe.html"/>
+          <topic label="Running IBM Platform MPI Jobs" href="html/rms/ibm-pmpi.html"/> 
+          <topic label="Running Open MPI Jobs" href="html/rms/openMPI.html"/>
+          <topic label="Running PBS Jobs" href="html/rms/pbs.html"/>
+          <topic label="Running Remote Generic Interactive Jobs" href="html/rms/remote-generic-interactive.html" />
+          <topic label="Running SLURM Jobs" href="html/rms/slurm.html"/>
+          <topic label="Running Grid Engine Jobs" href="html/rms/gridengine.html"/>        
+          <topic label="Running TORQUE Jobs" href="html/rms/torque.html"/>
+          <!-- anchor point for general TSC help docs -->
+          <anchor id="ptpRun"/>
+          <topic label="Running Jobs on JSC JUDGE" href="html/rms/de.fz-juelich.judge.html"/>
+          <topic label="Running Jobs on JSC JUROPA" href="html/rms/de.fz-juelich.juropa.html"/>
+          <topic label="Running Jobs on JSC JUQUEEN" href="html/rms/de.fz-juelich.juqueen.html"/>
+           <!-- anchor point for specific TSC help docs for specific machines -->
+          <anchor id="ptpRunSpec"/>
+          </topic>
+      <topic label="Monitoring Jobs and Systems" href="html/05monitoring.html"/>
+      <topic label="Parallel Debugging"  href="html/06parDebugging.html"/>
+      <topic href="html/07ptpPrefs.html" label="Preferences">
+         <topic href="html/07ptpPrefs.html#main" label="Parallel Tools Preferences">
+         </topic>
+         <topic href="html/07ptpPrefs.html#remoteDev" label="Remote Development Preferences">
+         </topic>
+      </topic>
+      <topic href="html/remoteTools.html" label="Managing Remote Connections">
+         <topic href="html/remoteTools.html" label="Creating and Editing Connections"/>
+         <topic href="html/remoteTerminal.html" label="Remote Terminal- Shell Access within Eclipse"/>
+      </topic>
+      <topic label="Parallel Language Development Tools (PLDT)">
+      	<anchor id="ptpPLDT"/>
+      </topic>
+      <topic label="External Tools Framework (ETFw)">
+      	<anchor id="ptpETFw"/>
+      </topic>
+      <topic label="Graphical Explorer of MPI Programs (GEM)">
+      	<anchor id="ptpGEM"/>
+      	</topic>
+   
+</toc>

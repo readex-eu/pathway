@@ -1,0 +1,17 @@
+'''Experiments for 31. December 2012'''
+*Scalability Analysis - Pathway:Exp:ff8081813b675ba8013b675be8a70000
+ Application: Add - default
+ Tool: Periscope
+ Number of sub-experiments: 4
+**MPI: 2 / OpenMP: 4 ( SuperMUC Fat Node ): ff8081813b675ba8013b62372db20001
+**MPI: 2 / OpenMP: 8 ( SuperMUC Fat Node ): ff8081813b675ba8013b6237d5720002
+**MPI: 2 / OpenMP: 1 ( SuperMUC Fat Node ): ff8081813b675ba8013b675be8a70000
+**MPI: 2 / OpenMP: 16 ( SuperMUC Fat Node ): ff8081813b675ba8013b623867f10003
+
+*Scalability Analysis - Pathway:Exp:2
+ Application: Add - default
+ Tool: Periscope
+ Number of sub-experiments: 0
+
+----
+----

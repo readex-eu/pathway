@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:tns="http://www.jboss.org/drools" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.omg.org/spec/BPMN/20100524/DI http://www.omg.org/spec/BPMN/20100524/DI-XMI http://www.omg.org/spec/DD/20100524/DC http://www.omg.org/spec/DD/20100524/DC-XMI http://www.omg.org/spec/DD/20100524/DI http://www.omg.org/spec/DD/20100524/DI-XMI" id="Definitions_1" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.jboss.org/drools" typeLanguage="http://www.java.com/javaTypes">
+  <bpmn2:process id="pathway.workflows.analysis.Scalability" tns:version="1" tns:packageName="defaultPackage" name="Scalability Analysis Process" isExecutable="true" processType="Private">
+    <bpmn2:extensionElements>
+      <tns:import xsi:type="xsd:anyType" name="javax.swing.JOptionPane"/>
+      <tns:import xsi:type="xsd:anyType" name="pathway.ui.dialogs.GetAvailApps"/>
+      <tns:import xsi:type="xsd:anyType" name="pathway.ui.dialogs.GetAvailHPCSystems"/>
+      <tns:import xsi:type="xsd:anyType" name="pathway.ui.dialogs.GetAvailPerfTools"/>
+      <tns:import xsi:type="xsd:anyType" name="pathway.ui.dialogs.AddNewApp"/>
+    </bpmn2:extensionElements>
+    <bpmn2:property id="application" itemSubjectRef="tns:_applicationItem"/>
+    <bpmn2:property id="mpiProcsConfig" itemSubjectRef="tns:_mpiProcsConfigItem"/>
+    <bpmn2:property id="ompThreadsConfig" itemSubjectRef="tns:_ompThreadsConfigItem"/>
+    <bpmn2:property id="hpcSystem" itemSubjectRef="tns:_hpcSystemItem"/>
+    <bpmn2:property id="perfTool" itemSubjectRef="tns:_perfToolItem"/>
+    <bpmn2:property id="configOK" itemSubjectRef="tns:_configOKItem"/>
+    <bpmn2:startEvent id="StartEvent_1" name="Start Process">
+      <bpmn2:outgoing>tns:SequenceFlow_2</bpmn2:outgoing>
+    </bpmn2:startEvent>
+    <bpmn2:endEvent id="EndEvent_1" name="Cancel Process">
+      <bpmn2:incoming>tns:SequenceFlow_17</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_2"/>
+    </bpmn2:endEvent>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Gateway_StartProc" gatewayDirection="Converging">
+      <bpmn2:incoming>tns:SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:incoming>tns:SequenceFlow_14</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_3</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" tns:priority="1" sourceRef="StartEvent_1" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:scriptTask id="ScriptTask_1" name="Application Config">
+      <bpmn2:incoming>tns:SequenceFlow_3</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_1</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_3" tns:priority="1" sourceRef="ExclusiveGateway_1" targetRef="ScriptTask_1"/>
+    <bpmn2:scriptTask id="ScriptTask_2" name="MPI/OMP Config" scriptFormat="http://www.java.com/java">
+      <bpmn2:incoming>tns:SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_19</bpmn2:outgoing>
+      <bpmn2:script>String answer = JOptionPane.showInputDialog(&quot;Please enter the MPI procs configuration (min:max:incr):&quot;, &quot;2:4:2&quot;);
+kcontext.setVariable(&quot;mpiProcsConfig&quot;, answer);</bpmn2:script>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="ScriptTask_4" name="Target HPC System?">
+      <bpmn2:incoming>tns:SequenceFlow_19</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_11</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:scriptTask id="ScriptTask_5" name="Perf Tool?">
+      <bpmn2:incoming>tns:SequenceFlow_11</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_12</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_11" tns:priority="1" sourceRef="ScriptTask_4" targetRef="ScriptTask_5"/>
+    <bpmn2:scriptTask id="ScriptTask_6" name="Create Experiments">
+      <bpmn2:incoming>tns:SequenceFlow_12</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_13</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_12" tns:priority="1" sourceRef="ScriptTask_5" targetRef="ScriptTask_6"/>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_4" name="" gatewayDirection="Diverging">
+      <bpmn2:incoming>tns:SequenceFlow_13</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_14</bpmn2:outgoing>
+      <bpmn2:outgoing>tns:SequenceFlow_15</bpmn2:outgoing>
+      <bpmn2:outgoing>tns:SequenceFlow_16</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_13" tns:priority="1" sourceRef="ScriptTask_6" targetRef="ExclusiveGateway_4"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_14" tns:priority="1" name="Repeat Config" sourceRef="ExclusiveGateway_4" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_15" tns:priority="1" name="Start Simulation" sourceRef="ExclusiveGateway_4" targetRef="SubProcess_2"/>
+    <bpmn2:scriptTask id="ScriptTask_8" name="Analysis Cancelled">
+      <bpmn2:incoming>tns:SequenceFlow_16</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_17</bpmn2:outgoing>
+    </bpmn2:scriptTask>
+    <bpmn2:sequenceFlow id="SequenceFlow_16" tns:priority="1" name="Cancelled" sourceRef="ExclusiveGateway_4" targetRef="ScriptTask_8"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_17" tns:priority="1" name="" sourceRef="ScriptTask_8" targetRef="EndEvent_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" name="" sourceRef="ScriptTask_1" targetRef="ScriptTask_2"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_19" name="" sourceRef="ScriptTask_2" targetRef="ScriptTask_4"/>
+    <bpmn2:subProcess id="SubProcess_2" name="Scalability-Analysis-Workflow">
+      <bpmn2:incoming>tns:SequenceFlow_15</bpmn2:incoming>
+      <bpmn2:outgoing>tns:SequenceFlow_29</bpmn2:outgoing>
+      <bpmn2:startEvent id="StartEvent_2" name="Start">
+        <bpmn2:outgoing>tns:SequenceFlow_21</bpmn2:outgoing>
+      </bpmn2:startEvent>
+      <bpmn2:sequenceFlow id="SequenceFlow_21" name="" sourceRef="StartEvent_2" targetRef="Task_1"/>
+      <bpmn2:task id="Task_1" name="Create System Manager">
+        <bpmn2:incoming>tns:SequenceFlow_21</bpmn2:incoming>
+        <bpmn2:outgoing>tns:SequenceFlow_22</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="SequenceFlow_22" name="" sourceRef="Task_1" targetRef="ScriptTask_9"/>
+      <bpmn2:scriptTask id="ScriptTask_9" name="Instrument Code">
+        <bpmn2:incoming>tns:SequenceFlow_22</bpmn2:incoming>
+        <bpmn2:outgoing>tns:SequenceFlow_26</bpmn2:outgoing>
+      </bpmn2:scriptTask>
+      <bpmn2:sequenceFlow id="SequenceFlow_26" name="" sourceRef="ScriptTask_9" targetRef="SubProcess_4"/>
+      <bpmn2:subProcess id="SubProcess_4" name="Run All Experiments Loop">
+        <bpmn2:incoming>tns:SequenceFlow_26</bpmn2:incoming>
+        <bpmn2:outgoing>tns:SequenceFlow_27</bpmn2:outgoing>
+        <bpmn2:ioSpecification id="InputOutputSpecification_1">
+          <bpmn2:dataInput id="DataInput_1" name="Data Input 1"/>
+        </bpmn2:ioSpecification>
+        <bpmn2:multiInstanceLoopCharacteristics id="MultiInstanceLoopCharacteristics_3"/>
+        <bpmn2:task id="Task_2" name="Print Experiment">
+          <bpmn2:outgoing>tns:SequenceFlow_23</bpmn2:outgoing>
+        </bpmn2:task>
+        <bpmn2:sequenceFlow id="SequenceFlow_23" name="" sourceRef="Task_2" targetRef="Task_3"/>
+        <bpmn2:task id="Task_3" name="Start Remote Experiment">
+          <bpmn2:incoming>tns:SequenceFlow_23</bpmn2:incoming>
+          <bpmn2:outgoing>tns:SequenceFlow_25</bpmn2:outgoing>
+        </bpmn2:task>
+        <bpmn2:sequenceFlow id="SequenceFlow_25" name="" sourceRef="Task_3" targetRef="Task_4"/>
+        <bpmn2:task id="Task_4" name="Store Experiment to Database">
+          <bpmn2:incoming>tns:SequenceFlow_25</bpmn2:incoming>
+        </bpmn2:task>
+      </bpmn2:subProcess>
+      <bpmn2:sequenceFlow id="SequenceFlow_27" name="" sourceRef="SubProcess_4" targetRef="Task_5"/>
+      <bpmn2:task id="Task_5" name="Close the Batch System Manager">
+        <bpmn2:incoming>tns:SequenceFlow_27</bpmn2:incoming>
+        <bpmn2:outgoing>tns:SequenceFlow_28</bpmn2:outgoing>
+      </bpmn2:task>
+      <bpmn2:sequenceFlow id="SequenceFlow_28" name="" sourceRef="Task_5" targetRef="EndEvent_3"/>
+      <bpmn2:endEvent id="EndEvent_3" name="">
+        <bpmn2:incoming>tns:SequenceFlow_28</bpmn2:incoming>
+      </bpmn2:endEvent>
+    </bpmn2:subProcess>
+    <bpmn2:endEvent id="EndEvent_4" name="End Process">
+      <bpmn2:incoming>tns:SequenceFlow_29</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_3"/>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_29" sourceRef="SubProcess_2" targetRef="EndEvent_4"/>
+  </bpmn2:process>
+  <bpmn2:itemDefinition id="_applicationItem" itemKind="Physical" structureRef="tns:String"/>
+  <bpmn2:itemDefinition id="_mpiProcsConfigItem" itemKind="Physical" structureRef="tns:String"/>
+  <bpmn2:itemDefinition id="_ompThreadsConfigItem" itemKind="Physical" structureRef="tns:String"/>
+  <bpmn2:itemDefinition id="_hpcSystemItem" itemKind="Physical" structureRef="tns:String"/>
+  <bpmn2:itemDefinition id="_perfToolItem" itemKind="Physical" structureRef="tns:String"/>
+  <bpmn2:itemDefinition id="_configOKItem" itemKind="Physical" structureRef="tns:Integer"/>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1" name="Default Process Diagram">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="tns:ScalabilityAnalysisNew">
+      <bpmndi:BPMNShape id="BPMNShape_1" bpmnElement="tns:StartEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="101.0" y="80.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_2" bpmnElement="tns:EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="101.0" y="622.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="tns:ExclusiveGateway_1" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="187.0" y="73.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="tns:SequenceFlow_2" sourceElement="tns:BPMNShape_1" targetElement="tns:BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="137.0" y="98.0"/>
+        <di:waypoint xsi:type="dc:Point" x="187.0" y="98.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_1" bpmnElement="tns:ScriptTask_1">
+        <dc:Bounds height="50.0" width="110.0" x="287.0" y="73.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="tns:SequenceFlow_3" sourceElement="tns:BPMNShape_ExclusiveGateway_1" targetElement="tns:BPMNShape_ScriptTask_1">
+        <di:waypoint xsi:type="dc:Point" x="238.0" y="98.0"/>
+        <di:waypoint xsi:type="dc:Point" x="287.0" y="98.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_2" bpmnElement="tns:ScriptTask_2">
+        <dc:Bounds height="50.0" width="110.0" x="288.0" y="159.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_4" bpmnElement="tns:ScriptTask_4">
+        <dc:Bounds height="50.0" width="110.0" x="288.0" y="250.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_5" bpmnElement="tns:ScriptTask_5">
+        <dc:Bounds height="50.0" width="110.0" x="287.0" y="340.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_11" bpmnElement="tns:SequenceFlow_11" sourceElement="tns:BPMNShape_ScriptTask_4" targetElement="tns:BPMNShape_ScriptTask_5">
+        <di:waypoint xsi:type="dc:Point" x="343.0" y="300.0"/>
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="340.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_6" bpmnElement="tns:ScriptTask_6">
+        <dc:Bounds height="50.0" width="110.0" x="287.0" y="439.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_12" bpmnElement="tns:SequenceFlow_12" sourceElement="tns:BPMNShape_ScriptTask_5" targetElement="tns:BPMNShape_ScriptTask_6">
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="390.0"/>
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="439.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_4" bpmnElement="tns:ExclusiveGateway_4" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="317.0" y="525.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_13" bpmnElement="tns:SequenceFlow_13" sourceElement="tns:BPMNShape_ScriptTask_6" targetElement="tns:BPMNShape_ExclusiveGateway_4">
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="489.0"/>
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="525.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_14" bpmnElement="tns:SequenceFlow_14" sourceElement="tns:BPMNShape_ExclusiveGateway_4" targetElement="tns:BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="525.0"/>
+        <di:waypoint xsi:type="dc:Point" x="212.0" y="525.0"/>
+        <di:waypoint xsi:type="dc:Point" x="212.0" y="124.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_15" bpmnElement="tns:SequenceFlow_15" sourceElement="tns:BPMNShape_ExclusiveGateway_4" targetElement="tns:BPMNShape_SubProcess_2">
+        <di:waypoint xsi:type="dc:Point" x="368.0" y="550.0"/>
+        <di:waypoint xsi:type="dc:Point" x="489.0" y="550.0"/>
+        <di:waypoint xsi:type="dc:Point" x="489.0" y="365.0"/>
+        <di:waypoint xsi:type="dc:Point" x="570.0" y="365.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_8" bpmnElement="tns:ScriptTask_8">
+        <dc:Bounds height="50.0" width="110.0" x="287.0" y="614.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_16" bpmnElement="tns:SequenceFlow_16" sourceElement="tns:BPMNShape_ExclusiveGateway_4" targetElement="tns:BPMNShape_ScriptTask_8">
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="576.0"/>
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="614.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_17" bpmnElement="tns:SequenceFlow_17" sourceElement="tns:BPMNShape_ScriptTask_8" targetElement="tns:BPMNShape_2">
+        <di:waypoint xsi:type="dc:Point" x="287.0" y="639.0"/>
+        <di:waypoint xsi:type="dc:Point" x="137.0" y="640.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="tns:SequenceFlow_1" sourceElement="tns:BPMNShape_ScriptTask_1" targetElement="tns:BPMNShape_ScriptTask_2">
+        <di:waypoint xsi:type="dc:Point" x="342.0" y="123.0"/>
+        <di:waypoint xsi:type="dc:Point" x="343.0" y="159.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_19" bpmnElement="tns:SequenceFlow_19" sourceElement="tns:BPMNShape_ScriptTask_2" targetElement="tns:BPMNShape_ScriptTask_4">
+        <di:waypoint xsi:type="dc:Point" x="343.0" y="209.0"/>
+        <di:waypoint xsi:type="dc:Point" x="343.0" y="250.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_SubProcess_2" bpmnElement="tns:SubProcess_2" isExpanded="true">
+        <dc:Bounds height="590.0" width="401.0" x="570.0" y="70.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="tns:StartEvent_2">
+        <dc:Bounds height="36.0" width="36.0" x="602.0" y="120.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Task_1" bpmnElement="tns:Task_1">
+        <dc:Bounds height="50.0" width="161.0" x="690.0" y="113.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_9" bpmnElement="tns:ScriptTask_9">
+        <dc:Bounds height="50.0" width="110.0" x="716.0" y="190.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_21" bpmnElement="tns:SequenceFlow_21" sourceElement="tns:BPMNShape_StartEvent_1" targetElement="tns:BPMNShape_Task_1">
+        <di:waypoint xsi:type="dc:Point" x="638.0" y="138.0"/>
+        <di:waypoint xsi:type="dc:Point" x="690.0" y="138.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_22" bpmnElement="tns:SequenceFlow_22" sourceElement="tns:BPMNShape_Task_1" targetElement="tns:BPMNShape_ScriptTask_9">
+        <di:waypoint xsi:type="dc:Point" x="770.0" y="163.0"/>
+        <di:waypoint xsi:type="dc:Point" x="771.0" y="190.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_SubProcess_4" bpmnElement="tns:SubProcess_4" isExpanded="true">
+        <dc:Bounds height="281.0" width="291.0" x="625.0" y="270.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Task_2" bpmnElement="tns:Task_2">
+        <dc:Bounds height="50.0" width="110.0" x="716.0" y="300.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_Task_3" bpmnElement="tns:Task_3">
+        <dc:Bounds height="50.0" width="110.0" x="716.0" y="380.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_23" bpmnElement="tns:SequenceFlow_23" sourceElement="tns:BPMNShape_Task_2" targetElement="tns:BPMNShape_Task_3">
+        <di:waypoint xsi:type="dc:Point" x="771.0" y="350.0"/>
+        <di:waypoint xsi:type="dc:Point" x="771.0" y="380.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_Task_4" bpmnElement="tns:Task_4">
+        <dc:Bounds height="50.0" width="196.0" x="673.0" y="460.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_25" bpmnElement="tns:SequenceFlow_25" sourceElement="tns:BPMNShape_Task_3" targetElement="tns:BPMNShape_Task_4">
+        <di:waypoint xsi:type="dc:Point" x="771.0" y="430.0"/>
+        <di:waypoint xsi:type="dc:Point" x="771.0" y="460.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_26" bpmnElement="tns:SequenceFlow_26" sourceElement="tns:BPMNShape_ScriptTask_9" targetElement="tns:BPMNShape_SubProcess_4">
+        <di:waypoint xsi:type="dc:Point" x="771.0" y="240.0"/>
+        <di:waypoint xsi:type="dc:Point" x="770.0" y="270.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_Task_5" bpmnElement="tns:Task_5">
+        <dc:Bounds height="50.0" width="236.0" x="653.0" y="580.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_27" bpmnElement="tns:SequenceFlow_27" sourceElement="tns:BPMNShape_SubProcess_4" targetElement="tns:BPMNShape_Task_5">
+        <di:waypoint xsi:type="dc:Point" x="770.0" y="551.0"/>
+        <di:waypoint xsi:type="dc:Point" x="771.0" y="580.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_2" bpmnElement="tns:EndEvent_3">
+        <dc:Bounds height="36.0" width="36.0" x="590.0" y="587.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_28" bpmnElement="tns:SequenceFlow_28" sourceElement="tns:BPMNShape_Task_5" targetElement="tns:BPMNShape_EndEvent_2">
+        <di:waypoint xsi:type="dc:Point" x="653.0" y="605.0"/>
+        <di:waypoint xsi:type="dc:Point" x="626.0" y="605.0"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_3" bpmnElement="tns:EndEvent_4">
+        <dc:Bounds height="36.0" width="36.0" x="461.0" y="622.0"/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_29" bpmnElement="tns:SequenceFlow_29" sourceElement="tns:BPMNShape_SubProcess_2" targetElement="tns:BPMNShape_EndEvent_3">
+        <di:waypoint xsi:type="dc:Point" x="570.0" y="365.0"/>
+        <di:waypoint xsi:type="dc:Point" x="571.0" y="640.0"/>
+        <di:waypoint xsi:type="dc:Point" x="497.0" y="640.0"/>
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn2:definitions>

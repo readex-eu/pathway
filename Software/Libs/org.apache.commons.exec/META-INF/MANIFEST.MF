@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Apache Commons Exec
+Bundle-SymbolicName: org.apache.commons.exec
+Bundle-Version: 1.1
+Bundle-Vendor: Apache
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: commons-exec.jar,
+ .
+Export-Package: org.apache.commons.exec,
+ org.apache.commons.exec.environment,
+ org.apache.commons.exec.launcher,
+ org.apache.commons.exec.util

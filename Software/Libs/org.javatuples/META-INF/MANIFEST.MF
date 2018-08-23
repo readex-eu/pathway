@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Javatuples
+Bundle-SymbolicName: org.javatuples
+Bundle-Version: 1.2
+Bundle-Vendor: JAVATUPLES
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ClassPath: javatuples.jar,
+ .
+Export-Package: org.javatuples,
+ org.javatuples.valueintf

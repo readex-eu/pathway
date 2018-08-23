@@ -1,0 +1,33 @@
+'''Link to other wiki pages:'''
+An example of referencing historical notes: AllNotesOverview
+Some other ways to link to external data: LinkingExamples
+
+----
+
+'''Links to source files:'''
+To enable instrumentation with Score-P, please uncomment: Eclipse:/NPB-BT-MZ/config/make.def:40
+
+The online access region is defined here: Eclipse:/NPB-BT-MZ/BT-MZ/bt_scorep.F:219
+It ends on line 234: Eclipse:/NPB-BT-MZ/BT-MZ/bt_scorep.F:234
+
+The NPB main Makefile is Eclipse:/NPB-BT-MZ/Makefile
+
+An example of a scalability workflow can be seen in Plugin:/de.tum.in.pathway/resources/models/analysis/ScalabilityAnalysis.bpmn
+
+----
+Embed a remote picture:
+http://www.lrr.in.tum.de/periscope/files/logos/PscLogoBlau72dpi.png
+
+----
+
+Embed an Eclipse resource:
+Embed:Eclipse:/NPB-BT-MZ/README.tutorial
+
+----
+A '''test''' ''table''
+|'''''ID'''''|'''''Date'''''|'''''Time'''''|'''''Project'''''|
+|1|04-Dec-2012|19:39|PAThWay Wiki|
+|2|05-Dec-2012|10:10|My Test|
+|3|03-Nov-2012|22:22|Another Project with http://www.lrr.in.tum.de/periscope|
+
+ Other fancy formatting options

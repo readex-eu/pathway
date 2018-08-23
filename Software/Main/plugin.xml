@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension point="org.eclipse.core.expressions.definitions">
+      <definition id="pathway.eclipse.expressions.inBPMNEditor">
+         <with
+               variable="activeEditorId">
+            <or>
+               <equals
+                     value="org.drools.eclipse.flow.bpmn2.editor.BPMNModelEditor">
+               </equals>
+               <equals
+                     value="org.eclipse.bpmn2.modeler.ui.bpmn2editor">
+               </equals>
+               <equals
+                     value="org.eclipse.bpmn2.presentation.Bpmn2EditorID">
+               </equals>
+            </or>
+         </with>
+      </definition>
+   </extension>
+
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="pathway.eclipse.prefs.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="org.eclipse.debug.core.model.ILaunchConfigurationDelegate"
+            id="de.tum.in.lrr.periscope.eclipse.scalabilityrun.PscLaunchConfiguration"
+            modes="run"
+            name="PscLaunchConfiguration"
+            public="true">
+      </launchConfigurationType>
+   </extension>
+
+   <extension point="org.eclipse.ui.commands">
+      <command
+            id="pathway.eclipse.commands.startWorkflow"
+            name="Start Workflow">
+      </command>
+      <command
+            defaultHandler="pathway.eclipse.handlers.EditApplicationsHandler"
+            id="pathway.eclipse.commands.editApplications"
+            name="Edit Applications">
+      </command>
+      <command
+            defaultHandler="pathway.eclipse.handlers.EditHPCSystemsHandler"
+            id="pathway.eclipse.commands.editHPCSystems"
+            name="Edit HPC Systems">
+      </command>
+      <command
+            defaultHandler="pathway.eclipse.handlers.OpenBrowserHandler"
+            id="pathway.eclipse.commands.openBrowser"
+            name="Open Browser">
+      </command>
+      <command
+            defaultHandler="pathway.eclipse.handlers.OpenReadexBrowserHandler"
+            id="pathway.eclipse.commands.openReadexBrowser"
+            name="Open READEX Browser">
+      </command>
+      <command
+            defaultHandler="pathway.eclipse.handlers.EditToolsHandler"
+            id="pathway.eclipse.commands.editTools"
+            name="Edit Tools">
+      </command>
+   </extension>
+
+   <extension point="org.eclipse.ui.handlers">
+      <handler
+            class="pathway.eclipse.handlers.StartWorkflowHandler"
+            commandId="pathway.eclipse.commands.startWorkflow">
+         <enabledWhen>
+            <reference
+                  definitionId="pathway.eclipse.expressions.inBPMNEditor">
+            </reference>
+         </enabledWhen>
+      </handler>
+   </extension>
+
+   <extension point="org.eclipse.ui.ide.resourceFilters">
+      <filter pattern=".project" selected="true"/>
+      <filter pattern=".classpath" selected="true"/>
+      <filter pattern="bin" selected="true"/>
+   </extension>
+
+   <extension point="org.eclipse.ui.perspectives">
+      <perspective
+         class="pathway.eclipse.PerspectiveFactory"
+         id="pathway.Perspective"
+         name="Pathway"/>
+      <perspective
+            class="pathway.eclipse.PerspectiveFactoryNoEditor"
+            id="pathway.ExecutionPerspective"
+            name="Pathway (Run)">
+      </perspective>
+      <perspective
+            class="pathway.eclipse.PerspectiveFactoryNoEditor"
+            id="pathway.BrowsePerspective"
+            name="Pathway (Browse)">
+      </perspective>
+      
+      <perspective
+            class="pathway.eclipse.PerspectiveFactoryNoEditor"
+            id="pathway.ReadexBrowsePerspective"
+            name="READEX (Results)">
+      </perspective>
+   </extension>
+
+   	<extension point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension targetID="pathway.Perspective">
+         <view
+               id="org.eclipse.ui.views.ResourceNavigator"
+               ratio="0.15"
+               relationship="left"
+               relative="org.eclipse.ui.editorss"/>
+         <view
+               id="de.tum.in.pathway.eclipse.views.ExecutionParameters"
+               ratio="0.8"
+               relationship="right"
+               relative="org.eclipse.ui.editorss"/>
+         <view
+               id="org.eclipse.ui.views.PropertySheet"
+               ratio="0.7"
+               relationship="bottom"
+               relative="org.eclipse.ui.editorss"/>
+         <newWizardShortcut id="pathway.eclipse.wizards.new.project"/>
+         <newWizardShortcut id="pathway.eclipse.wizards.new.workflow"/>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="pathway.ExecutionPerspective">
+         <view
+               id="org.eclipse.ui.views.ResourceNavigator"
+               ratio="0.15"
+               relationship="left"
+               relative="org.eclipse.ui.editorss">
+         </view>
+         <view
+               id="de.tum.in.pathway.eclipse.views.ExecutionParameters"
+               ratio="0.8"
+               relationship="right"
+               relative="org.eclipse.ui.editorss"/>
+         <view
+               id="org.drools.eclipse.debug.ProcessInstanceViewer"
+               ratio="0.5"
+               relationship="bottom"
+               relative="org.eclipse.ui.editorss">
+         </view>
+         <view
+               id="org.eclipse.ui.views.ProgressView"
+               ratio="0.7"
+               relationship="bottom"
+               relative="org.drools.eclipse.debug.ProcessInstanceViewer">
+         </view>
+         <view
+               id="org.eclipse.ui.console.ConsoleView"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProgressView">
+         </view>
+      </perspectiveExtension>
+      <perspectiveExtension
+         targetID="pathway.BrowsePerspective">
+         <view
+               id="org.eclipse.ui.views.ResourceNavigator"
+               ratio="0.15"
+               relationship="left"
+               relative="org.eclipse.ui.editorss">
+         </view>
+         <view
+               id="de.tum.in.pathway.eclipse.views.ExperimentsList"
+               ratio="0.5"
+               relationship="bottom"
+               relative="org.eclipse.ui.editorss">
+         </view>
+         
+         <view
+               id="de.tum.in.pathway.eclipse.views.ExperimentDetails"
+               ratio="0.7"
+               relationship="bottom"
+               relative="de.tum.in.pathway.eclipse.views.ExperimentsList">
+         </view>
+      </perspectiveExtension>
+      
+         <perspectiveExtension
+            targetID="pathway.ReadexBrowsePerspective">
+         <view
+               id="org.eclipse.ui.views.ResourceNavigator"
+               ratio="0.15"
+               relationship="left"
+               relative="org.eclipse.ui.editorss">
+         </view>
+         <view
+               id="de.tum.in.pathway.eclipse.views.ReadexExperimentsList"
+               ratio="0.5"
+               relationship="bottom"
+               relative="org.eclipse.ui.editorss">
+         </view>
+         <view
+               id="de.tum.in.pathway.eclipse.views.ReadexExperimentDetails"
+               ratio="0.7"
+               relationship="bottom"
+               relative="de.tum.in.pathway.eclipse.views.ReadexExperimentsList">
+         </view>
+      </perspectiveExtension>
+   </extension>
+
+   <extension point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+         <menu
+               id="pathway.eclipse.menus.main"
+               label="Pathway">
+            <command
+                  commandId="pathway.eclipse.commands.openBrowser"
+                  icon="resources/icons/experiments_folder.png"
+                  id="pathway.eclipse.menus.openBrowser"
+                  label="Open/Refresh Experiment Browser"
+                  mnemonic="B"
+                  style="push">
+            </command>
+            <command
+                  commandId="pathway.eclipse.commands.openReadexBrowser"
+                  icon="resources/icons/experiments_folder.png"
+                  id="pathway.eclipse.menus.openReadexBrowser"
+                  label="Open/Refresh READEX Browser"
+                  mnemonic="R"
+                  style="push">
+            </command>
+            <command
+                  commandId="pathway.eclipse.commands.startWorkflow"
+                  icon="resources/icons/play_button.png"
+                  id="pathway.eclipse.menus.startWorkflow"
+                  label="Start Workflow"
+                  style="push">
+            </command>
+            <command
+                  commandId="pathway.eclipse.commands.editApplications"
+                  icon="resources/icons/application.png"
+                  id="pathway.eclipse.menus.editApplications"
+                  label="Edit Application(s)"
+                  style="push">
+            </command>
+            <command
+                  commandId="pathway.eclipse.commands.editHPCSystems"
+                  icon="resources/icons/computer.png"
+                  id="pathway.eclipse.menus.editHPCSystems"
+                  label="Edit HPC System(s)"
+                  style="push">
+            </command>
+            <command
+                  commandId="pathway.eclipse.commands.editTools"
+                  icon="resources/icons/finder.gif"
+                  id="pathway.eclipse.menus.editTools"
+                  label="Edit Tools"
+                  style="push">
+            </command>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            allPopups="false"
+            locationURI="toolbar:org.eclipse.ui.main.toolbar?after=additions">
+         <toolbar
+               id="pathway.eclipse.toolbars.main">
+            <command
+                  commandId="pathway.eclipse.commands.openBrowser"
+                  icon="resources/icons/experiments_folder.png"
+                  id="pathway.eclipse.toolbars.openBrowser"
+                  label="Experiments Browser"
+                  style="push"
+                  tooltip="Open/Refresh Experiment Browser">
+            </command>
+            <command
+                  commandId="pathway.eclipse.commands.openReadexBrowser"
+                  icon="resources/icons/experiments_folder.png"
+                  id="pathway.eclipse.toolbars.openReadexBrowser"
+                  label="READEX Browser"
+                  style="push"
+                  tooltip="Open/Refresh READEX Browser">
+            </command>
+            <command
+                  commandId="pathway.eclipse.commands.startWorkflow"
+                  icon="resources/icons/play_button.png"
+                  id="pathway.eclipse.toolbars.startWorkflow"
+                  label="Start Workflow"
+                  style="push"
+                  tooltip="Start the Workflow">
+            </command>
+         </toolbar>
+      </menuContribution>
+   </extension>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <category
+            id="pathway.eclipse.category.new"
+            name="Pathway">
+      </category>
+      <wizard
+            canFinishEarly="false"
+            category="pathway.eclipse.category.new"
+            class="pathway.eclipse.wizards.NewProjectWizard"
+            hasPages="true"
+            icon="resources/icons/browser_icon.png"
+            id="pathway.eclipse.wizards.new.project"
+            name="Pathway Project"
+            project="true">
+      </wizard>
+      <wizard
+            canFinishEarly="false"
+            category="pathway.eclipse.category.new"
+            class="pathway.eclipse.wizards.NewWorkflowWizard"
+            hasPages="true"
+            icon="resources/icons/browser_icon.png"
+            id="pathway.eclipse.wizards.new.workflow"
+            name="Workflow"
+            project="false">
+      </wizard>
+   </extension>
+   
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            class="pathway.eclipse.prefs.PAThWayPreferencePage"
+            id="pathway.eclipse.prefs.PAThWayPreferencePage"
+            name="Pathway">
+      </page>
+   </extension>
+
+   <extension point="org.eclipse.ui.views">
+      <category
+            id="pathway.eclipse.views.pathWayCategory"
+            name="Pathway">
+      </category>
+      <view
+            category="pathway.eclipse.views.pathWayCategory"
+            class="pathway.eclipse.views.HistNotesTreeView"
+            icon="resources/icons/application.png"
+            id="de.tum.in.pathway.eclipse.views.HistNotesTreeView"
+            name="Historical Notes"
+            restorable="true">
+      </view>
+      <view
+            category="pathway.eclipse.views.pathWayCategory"
+            class="pathway.eclipse.views.ExecutionParameters"
+            icon="resources/icons/application.png"
+            id="de.tum.in.pathway.eclipse.views.ExecutionParameters"
+            name="Execution Parameters"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="false"
+            category="pathway.eclipse.views.pathWayCategory"
+            class="pathway.eclipse.views.ExperimentBrowser"
+            icon="resources/icons/application.png"
+            id="de.tum.in.pathway.eclipse.views.ExperimentsList"
+            name="Experiment Browser"
+            restorable="true">
+      </view>
+      
+      <view
+            allowMultiple="false"
+            category="pathway.eclipse.views.pathWayCategory"
+            class="pathway.eclipse.views.ExperimentDetails"
+            icon="resources/icons/application.png"
+            id="de.tum.in.pathway.eclipse.views.ExperimentDetails"
+            name="Experiment Details"
+            restorable="true">
+      </view>
+      <view
+            allowMultiple="true"
+            category="pathway.eclipse.views.pathWayCategory"
+            class="pathway.eclipse.views.ReadexBrowser"
+            icon="resources/icons/application.png"
+            id="de.tum.in.pathway.eclipse.views.ReadexExperimentsList"
+            name="READEX Browser"
+            restorable="true">
+      </view>
+      
+      <view
+            allowMultiple="false"
+            category="pathway.eclipse.views.pathWayCategory"
+            class="pathway.eclipse.views.ReadexExperimentDetails"
+            icon="resources/icons/application.png"
+            id="de.tum.in.pathway.eclipse.views.ReadexExperimentDetails"
+            name="READEX Experiment Details"
+            restorable="true">
+      </view>
+   </extension>
+   
+   <extension point="org.eclipse.ptp.rm.jaxb.core.JAXBResourceManagerConfigurations">
+      <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/mpich2.xml"
+            name="MPICH2">
+      </JAXBResourceManagerConfiguration>
+      <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/load_leveler.xml"
+            name="LoadLeveler (SuperMUC)">
+      </JAXBResourceManagerConfiguration>
+      <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/load_leveler_mpich.xml"
+            name="LoadLeveler MPICH (SuperMUC)">
+      </JAXBResourceManagerConfiguration>
+      <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/platform_lsf.xml"
+            name="Platform LSF">
+      </JAXBResourceManagerConfiguration>
+      <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/slurm.xml"
+            name="SLURM">
+      </JAXBResourceManagerConfiguration>
+      <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/slurm_lrz.xml"
+            name="SLURM (Leibniz-Rechenzentrum)">
+      </JAXBResourceManagerConfiguration>
+      <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/moab.xml"
+            name="Moab (Juropa)">
+      </JAXBResourceManagerConfiguration>
+            <JAXBResourceManagerConfiguration
+            configurationFile="quick-start-guide/resourceManagers/torque.xml"
+            name="TORQUE">
+      </JAXBResourceManagerConfiguration>
+   </extension>
+
+   <extension point="org.eclipse.jdt.core.classpathContainerInitializer">
+      <classpathContainerInitializer
+            class="pathway.eclipse.containers.PAThWayClasspathContainerInitializer"
+            id="PATHWAY">
+      </classpathContainerInitializer>
+   </extension>
+
+   <extension point="org.eclipse.jdt.ui.classpathContainerPage">
+      <classpathContainerPage
+            class="pathway.eclipse.containers.PAThWayClasspathContainerPage"
+            id="PATHWAY"
+            name="Pathway Extensions for jBPM">
+      </classpathContainerPage>
+   </extension>
+
+</plugin>

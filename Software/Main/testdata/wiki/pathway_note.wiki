@@ -1,0 +1,54 @@
+'''Experiments for 31. December 2012'''
+*Scalability Analysis - Pathway:Exp:ff8081813b675ba8013b675be8a70000
+ Application: Add - default
+ Tool: Periscope
+ Number of sub-experiments: 4
+**MPI: 2 / OpenMP: 4 ( SuperMUC Fat Node ): ff8081813b675ba8013b62372db20001
+**MPI: 2 / OpenMP: 8 ( SuperMUC Fat Node ): ff8081813b675ba8013b6237d5720002
+**MPI: 2 / OpenMP: 1 ( SuperMUC Fat Node ): ff8081813b675ba8013b675be8a70000
+**MPI: 2 / OpenMP: 16 ( SuperMUC Fat Node ): ff8081813b675ba8013b623867f10003
+
+*Scalability Analysis - Pathway:Exp:2
+ Application: Add - default
+ Tool: Periscope
+ Number of sub-experiments: 0
+
+----
+----
+
+'''Pathway TODOs  - Doc Module'''
+Expected Timeframe: 5days (max 14.12.2012)
+
+1. Text/Documentation entered by the user in the WikiEditor should be stored to the hist notes as text..
+
+2. Add some sample historical notes to the DB.
+2.1 Update the StoreExperiment to create a new historical note and add the current exp to it. It one exists, just update its list of exp.
+
+3. Create a SIR-like view for showing the data from the historical notes table sorted by date.
+* include all existing entries one icon
+* today's date with different icon (trigger the creation of a new entry on double-click)
+* add as tab next to the projects explorer (need investigation...)
+
+4. Read about editors and check how the EclipseWiki (http://eclipsewiki.sourceforge.net/) editor expects the data
+5. Instead of using .wiki files, double-clicking on a node in the notes viewer must:
+* read the selected note from the DB (or local cache)
+* create a wiki compatible document:
+** Header with date		
+** List of experiments:
+ ExperimentType:ParentExpID (with link Pathway:Exp:<ExpGUID>)
+ Shortly used Configuration (#mpi/omp, machine, project if it exists); 
+ Bullets-listing for the child experiments (with links): MPIxOMP - ResultsDir 
+** Separation line (----)
+** Space for user text - stored in the hist notes table in the db using Wiki's defaut format (i.e. text takes as it is!)
+* Open it in the EclipseWiki editor & load it with the generated Wiki file.
+5. Once the user saves the EclipseWiki editor, parse editor contents, extract the user text and store/update old one in the DB
+
+6. Create EclipseWiki link handlers (TextMatchers) for use in plain .wiki files:
+* Pathway:Exp:<Experiment GUID> - should open the experiment's browser, switch to ParentExp grouping and select the given parent experiment.
+* Pathway:Note:YYYYDDMM - should read a given historical note from the DB and display it in the Wiki editor (like double-clicking on a node in the viewer).
+
+7. Create a sample project for documentation (wiki based):
+* HomePage.wiki - Header, some info, listing of all available historical notes as links (Pathway:Note:...)
+* SampleHistNote.wiki - example how to embed an existing historical note using Embed:Pathway:Note:YYYYDDMM
+* Projects.wiki - Sample displaying the linking to other eclipse projects, plugins & http links
+* Results.wiki - sample showing embeding of images

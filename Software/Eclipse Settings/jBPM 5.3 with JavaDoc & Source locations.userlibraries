@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<eclipse-userlibraries version="2">
+    <library name="jBPM 5.3" systemlibrary="false">
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/drools-compiler-5.4.0.Final.jar" source="E:/Repos/drools/drools-compiler"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/drools-core-5.4.0.Final.jar" source="E:/Repos/drools/drools-core"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/jbpm-bpmn2-5.3.0.Final.jar" source="/home/petkovve/git/jbpm/jbpm-bpmn2"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/jbpm-flow-5.3.0.Final.jar" source="/home/petkovve/git/jbpm/jbpm-flow"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/jbpm-flow-builder-5.3.0.Final.jar" source="/home/petkovve/git/jbpm/jbpm-flow-builder"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/knowledge-api-5.4.0.Final.jar" source="/home/petkovve/git/droolsjbpm-knowledge/knowledge-api"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/knowledge-internal-api-5.4.0.Final.jar" source="/home/petkovve/git/droolsjbpm-knowledge/knowledge-internal-api"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/mvel2-2.1.0.drools16.jar"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/jbpm-human-task-core-5.3.0.Final.jar" source="/home/petkovve/git/jbpm/jbpm-human-task/jbpm-human-task-core"/>
+        <archive javadoc="file:/E:/Software/Drools/jbpm-5.3.0.Final-docs/javadocs/" path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/jbpm-human-task-mina-5.3.0.Final.jar" source="/home/petkovve/git/jbpm/jbpm-human-task/jbpm-human-task-mina"/>
+        <archive path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/antlr-runtime-3.3.jar"/>
+        <archive path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/xstream-1.4.1.jar"/>
+        <archive path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/xpp3_min-1.1.4c.jar"/>
+        <archive path="/home/petkovve/INSTALL/jBPM/5.3.0/org.eclipse.jdt.core_3.7.3.v20120119-1537.jar"/>
+        <archive path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/lib/btm-2.1.2.jar"/>
+        <archive path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/jbpm-bam-5.3.0.Final.jar" source="/home/petkovve/git/jbpm/jbpm-bam/src"/>
+        <archive path="/home/petkovve/INSTALL/jbpm-5.3.0.Final-bin/jbpm-test-5.3.0.Final.jar" source="/home/petkovve/git/jbpm/jbpm-test/src"/>
+    </library>
+    <library name="JCommon 1.0.16" systemlibrary="false">
+        <archive javadoc="http://www.jfree.org/jcommon/api/" path="/home/petkovve/Software/JFreeChart/jcommon-1.0.16/jcommon-1.0.16.jar" source="/home/petkovve/Software/JFreeChart/jcommon-1.0.16/source"/>
+    </library>
+    <library name="JFreeChart 1.0.13" systemlibrary="false">
+        <archive javadoc="http://www.jfree.org/jfreechart/api/javadoc/" path="/home/petkovve/Software/JFreeChart/jfreechart-1.0.13/lib/jfreechart-1.0.13.jar" source="/home/petkovve/Software/JFreeChart/jfreechart-1.0.13/source"/>
+        <archive javadoc="file:/home/petkovve/Software/JFreeChart/jfreechart-1.0.13/javadoc-swt/" path="/home/petkovve/Software/JFreeChart/jfreechart-1.0.13/lib/jfreechart-1.0.13-swt.jar" source="/home/petkovve/Software/JFreeChart/jfreechart-1.0.13/swt"/>
+    </library>
+</eclipse-userlibraries>

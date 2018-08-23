@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pathway.data.persistence.Application" table="Application" schema="PUBLIC" lazy="false">
+		<composite-id>
+			<key-property name="name" column="Name" type="string"/>
+			<key-property name="config" column="Config" type="string"/>
+		</composite-id>
+		<property name="executable" column="Executable" type="string" length="255" not-null="true" lazy="false"/>
+		<property name="inputDataFileNames" column="InputDataFileNames" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="startArgs" column="StartArgs" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="currentCodeVersion" column="CurrentCodeVersion" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="codeLocation" column="CodeLocation" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="execLocation" column="ExecLocation" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="reqModules" column="ReqModules" type="text" not-null="false" lazy="false"/>
+		<property name="reqEnvVars" column="ReqEnvVars" type="text" not-null="false" lazy="false"/>
+		<property name="eclipseProject" column="EclipseProject" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="wallclockLimit" column="WallclockLimit" type="integer" not-null="true" lazy="false"/>
+		<property name="interPhaseDynamism" column="InterPhaseDynamism" type="text" not-null="false" lazy="false"/>
+		<property name="intraPhaseDynamism" column="IntraPhaseDynamism" type="text" not-null="false" lazy="false"/>
+		<property name="tuningPotential" column="TuningPotential" type="text" not-null="false" lazy="false"/>
+		<property name="DTATuningModel" column="DTATuningModel" type="text" not-null="false" lazy="false"/>
+		<property name="RATSwitchingDecisions" column="RATSwitchingDecisions" type="text" not-null="false" lazy="false"/>
+		<property name="calibratedTuningModel" column="CalibratedTuningModel" type="text" not-null="false" lazy="false"/>
+		<property name="phaseRegionName" column="PhaseRegionName" type="text" not-null="false" lazy="false"/>
+		<property name="tuneParamNames" column="TuneParamNames" type="text" not-null="false" lazy="false"/>
+		<property name="CPUFreqParamValues" column="CPUFreqParamValues" type="text" not-null="false" lazy="false"/>
+		<property name="uncoreFreqParamValues" column="UncoreFreqParamValues" type="text" not-null="false" lazy="false"/>
+		<property name="CPUFreqParamEnable" type="boolean" not-null="true" lazy="false">
+			<column name="CPUFreqParamEnable" default="false"/>
+		</property>
+		<property name="uncoreFreqParamEnable" type="boolean" not-null="true" lazy="false">
+			<column name="UncoreFreqParamEnable" default="false"/>
+		</property>
+		<property name="info" column="Info" type="integer" not-null="false" lazy="false"/>
+		<property name="selectiveInfo" column="SelectiveInfo" type="text" not-null="false" lazy="false"/>
+		<property name="OMPThreadsParamCount" column="OMPThreadsParamCount" type="text" not-null="false" lazy="false"/>
+		<property name="OMPThreadsParamEnable" column="OMPThreadsParamEnable" type="boolean" not-null="true" lazy="false"/>
+		<property name="ATPlibParamEnable" column="ATPlibParamEnable" type="boolean" not-null="true" lazy="false"/>
+		<property name="ATPexhaustive" column="ATPexhaustive" type="boolean" not-null="true" lazy="false"/>
+		<property name="energy" column="Energy" type="boolean" not-null="true" lazy="false"/>
+		<property name="time" column="Time" type="boolean" not-null="true" lazy="false"/>
+		<property name="EDP" column="EDP" type="boolean" not-null="true" lazy="false"/>
+		<property name="ED2P" column="ED2P" type="boolean" not-null="true" lazy="false"/>
+		<property name="CPUEnergy" column="CPUEnergy" type="boolean" not-null="true" lazy="false"/>
+		<property name="TCO" column="TCO" type="boolean" not-null="true" lazy="false"/>
+		<property name="costPerJoule" column="CostPerJoule" type="text" not-null="false" lazy="false"/>
+		<property name="costPerCoreHour" column="CostPerCoreHour" type="text" not-null="false" lazy="false"/>
+		<property name="exhaustive" column="Exhaustive" type="boolean" not-null="true" lazy="false"/>
+		<property name="random" column="Random" type="boolean" not-null="true" lazy="false"/>
+		<property name="individual" column="Individual" type="boolean" not-null="true" lazy="false"/>
+		<property name="genetic" column="Genetic" type="boolean" not-null="true" lazy="false"/>
+		<property name="samples" column="Samples" type="text" not-null="false" lazy="false"/>
+		<property name="keep" column="Keep" type="text" not-null="false" lazy="false"/>
+		<property name="population" column="Population" type="text" not-null="false" lazy="false"/>
+		<property name="maxGenerations" column="MaxGenerations" type="text" not-null="false" lazy="false"/>
+		<property name="timer" column="Timer" type="text" not-null="false" lazy="false"/>
+		<property name="normalizedEnergy" column="NormalizedEnergy" type="boolean" not-null="true" lazy="false"/>
+		<property name="normalizedTime" column="NormalizedTime" type="boolean" not-null="true" lazy="false"/>
+		<property name="normalizedEDP" column="NormalizedEDP" type="boolean" not-null="true" lazy="false"/>
+		<property name="normalizedED2P" column="NormalizedED2P" type="boolean" not-null="true" lazy="false"/>
+		<property name="normalizedCPUEnergy" column="NormalizedCPUEnergy" type="boolean" not-null="true" lazy="false"/>
+		<property name="normalizedTCO" column="NormalizedTCO" type="boolean" not-null="true" lazy="false"/>
+		<property name="energyPlugName" column="EnergyPlugName" type="text" not-null="false" lazy="false"/>
+		<property name="energyMetNames" column="EnergyMetNames" type="text" not-null="false" lazy="false"/>
+		<property name="ratInputDataFileName" column="RatInputDataFileName" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="ATPindividual" column="ATPindividual" type="boolean" not-null="true" lazy="false"/>
+		<set name="pscRegion" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key not-null="false">
+				<column name="Application"/>
+				<column name="ApplicationConfig"/>
+			</key>
+			<one-to-many class="pathway.data.persistence.PscRegion"/>
+		</set>
+		<set name="experiment" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key not-null="false">
+				<column name="Application"/>
+				<column name="ApplicationConfig"/>
+			</key>
+			<one-to-many class="pathway.data.persistence.Experiment"/>
+		</set>
+	</class>
+</hibernate-mapping>

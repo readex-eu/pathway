@@ -1,0 +1,12 @@
+'''Linking to external sources'''
+
+Link to the Periscope property descriptions: http://www.lrr.in.tum.de/~periscop/Props/
+
+Search for Petkovve in google: Google:petkovve
+
+Search for a book in amazon: ISBN:0131774298
+
+Open a book hosted in Wiki books: WikiBooks:Microprocessor_Design
+
+Open a Wiki article: Wikipedia:Workflows
+

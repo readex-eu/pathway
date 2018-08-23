@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_exitValueItem" structureRef="Integer" />
+  <itemDefinition id="_stdErrorItem" structureRef="String" />
+  <itemDefinition id="_stdOutItem" structureRef="String" />
+
+  <itemDefinition id="_2-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_2-exitValueItem" structureRef="Integer" />
+  <itemDefinition id="_2-stdErrorItem" structureRef="String" />
+  <itemDefinition id="_2-stdOutItem" structureRef="String" />
+
+  <itemDefinition id="_3-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_3-exitValueItem" structureRef="Integer" />
+  <itemDefinition id="_3-stdErrorItem" structureRef="String" />
+  <itemDefinition id="_3-stdOutItem" structureRef="String" />
+
+  <process processType="Private" isExecutable="true" id="pathway.workflows.others.StartRemoteProcess" name="StartRemoteProcess" tns:packageName="pathway.workflows.others" >
+
+    <!-- process variables -->
+    <property id="hpcSystem" itemSubjectRef="_hpcSystemItem"/>
+    <property id="exitValue" itemSubjectRef="_exitValueItem"/>
+    <property id="stdError" itemSubjectRef="_stdErrorItem"/>
+    <property id="stdOut" itemSubjectRef="_stdOutItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_2" name="Target HPC System?" tns:taskName="SelectTargetSystem" >
+      <ioSpecification>
+        <dataOutput id="_2_HPCSystemOutput" name="HPCSystem" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_2_HPCSystemOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_2_HPCSystemOutput</sourceRef>
+        <targetRef>hpcSystem</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_3" name="Remote Process" tns:taskName="StartRemoteProcess" >
+      <ioSpecification>
+        <dataInput id="_3_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_3_CmdArgsInput" name="CmdArgs" />
+        <dataInput id="_3_CmdInput" name="Cmd" />
+        <dataOutput id="_3_StdErrorOutput" name="StdError" />
+        <dataOutput id="_3_StdOutOutput" name="StdOut" />
+        <dataOutput id="_3_ExitValueOutput" name="ExitValue" />
+        <inputSet>
+          <dataInputRefs>_3_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_3_CmdArgsInput</dataInputRefs>
+          <dataInputRefs>_3_CmdInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_StdErrorOutput</dataOutputRefs>
+          <dataOutputRefs>_3_StdOutOutput</dataOutputRefs>
+          <dataOutputRefs>_3_ExitValueOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_3_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_CmdArgsInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">"-l; -a"</from>
+          <to xsi:type="tFormalExpression">_3_CmdArgsInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_3_CmdInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">"ls"</from>
+          <to xsi:type="tFormalExpression">_3_CmdInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_StdErrorOutput</sourceRef>
+        <targetRef>stdError</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_StdOutOutput</sourceRef>
+        <targetRef>stdOut</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_3_ExitValueOutput</sourceRef>
+        <targetRef>exitValue</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_4" name="End" >
+        <terminateEventDefinition/>
+    </endEvent>
+    <scriptTask id="_5" name="Print Results" scriptFormat="http://www.java.com/java" >
+      <script>System.out.println("The command finished with status: " + exitValue);
+System.out.println("*** StdOUT: " + stdOut);
+System.out.println("*** StdERROR: " + stdError);</script>
+    </scriptTask>
+
+    <!-- connections -->
+    <sequenceFlow id="_1-_2" sourceRef="_1" targetRef="_2" />
+    <sequenceFlow id="_2-_3" sourceRef="_2" targetRef="_3" />
+    <sequenceFlow id="_5-_4" sourceRef="_5" targetRef="_4" />
+    <sequenceFlow id="_3-_5" sourceRef="_3" targetRef="_5" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pathway.workflows.others.StartRemoteProcess" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="45" y="45" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="156" y="45" width="171" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="395" y="45" width="141" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="398" y="278" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="252" y="167" width="375" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_1-_2" >
+        <di:waypoint x="69" y="69" />
+        <di:waypoint x="241" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_2-_3" >
+        <di:waypoint x="241" y="69" />
+        <di:waypoint x="465" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_5-_4" >
+        <di:waypoint x="439" y="191" />
+        <di:waypoint x="422" y="302" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_3-_5" >
+        <di:waypoint x="465" y="69" />
+        <di:waypoint x="439" y="191" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

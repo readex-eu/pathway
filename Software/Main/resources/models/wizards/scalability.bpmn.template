@@ -1,0 +1,406 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <itemDefinition id="_applicationItem" structureRef="String" />
+  <itemDefinition id="_mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_perfToolItem" structureRef="String" />
+  <itemDefinition id="_configOKItem" structureRef="String" />
+  <itemDefinition id="_experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_workingFolderItem" structureRef="String" />
+  <itemDefinition id="_expCommentItem" structureRef="String" />
+  <itemDefinition id="_batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <itemDefinition id="_32-applicationItem" structureRef="String" />
+  <itemDefinition id="_32-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_32-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_32-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_32-perfToolItem" structureRef="String" />
+  <itemDefinition id="_32-configOKItem" structureRef="String" />
+  <itemDefinition id="_32-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_32-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_32-expCommentItem" structureRef="String" />
+  <itemDefinition id="_32-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <itemDefinition id="_33-applicationItem" structureRef="String" />
+  <itemDefinition id="_33-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_33-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_33-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_33-perfToolItem" structureRef="String" />
+  <itemDefinition id="_33-configOKItem" structureRef="String" />
+  <itemDefinition id="_33-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_33-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_33-expCommentItem" structureRef="String" />
+  <itemDefinition id="_33-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <itemDefinition id="_23-applicationItem" structureRef="String" />
+  <itemDefinition id="_23-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_23-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_23-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_23-perfToolItem" structureRef="String" />
+  <itemDefinition id="_23-configOKItem" structureRef="String" />
+  <itemDefinition id="_23-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_23-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_23-expCommentItem" structureRef="String" />
+  <itemDefinition id="_23-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <itemDefinition id="_25-applicationItem" structureRef="String" />
+  <itemDefinition id="_25-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_25-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_25-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_25-perfToolItem" structureRef="String" />
+  <itemDefinition id="_25-configOKItem" structureRef="String" />
+  <itemDefinition id="_25-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_25-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_25-expCommentItem" structureRef="String" />
+  <itemDefinition id="_25-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <itemDefinition id="_26-applicationItem" structureRef="String" />
+  <itemDefinition id="_26-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_26-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_26-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_26-perfToolItem" structureRef="String" />
+  <itemDefinition id="_26-configOKItem" structureRef="String" />
+  <itemDefinition id="_26-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_26-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_26-expCommentItem" structureRef="String" />
+  <itemDefinition id="_26-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <itemDefinition id="_29-applicationItem" structureRef="String" />
+  <itemDefinition id="_29-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_29-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_29-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_29-perfToolItem" structureRef="String" />
+  <itemDefinition id="_29-configOKItem" structureRef="String" />
+  <itemDefinition id="_29-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_29-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_29-expCommentItem" structureRef="String" />
+  <itemDefinition id="_29-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <itemDefinition id="_31-applicationItem" structureRef="String" />
+  <itemDefinition id="_31-mpiProcsConfigItem" structureRef="String" />
+  <itemDefinition id="_31-ompThreadsConfigItem" structureRef="String" />
+  <itemDefinition id="_31-hpcSystemItem" structureRef="String" />
+  <itemDefinition id="_31-perfToolItem" structureRef="String" />
+  <itemDefinition id="_31-configOKItem" structureRef="String" />
+  <itemDefinition id="_31-experimentsItem" structureRef="java.util.List" />
+  <itemDefinition id="_31-workingFolderItem" structureRef="String" />
+  <itemDefinition id="_31-expCommentItem" structureRef="String" />
+  <itemDefinition id="_31-batchSysManagerItem" structureRef="pathway.eclipse.remotetools.BatchSystemManager" />
+
+  <process processType="Private" isExecutable="true" id="pathway.workflows.analysis.ScalabilityAnalysis" name="Scalability Analysis Process" tns:packageName="defaultPackage" >
+
+    <extensionElements>
+     <tns:import name="javax.swing.JOptionPane" />
+     <tns:import name="pathway.ui.dialogs.*" />
+     <tns:import name="java.util.List" />
+     <tns:import name="pathway.utils.PrepareExperimentsList" />
+     <tns:import name="pathway.data.persistence.Experiment" />
+     <tns:import name="pathway.eclipse.remotetools.BatchSystemManager" />
+     <tns:import name="pathway.eclipse.remotetools.ConnectionManager" />
+     <tns:import name="org.eclipse.ptp.core.jobs.IJobStatus" />
+     <tns:import name="pathway.data.DataUtils" />
+     <tns:import name="pathway.data.JobResults" />
+    </extensionElements>
+    <!-- process variables -->
+    <property id="application" itemSubjectRef="_applicationItem"/>
+    <property id="mpiProcsConfig" itemSubjectRef="_mpiProcsConfigItem"/>
+    <property id="ompThreadsConfig" itemSubjectRef="_ompThreadsConfigItem"/>
+    <property id="hpcSystem" itemSubjectRef="_hpcSystemItem"/>
+    <property id="perfTool" itemSubjectRef="_perfToolItem"/>
+    <property id="configOK" itemSubjectRef="_configOKItem"/>
+    <property id="experiments" itemSubjectRef="_experimentsItem"/>
+    <property id="workingFolder" itemSubjectRef="_workingFolderItem"/>
+    <property id="expComment" itemSubjectRef="_expCommentItem"/>
+    <property id="batchSysManager" itemSubjectRef="_batchSysManagerItem"/>
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_32" name="Wait for all Experiments" tns:taskName="WaitForAllExperiments" >
+      <ioSpecification>
+        <dataInput id="_32_ExperimentsInput" name="Experiments" />
+        <dataInput id="_32_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_32_ExperimentsInput</dataInputRefs>
+          <dataInputRefs>_32_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_32_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_32_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_33" name="MPI/OMP Config" tns:taskName="ProcThreadsConfig" >
+      <ioSpecification>
+        <dataOutput id="_33_OMPThreadsOutput" name="OMPThreads" />
+        <dataOutput id="_33_MPIProcsOutput" name="MPIProcs" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_33_OMPThreadsOutput</dataOutputRefs>
+          <dataOutputRefs>_33_MPIProcsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_33_OMPThreadsOutput</sourceRef>
+        <targetRef>ompThreadsConfig</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_33_MPIProcsOutput</sourceRef>
+        <targetRef>mpiProcsConfig</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_23" name="Target HPC System?" tns:taskName="SelectTargetSystem" >
+      <ioSpecification>
+        <dataOutput id="_23_HPCSystemOutput" name="HPCSystem" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_23_HPCSystemOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_23_HPCSystemOutput</sourceRef>
+        <targetRef>hpcSystem</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_25" name="Application Config" tns:taskName="AppConfig" >
+      <ioSpecification>
+        <dataOutput id="_25_ApplicationOutput" name="Application" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_25_ApplicationOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_25_ApplicationOutput</sourceRef>
+        <targetRef>application</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_11" name="IF_Config_OK" gatewayDirection="Diverging" />
+    <task id="_26" name="Create Experiments" tns:taskName="CreateExperiments" >
+      <ioSpecification>
+        <dataInput id="_26_PerfToolInput" name="PerfTool" />
+        <dataInput id="_26_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_26_ApplicationInput" name="Application" />
+        <dataInput id="_26_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_26_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_26_ExpTypeInput" name="ExpType" />
+        <dataOutput id="_26_ExperimentsOutput" name="Experiments" />
+        <dataOutput id="_26_ConfigOKOutput" name="ConfigOK" />
+        <inputSet>
+          <dataInputRefs>_26_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_26_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_26_ApplicationInput</dataInputRefs>
+          <dataInputRefs>_26_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_26_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_26_ExpTypeInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_26_ExperimentsOutput</dataOutputRefs>
+          <dataOutputRefs>_26_ConfigOKOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfTool</sourceRef>
+        <targetRef>_26_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ompThreadsConfig</sourceRef>
+        <targetRef>_26_OMPThreadsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>application</sourceRef>
+        <targetRef>_26_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>mpiProcsConfig</sourceRef>
+        <targetRef>_26_MPIProcsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_26_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <targetRef>_26_ExpTypeInput</targetRef>
+        <assignment>
+          <from xsi:type="tFormalExpression">Scalability Analysis</from>
+          <to xsi:type="tFormalExpression">_26_ExpTypeInput</to>
+        </assignment>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_26_ExperimentsOutput</sourceRef>
+        <targetRef>experiments</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_26_ConfigOKOutput</sourceRef>
+        <targetRef>configOK</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <exclusiveGateway id="_12" name="Gateway_StartProc" gatewayDirection="Converging" />
+    <task id="_29" name="Create System Manager" tns:taskName="CreateBatchSystemManager" >
+      <ioSpecification>
+        <dataInput id="_29_HPCSystemInput" name="HPCSystem" />
+        <dataOutput id="_29_BatchSysManagerOutput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_29_HPCSystemInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_29_BatchSysManagerOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>hpcSystem</sourceRef>
+        <targetRef>_29_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_29_BatchSysManagerOutput</sourceRef>
+        <targetRef>batchSysManager</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <endEvent id="_13" name="StartSimulation" >
+        <terminateEventDefinition />
+    </endEvent>
+    <task id="_31" name="Run all Experiments" tns:taskName="RunAllExperiments" >
+      <ioSpecification>
+        <dataInput id="_31_ExperimentsInput" name="Experiments" />
+        <dataInput id="_31_BatchSysManagerInput" name="BatchSysManager" />
+        <inputSet>
+          <dataInputRefs>_31_ExperimentsInput</dataInputRefs>
+          <dataInputRefs>_31_BatchSysManagerInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>experiments</sourceRef>
+        <targetRef>_31_ExperimentsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>batchSysManager</sourceRef>
+        <targetRef>_31_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+    </task>
+
+    <!-- connections -->
+    <sequenceFlow id="_31-_32" sourceRef="_31" targetRef="_32" />
+    <sequenceFlow id="_25-_33" sourceRef="_25" targetRef="_33" />
+    <sequenceFlow id="_33-_23" sourceRef="_33" targetRef="_23" />
+    <sequenceFlow id="_12-_25" sourceRef="_12" targetRef="_25" />
+    <sequenceFlow id="_26-_11" sourceRef="_26" targetRef="_11" />
+    <sequenceFlow id="_23-_26" sourceRef="_23" targetRef="_26" />
+    <sequenceFlow id="_1-_12" sourceRef="_1" targetRef="_12" />
+    <sequenceFlow id="_11-_12" sourceRef="_11" targetRef="_12" name="Re-configure" tns:priority="2" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return configOK == "NO";</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_11-_29" sourceRef="_11" targetRef="_29" name="Configuration OK" tns:priority="3" >
+      <conditionExpression xsi:type="tFormalExpression" language="http://www.java.com/java" >return configOK == "YES";</conditionExpression>
+    </sequenceFlow>
+    <sequenceFlow id="_32-_13" sourceRef="_32" targetRef="_13" />
+    <sequenceFlow id="_29-_31" sourceRef="_29" targetRef="_31" />
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="pathway.workflows.analysis.ScalabilityAnalysis" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="4" y="45" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_32" >
+        <dc:Bounds x="500" y="185" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_33" >
+        <dc:Bounds x="190" y="125" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_23" >
+        <dc:Bounds x="190" y="205" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_25" >
+        <dc:Bounds x="190" y="45" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="210" y="365" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_26" >
+        <dc:Bounds x="190" y="285" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="68" y="45" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_29" >
+        <dc:Bounds x="500" y="365" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="635" y="99" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_31" >
+        <dc:Bounds x="500" y="275" width="200" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge bpmnElement="_31-_32" >
+        <di:waypoint x="600" y="299" />
+        <di:waypoint x="600" y="209" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_25-_33" >
+        <di:waypoint x="290" y="69" />
+        <di:waypoint x="290" y="149" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_33-_23" >
+        <di:waypoint x="290" y="149" />
+        <di:waypoint x="290" y="229" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_12-_25" >
+        <di:waypoint x="92" y="69" />
+        <di:waypoint x="290" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_26-_11" >
+        <di:waypoint x="290" y="309" />
+        <di:waypoint x="234" y="389" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_23-_26" >
+        <di:waypoint x="290" y="229" />
+        <di:waypoint x="290" y="309" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_1-_12" >
+        <di:waypoint x="28" y="69" />
+        <di:waypoint x="92" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_12" >
+        <di:waypoint x="234" y="389" />
+        <di:waypoint x="92" y="389" />
+        <di:waypoint x="92" y="69" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_11-_29" >
+        <di:waypoint x="234" y="389" />
+        <di:waypoint x="600" y="389" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_32-_13" >
+        <di:waypoint x="600" y="209" />
+        <di:waypoint x="659" y="123" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge bpmnElement="_29-_31" >
+        <di:waypoint x="600" y="389" />
+        <di:waypoint x="600" y="299" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

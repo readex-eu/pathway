@@ -1,0 +1,91 @@
+Manifest-Version: 1.0
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Built-By: genie.tools.ptp
+Bundle-SymbolicName: org.eclipse.photran.ui; singleton:=true
+Bundle-Activator: org.eclipse.photran.internal.ui.FortranUIPlugin
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,or
+ g.eclipse.debug.ui,org.eclipse.jface.text,org.eclipse.help,org.eclips
+ e.ui,org.eclipse.ui.ide,org.eclipse.ui.editors,org.eclipse.ui.views,o
+ rg.eclipse.ui.workbench.texteditor,org.eclipse.photran.core,org.eclip
+ se.photran.cdtinterface
+Export-Package: org.eclipse.photran.internal.ui;x-friends:="org.eclips
+ e.photran.ui.vpg",org.eclipse.photran.internal.ui.actions;x-friends:=
+ "org.eclipse.photran.ui.vpg",org.eclipse.photran.internal.ui.editor;x
+ -friends:="org.eclipse.photran.ui.vpg",org.eclipse.photran.internal.u
+ i.preferences;x-friends:="org.eclipse.photran.ui.vpg",org.eclipse.pho
+ tran.internal.ui.properties;x-friends:="org.eclipse.photran.ui.vpg",o
+ rg.eclipse.photran.internal.ui.startup;x-friends:="org.eclipse.photra
+ n.ui.vpg",org.eclipse.photran.ui
+Bundle-Version: 9.0.0.201502031411
+Build-Jdk: 1.6.0_45
+Bundle-ClassPath: photranui.jar
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+Bundle-Name: %pluginName
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven
+Bundle-ManifestVersion: 2
+
+Name: icons/full/obj16/f_file_obj.gif
+SHA1-Digest: iqWGQKvgtz56enCkCiwOk5ilvYQ=
+
+Name: photranui.jar
+SHA1-Digest: H1IdT73FFpO8dWl3SukVZghAVUA=
+
+Name: intro/css/graphics/sample_hov.gif
+SHA1-Digest: pT1cuGZHIE/eawlmJy8IJeyn/48=
+
+Name: intro/overviewContent.xml
+SHA1-Digest: 0xiRg2s8N9TRV5wvJCPWwKma1mI=
+
+Name: icons/full/obj16/f_ovr.gif
+SHA1-Digest: DSaYlAWZyWtuqhamSaRjUeHi5vQ=
+
+Name: about.html
+SHA1-Digest: sQp339U+fmNojWwulG00Oz2xOXQ=
+
+Name: intro/css/graphics/f.png
+SHA1-Digest: X0dp5VPkgFuVahS78oesPJxONfE=
+
+Name: plugin.properties
+SHA1-Digest: IYua7EvF71Z/jFJYuD9Zbg3qOc8=
+
+Name: intro/css/graphics/f_hov.xcf
+SHA1-Digest: JjDKlUHsW0ChfVKVySiCCXDlfF4=
+
+Name: META-INF/maven/org.eclipse.photran/org.eclipse.photran.ui/pom.xm
+ l
+SHA1-Digest: axe51oe0AaVtNq227NzEgeTFxwU=
+
+Name: templates/defaults.xml
+SHA1-Digest: cgAU3K+Kd0QDpof4WsqiUfJTFMI=
+
+Name: schema/apiHelpProvider.exsd
+SHA1-Digest: EwQmZ69wE/cK+BYYM3TwpKAdevY=
+
+Name: intro/css/graphics/sample.gif
+SHA1-Digest: OsOwwGCPqpKtMzE67kFfiFQyPvQ=
+
+Name: schema/sourceViewerConfig.exsd
+SHA1-Digest: y98M0pjAGTh9UUw4AdIhSIUfSyk=
+
+Name: icons/sample.gif
+SHA1-Digest: AFju2Q2+1Vh+Fu1wE08m60Jwc0g=
+
+Name: META-INF/maven/org.eclipse.photran/org.eclipse.photran.ui/pom.pr
+ operties
+SHA1-Digest: YKV7XVNJUGlz15s/9cupNcadPFM=
+
+Name: plugin.xml
+SHA1-Digest: euGOtLeFGMpGh7/8ECTs5o3tmZs=
+
+Name: intro/css/graphics/f_hov.png
+SHA1-Digest: baGxk+gr+zKMqQSETRtz9RAmFbY=
+
+Name: intro/css/overview.css
+SHA1-Digest: 2yytBZ/4xzlsTKothedTdLfTcxk=
+
+Name: intro/css/graphics/f.xcf
+SHA1-Digest: wRojya/vj+45BaVd7vfGWruUALM=
+

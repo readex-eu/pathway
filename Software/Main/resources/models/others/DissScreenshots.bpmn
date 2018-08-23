@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<definitions id="Definition"
+             targetNamespace="http://www.jboss.org/drools"
+             typeLanguage="http://www.java.com/javaTypes"
+             expressionLanguage="http://www.mvel.org/2.0"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd"
+             xmlns:g="http://www.jboss.org/drools/flow/gpd"
+             xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI"
+             xmlns:dc="http://www.omg.org/spec/DD/20100524/DC"
+             xmlns:di="http://www.omg.org/spec/DD/20100524/DI"
+             xmlns:tns="http://www.jboss.org/drools">
+
+  <process processType="Private" isExecutable="true" id="com.sample.bpmn" name="Sample Process" tns:packageName="defaultPackage" >
+
+    <!-- nodes -->
+    <startEvent id="_1" name="StartProcess" />
+    <task id="_2" name="Application Config" tns:taskName="AppConfig" >
+      <ioSpecification>
+        <dataOutput id="_2_ApplicationOutput" name="Application" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_2_ApplicationOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_2_ApplicationOutput</sourceRef>
+        <targetRef>app</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_3" name="Perf Tool?" tns:taskName="SelectPerformanceTool" >
+      <ioSpecification>
+        <dataOutput id="_3_PerfToolOutput" name="PerfTool" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_3_PerfToolOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_3_PerfToolOutput</sourceRef>
+        <targetRef>perfToolVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_4" name="Target HPC System?" tns:taskName="SelectTargetSystem" >
+      <ioSpecification>
+        <dataOutput id="_4_HPCSystemOutput" name="HPCSystem" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_4_HPCSystemOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_4_HPCSystemOutput</sourceRef>
+        <targetRef>hpcSystemVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_5" name="Instrument Code" tns:taskName="InstrumentCode" >
+      <ioSpecification>
+        <dataInput id="_5_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_5_ExperimentInput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_5_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_5_ExperimentInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>batchSysMngrVar</sourceRef>
+        <targetRef>_5_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experimentVar</sourceRef>
+        <targetRef>_5_ExperimentInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_6" name="Create Experiments" tns:taskName="CreateExperiments" >
+      <ioSpecification>
+        <dataInput id="_6_PerfToolInput" name="PerfTool" />
+        <dataInput id="_6_OMPThreadsInput" name="OMPThreads" />
+        <dataInput id="_6_ApplicationInput" name="Application" />
+        <dataInput id="_6_MPIProcsInput" name="MPIProcs" />
+        <dataInput id="_6_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_6_ExpTypeInput" name="ExpType" />
+        <dataOutput id="_6_ExperimentsOutput" name="Experiments" />
+        <dataOutput id="_6_ConfigOKOutput" name="ConfigOK" />
+        <inputSet>
+          <dataInputRefs>_6_PerfToolInput</dataInputRefs>
+          <dataInputRefs>_6_OMPThreadsInput</dataInputRefs>
+          <dataInputRefs>_6_ApplicationInput</dataInputRefs>
+          <dataInputRefs>_6_MPIProcsInput</dataInputRefs>
+          <dataInputRefs>_6_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_6_ExpTypeInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_6_ExperimentsOutput</dataOutputRefs>
+          <dataOutputRefs>_6_ConfigOKOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfToolVar</sourceRef>
+        <targetRef>_6_PerfToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>ompThreadsVar</sourceRef>
+        <targetRef>_6_OMPThreadsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>applVar</sourceRef>
+        <targetRef>_6_ApplicationInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>mpiProcsVar</sourceRef>
+        <targetRef>_6_MPIProcsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystemVar</sourceRef>
+        <targetRef>_6_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>expTypeVar</sourceRef>
+        <targetRef>_6_ExpTypeInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_6_ExperimentsOutput</sourceRef>
+        <targetRef>experimentsListVar</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_6_ConfigOKOutput</sourceRef>
+        <targetRef>configOkVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_7" name="Create System Manager" tns:taskName="CreateBatchSystemManager" >
+      <ioSpecification>
+        <dataInput id="_7_StartManagerInput" name="StartManager" />
+        <dataInput id="_7_ConnectionInput" name="Connection" />
+        <dataInput id="_7_ExperimentInput" name="Experiment" />
+        <dataOutput id="_7_BatchSysManagerOutput" name="BatchSysManager" />
+        <dataOutput id="_7_ConnectionOutput" name="Connection" />
+        <inputSet>
+          <dataInputRefs>_7_StartManagerInput</dataInputRefs>
+          <dataInputRefs>_7_ConnectionInput</dataInputRefs>
+          <dataInputRefs>_7_ExperimentInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_7_BatchSysManagerOutput</dataOutputRefs>
+          <dataOutputRefs>_7_ConnectionOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>startManagerVar</sourceRef>
+        <targetRef>_7_StartManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>connectionVar</sourceRef>
+        <targetRef>_7_ConnectionInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experimentVar</sourceRef>
+        <targetRef>_7_ExperimentInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_7_BatchSysManagerOutput</sourceRef>
+        <targetRef>batchSysManagerVar</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_7_ConnectionOutput</sourceRef>
+        <targetRef>connectionVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_8" name="Run Experiment" tns:taskName="RunExperiment" >
+      <ioSpecification>
+        <dataInput id="_8_BatchSysManagerInput" name="BatchSysManager" />
+        <dataInput id="_8_ExperimentInput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_8_BatchSysManagerInput</dataInputRefs>
+          <dataInputRefs>_8_ExperimentInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>batchSysManagerVar</sourceRef>
+        <targetRef>_8_BatchSysManagerInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experimentVar</sourceRef>
+        <targetRef>_8_ExperimentInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_9" name="Remote Process" tns:taskName="StartRemoteProcess" >
+      <ioSpecification>
+        <dataInput id="_9_PortInput" name="Port" />
+        <dataInput id="_9_CmdArgsInput" name="CmdArgs" />
+        <dataInput id="_9_SSHKeyInput" name="SSHKey" />
+        <dataInput id="_9_UsernameInput" name="Username" />
+        <dataInput id="_9_CmdInput" name="Cmd" />
+        <dataInput id="_9_HPCSystemInput" name="HPCSystem" />
+        <dataInput id="_9_HostnameInput" name="Hostname" />
+        <dataOutput id="_9_StdErrorOutput" name="StdError" />
+        <dataOutput id="_9_StdOutOutput" name="StdOut" />
+        <dataOutput id="_9_ExitValueOutput" name="ExitValue" />
+        <inputSet>
+          <dataInputRefs>_9_PortInput</dataInputRefs>
+          <dataInputRefs>_9_CmdArgsInput</dataInputRefs>
+          <dataInputRefs>_9_SSHKeyInput</dataInputRefs>
+          <dataInputRefs>_9_UsernameInput</dataInputRefs>
+          <dataInputRefs>_9_CmdInput</dataInputRefs>
+          <dataInputRefs>_9_HPCSystemInput</dataInputRefs>
+          <dataInputRefs>_9_HostnameInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_9_StdErrorOutput</dataOutputRefs>
+          <dataOutputRefs>_9_StdOutOutput</dataOutputRefs>
+          <dataOutputRefs>_9_ExitValueOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>portVar</sourceRef>
+        <targetRef>_9_PortInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>argsToUseVar</sourceRef>
+        <targetRef>_9_CmdArgsInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>sshKeyVar</sourceRef>
+        <targetRef>_9_SSHKeyInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>usernameVar</sourceRef>
+        <targetRef>_9_UsernameInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>commandToRunVar</sourceRef>
+        <targetRef>_9_CmdInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystemVar</sourceRef>
+        <targetRef>_9_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hostnameVar</sourceRef>
+        <targetRef>_9_HostnameInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_9_StdErrorOutput</sourceRef>
+        <targetRef>stdErrorVar</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_9_StdOutOutput</sourceRef>
+        <targetRef>stdOutVar</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_9_ExitValueOutput</sourceRef>
+        <targetRef>exitValueVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_10" name="MPI/OMP Config" tns:taskName="ProcThreadsConfig" >
+      <ioSpecification>
+        <dataOutput id="_10_OMPThreadsOutput" name="OMPThreads" />
+        <dataOutput id="_10_MPIProcsOutput" name="MPIProcs" />
+        <inputSet>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_10_OMPThreadsOutput</dataOutputRefs>
+          <dataOutputRefs>_10_MPIProcsOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataOutputAssociation>
+        <sourceRef>_10_OMPThreadsOutput</sourceRef>
+        <targetRef>ompThreadsVar</targetRef>
+      </dataOutputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_10_MPIProcsOutput</sourceRef>
+        <targetRef>mpiProcsVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_11" name="Add Exp Extra Info" tns:taskName="AddExtraInfo2Experiment" >
+      <ioSpecification>
+        <dataInput id="_11_ValueInput" name="Value" />
+        <dataInput id="_11_ParameterInput" name="Parameter" />
+        <dataInput id="_11_ExperimentInput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_11_ValueInput</dataInputRefs>
+          <dataInputRefs>_11_ParameterInput</dataInputRefs>
+          <dataInputRefs>_11_ExperimentInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>addInfoParamValue</sourceRef>
+        <targetRef>_11_ValueInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>addInfoParamName</sourceRef>
+        <targetRef>_11_ParameterInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>experimentVar</sourceRef>
+        <targetRef>_11_ExperimentInput</targetRef>
+      </dataInputAssociation>
+    </task>
+    <task id="_12" name="Question?" tns:taskName="AskQuestion" >
+      <ioSpecification>
+        <dataInput id="_12_QuestionInput" name="Question" />
+        <dataInput id="_12_DefaultValueInput" name="DefaultValue" />
+        <dataInput id="_12_TitleInput" name="Title" />
+        <dataOutput id="_12_AnswerOutput" name="Answer" />
+        <inputSet>
+          <dataInputRefs>_12_QuestionInput</dataInputRefs>
+          <dataInputRefs>_12_DefaultValueInput</dataInputRefs>
+          <dataInputRefs>_12_TitleInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_12_AnswerOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>questionVar</sourceRef>
+        <targetRef>_12_QuestionInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>defaultValueVar</sourceRef>
+        <targetRef>_12_DefaultValueInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>titleVar</sourceRef>
+        <targetRef>_12_TitleInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_12_AnswerOutput</sourceRef>
+        <targetRef>answerVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+    <task id="_13" name="Load Data" tns:taskName="LoadData" >
+      <ioSpecification>
+        <dataInput id="_13_ToolInput" name="Tool" />
+        <dataInput id="_13_ResultsURIInput" name="ResultsURI" />
+        <dataInput id="_13_HPCSystemInput" name="HPCSystem" />
+        <dataOutput id="_13_ExperimentOutput" name="Experiment" />
+        <inputSet>
+          <dataInputRefs>_13_ToolInput</dataInputRefs>
+          <dataInputRefs>_13_ResultsURIInput</dataInputRefs>
+          <dataInputRefs>_13_HPCSystemInput</dataInputRefs>
+        </inputSet>
+        <outputSet>
+          <dataOutputRefs>_13_ExperimentOutput</dataOutputRefs>
+        </outputSet>
+      </ioSpecification>
+      <dataInputAssociation>
+        <sourceRef>perfToolVar</sourceRef>
+        <targetRef>_13_ToolInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>resultsUriVar</sourceRef>
+        <targetRef>_13_ResultsURIInput</targetRef>
+      </dataInputAssociation>
+      <dataInputAssociation>
+        <sourceRef>hpcSystemVar</sourceRef>
+        <targetRef>_13_HPCSystemInput</targetRef>
+      </dataInputAssociation>
+      <dataOutputAssociation>
+        <sourceRef>_13_ExperimentOutput</sourceRef>
+        <targetRef>experimentVar</targetRef>
+      </dataOutputAssociation>
+    </task>
+
+    <!-- connections -->
+
+  </process>
+
+  <bpmndi:BPMNDiagram>
+    <bpmndi:BPMNPlane bpmnElement="com.sample.bpmn" >
+      <bpmndi:BPMNShape bpmnElement="_1" >
+        <dc:Bounds x="45" y="45" width="48" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_2" >
+        <dc:Bounds x="869" y="163" width="186" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_3" >
+        <dc:Bounds x="861" y="328" width="186" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_4" >
+        <dc:Bounds x="862" y="240" width="187" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_5" >
+        <dc:Bounds x="856" y="412" width="187" height="45" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_6" >
+        <dc:Bounds x="613" y="98" width="188" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_7" >
+        <dc:Bounds x="795" y="486" width="204" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_8" >
+        <dc:Bounds x="566" y="235" width="185" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_9" >
+        <dc:Bounds x="65" y="173" width="185" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_10" >
+        <dc:Bounds x="855" y="95" width="185" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_11" >
+        <dc:Bounds x="49" y="405" width="185" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_12" >
+        <dc:Bounds x="55" y="330" width="185" height="48" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape bpmnElement="_13" >
+        <dc:Bounds x="37" y="243" width="186" height="48" />
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+
+</definitions>

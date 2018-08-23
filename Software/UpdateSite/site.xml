@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <description name="Pathway Update Site" url="http://periscope.in.tum.de/pathway/eclipse">
+      Pathway is a tool for modeling performance engineering workflows.
+   </description>
+   <feature url="features/de.tum.in.pathway.feature_0.15.4.jar" id="de.tum.in.pathway.feature" version="0.15.4">
+      <category name="de.tum.in.pathway.category"/>
+   </feature>
+   <category-def name="de.tum.in.pathway.category" label="Pathway">
+      <description>
+         Pathway is a tool for modeling performance engineering workflows.
+      </description>
+   </category-def>
+</site>

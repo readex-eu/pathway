@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="pathway.data.persistence.HPCSystem" table="HPCSystem" schema="PUBLIC" lazy="false">
+		<id name="name" column="Name" type="string">
+			<generator class="native">
+			</generator>
+		</id>
+		<property name="organisation" column="Organisation" type="string" not-null="false" lazy="false"/>
+		<property name="website" column="Website" type="string" not-null="false" lazy="false"/>
+		<property name="batchSystem" column="BatchSystem" type="string" not-null="false" lazy="false"/>
+		<property name="totalCores" column="TotalCores" type="integer" not-null="false" lazy="false"/>
+		<property name="nodes" column="Nodes" type="integer" not-null="false" lazy="false"/>
+		<property name="processorsPerNode" column="ProcessorsPerNode" type="integer" not-null="false" lazy="false"/>
+		<property name="systemPeakPerformance" column="SystemPeakPerformance" type="float" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Peak performance in TFlop/s
+			</meta>
+		</property>
+		<property name="memoryPerCore" column="MemoryPerCore" type="float" not-null="false" lazy="false">
+			<meta attribute="field-description">
+				Available memory per core in GBytes
+			</meta>
+		</property>
+		<property name="fileSystem" column="FileSystem" type="string" not-null="false" lazy="false"/>
+		<property name="netTechnology" column="NetTechnology" type="string" not-null="false" lazy="false"/>
+		<property name="netTopology" column="NetTopology" type="string" not-null="false" lazy="false"/>
+		<property name="availableModules" column="AvailableModules" type="text" not-null="false" lazy="false"/>
+		<set name="experiment" lazy="extra" cascade="save-update,lock" inverse="true">
+			<key column="HPCSystem" not-null="true"/>
+			<one-to-many class="pathway.data.persistence.Experiment"/>
+		</set>
+		<one-to-one name="HPCSystems_CPU" class="pathway.data.persistence.HPCSystem_CPU" cascade="save-update,lock" lazy="false"/>
+	</class>
+</hibernate-mapping>
