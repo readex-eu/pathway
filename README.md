@@ -1,6 +1,6 @@
 # PAThWay: Performance Analysis and Tuning Workflows
 
-A detailed user guide is available at https://github.com/readex-eu/pathway/blob/master/How_to_use_Pathway.pdf
+A detailed user guide is available [here](How_to_use_Pathway.pdf).
 
 ## Introduction
 
